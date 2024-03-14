@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/03/13 00:37:24 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:27:03 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,4 @@ char *ft_readmap(char *map_name);
 char **full_map(char *map);
 int check_wall(char **map, char *full_map);
 char	*ft_strchr(char *s, int c);
+int	check_map_name(char *str);

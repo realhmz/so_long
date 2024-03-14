@@ -34,40 +34,42 @@ void	check_path(int x, int y,char **map)
 	}
 }
 
-int main(int ac ,char **av)
-{
-	int x;
-	int y;
-	x = 0;
-	y = 0;
-	char **map = full_map(ft_readmap(av[1]));
-	if (ac == 2)
-	{
-		while (map && map[x] &&map[x][y])
-		{
-			while (map[x][y])
-			{
-				if(map[x][y] == 'P')
-					break;
-				y++;
-			}
-			if (map[x][y] == 'P')
-				break;
-			y = 0;
-			x++;
-		}
-		// printf("x:%d  y:%d",x,y);
-		check_path(x,y,map);
-	}
-		printf("%s\n",map[0]);
-		printf("%s\n",map[1]);
-		printf("%s\n",map[2]);
-		printf("%s\n",map[3]);
-		printf("%s\n",map[4]);
-		printf("%s\n",map[5]);
-		printf("%s\n",map[6]);
-		printf("%s\n",map[7]);
-		printf("%s\n",map[8]);
+// int main(int ac ,char **av)
+// {
+// 	int x;
+// 	int y;
+// 	x = 0;
+// 	y = 0;
+// 	if (ac == 2 && check_map_name(av[1]))
+// 	{
+// 		char **map = full_map(ft_readmap(av[1]));
+// 		if (!check_wall(map,ft_readmap(av[1])))
+// 			return (0);
+// 		while (map && map[x] &&map[x][y])
+// 		{
+// 			while (map[x][y])
+// 			{
+// 				if(map[x][y] == 'P')
+// 					break;
+// 				y++;
+// 			}
+// 			if (map[x][y] == 'P')
+// 				break;
+// 			y = 0;
+// 			x++;
+// 		}
+// 		// printf("x:%d  y:%d",x,y);
+// 		check_path(x,y,map);
+// 		printf("%s\n",map[0]);
+// 		printf("%s\n",map[1]);
+// 		printf("%s\n",map[2]);
+// 		printf("%s\n",map[3]);
+// 		printf("%s\n",map[4]);
+// 		printf("%s\n",map[5]);
+// 		printf("%s\n",map[6]);
+// 		printf("%s\n",map[7]);
+// 		printf("%s\n",map[8]);
+// 	}
 
 	
-}
+// }

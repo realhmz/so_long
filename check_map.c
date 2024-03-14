@@ -62,11 +62,24 @@ int check_wall(char **map, char *full_map)
 	
     return (1);
 }
-
-int main(int ac, char **av)
+int	check_map_name(char *str)
 {
-    char *map = ft_readmap(av[1]);
-    char **fmap = full_map(map);
-	if (ac == 2)
-		printf("jnb :%d\n dakhl : %d ",check_lenth(fmap), check_wall(fmap,map));
+	int i ;
+	int	fd;
+
+	fd = open(str,O_RDONLY);
+	i = ft_strlen(str);
+	i--;
+	if (str[i] != 'r' || str[i - 1] != 'e' || str[i - 2] != 'b' 
+		|| str[i - 3] != '.' || !fd || fd == -1)
+			return (0);
+	return (1);
 }
+
+// int main(int ac, char **av)
+// {
+//     char *map = ft_readmap(av[1]);
+//     char **fmap = full_map(map);
+// 	if (ac == 2)
+// 		printf("jnb :%d\n dakhl : %d ",check_lenth(fmap), check_wall(fmap,map));
+// }

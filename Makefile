@@ -18,11 +18,14 @@ SOURCE :=	first.c \
 ./a.out= get_next_line/*c
 LIBRARY := -Lminilibx -lmlx -framework OpenGL -framework AppKit
 MINILIBX := minilibx/
-
+SANITIZE := -fsanitize=address -g
 all:
 	make -C $(MINILIBX)
 	$(CC)  $(SOURCE) $(GETNEXTLINE) $(LIBRARY) -o $(NAME)
 
+debug:
+		make -C $(MINILIBX)
+		$(CC)  $(SOURCE) $(GETNEXTLINE) $(LIBRARY) $(SANITIZE) -o $(NAME)
 clean:
 
 fclean: clean

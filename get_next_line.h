@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/03/21 02:20:08 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/03/21 21:11:42 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,16 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char	**ft_split(char const *s, char c);
 char *ft_readmap(char *map_name);
 char **full_map(char *map);
-int check_wall(char **map, char *full_map);
 char	*ft_strchr(char *s, int c);
 int	check_map_name(char *str);
 void load_map(t_vars *vars, t_assets *assets);
 int	key_hook(int keycode, t_vars *vars);
 int count_y(char **s);
-void    put_player(t_vars *vars, t_assets *assets, int d);
+void    put_player(t_vars *vars, t_assets *assets);
 void    print_map(char  **map);
 int count_c(t_vars *v);
 int check_lenth(char **map);
+int check_wall(char **map, char *full_map);
 int	check_fill(t_vars *va);
 char **ft_strdupdup(char **str);
 void	player_pos(t_vars *va);

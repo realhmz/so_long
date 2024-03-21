@@ -1,25 +1,6 @@
 #include "get_next_line.h"
 
-// char    *fill_map(char **map)
-// {
-//     int i;
-// 	int	j;
-// 	j = 0;
-//     i = 0;
 
-
-// 	while (map && map[i] && map[i][j])
-// 	{
-// 		while (map[i][j])
-// 		{
-// 			map[i][j] = '1';
-// 			j++;
-// 		}
-		
-// 		i++
-// 	}
-	
-// }
 void	check_path(int x, int y,char **map)
 {
 	if(map && map[x] && map[x][y])
@@ -33,43 +14,79 @@ void	check_path(int x, int y,char **map)
 		}
 	}
 }
+char **ft_strdupdup(char **str)
+{
+	int i = 0;
+	char **new;
+	new = (char  **)malloc(sizeof (char *) * (count_y(str) + 1));
+	// printf("|||%d|||",count_y(str));
+	while(str && str[i])
+	{
+		new[i] = ft_strdup(str[i]);
+		i++;
+	}
+	new[i] = NULL;
+	return (new);
+}
+void	player_pos(t_vars *va)
+{
+	    while (va->map && va->map[va->x] && va->map[va->x][va->y])
+    {
+        while (va->map[va->x][va->y])
+        {
+            if(va->map[va->x][va->y] == 'P')
+            {   
+                va->playerx = va->x;
+                va->playery = va->y;
+            }
+            va->y++;
+        }
+        va->y = 0;
+        va->x++;
+    }
+}
+int	check_fill(t_vars *va)
+{
+	char **map;
+	int x;
+	int y;
+	x = 0;
+	y = 0;
+	map = ft_strdupdup(va->map);
+	player_pos(va);
+	check_path(va->playerx,va->playery,map);
+	while(map && map[x])
+	{
+		while (map[x][y])
+		{
+			if(map[x][y] == 'C')
+				return (0);
+			y++;
+		}
+		y = 0;
+		x++;
+	}
+	return (1);
+}
 
-// int main(int ac ,char **av)
+// int main(int ac,char **av)
 // {
-// 	int x;
-// 	int y;
+// 	t_vars *va;
+// 	va = malloc(sizeof(t_vars));
+// 	va->map = full_map(ft_readmap(av[1]));
+// 	char **new = ft_strdupdup(va->map);
+// 	int x,y ;
 // 	x = 0;
 // 	y = 0;
-// 	if (ac == 2 && check_map_name(av[1]))
-// 	{
-// 		char **map = full_map(ft_readmap(av[1]));
-// 		if (!check_wall(map,ft_readmap(av[1])))
-// 			return (0);
-// 		while (map && map[x] &&map[x][y])
-// 		{
-// 			while (map[x][y])
-// 			{
-// 				if(map[x][y] == 'P')
-// 					break;
-// 				y++;
-// 			}
-// 			if (map[x][y] == 'P')
-// 				break;
-// 			y = 0;
-// 			x++;
-// 		}
-// 		// printf("x:%d  y:%d",x,y);
-// 		check_path(x,y,map);
-// 		printf("%s\n",map[0]);
-// 		printf("%s\n",map[1]);
-// 		printf("%s\n",map[2]);
-// 		printf("%s\n",map[3]);
-// 		printf("%s\n",map[4]);
-// 		printf("%s\n",map[5]);
-// 		printf("%s\n",map[6]);
-// 		printf("%s\n",map[7]);
-// 		printf("%s\n",map[8]);
-// 	}
-
+// 	check_fill(va);
 	
+// 	while (new && new[x])
+// 	{
+// 		if (new[x][y])
+// 		{
+// 			printf("%s\n",new[x]);
+// 		}
+// 		x++;
+// 	}
+// 	printf("check fill : %d",check_fill(va));
 // }

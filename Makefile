@@ -13,6 +13,10 @@ SOURCE :=	first.c \
 			get_next_line_utils.c \
 			so_long.c \
 			render.c \
+			player.c \
+			fill.c \
+			
+
 
 ./a.outexport DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/minilibx/
 ./a.out= get_next_line/*c
@@ -21,11 +25,11 @@ MINILIBX := minilibx/
 SANITIZE := -fsanitize=address -g
 all:
 	make -C $(MINILIBX)
-	$(CC)  $(SOURCE) $(GETNEXTLINE) $(LIBRARY) -o $(NAME)
+	$(CC) -Wall -Wextra  $(SOURCE) $(GETNEXTLINE) $(LIBRARY) -o $(NAME)
 
 debug:
 		make -C $(MINILIBX)
-		$(CC)  $(SOURCE) $(GETNEXTLINE) $(LIBRARY) $(SANITIZE) -o $(NAME)
+		$(CC)  -Wall -Wextra $(SOURCE) $(GETNEXTLINE) $(LIBRARY) $(SANITIZE) -o $(NAME)
 clean:
 
 fclean: clean

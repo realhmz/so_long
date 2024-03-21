@@ -33,3 +33,27 @@ char **full_map(char *map)
 		return (NULL);
 	return (ft_split(map, '\n'));
 }
+
+int count_c(t_vars *v)
+{
+	char	**map = v->map;
+	int		x;
+	int		y;
+	int		i;
+
+	i = 0;
+	y =0;
+	x = 0;
+	while (map && map[y] && map[x][y])
+	{
+		while (map[y][x])
+		{
+			if (map[y][x] == 'C')
+				i++;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	return (i);
+}

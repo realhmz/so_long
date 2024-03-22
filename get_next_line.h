@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/03/21 21:11:42 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/03/22 21:52:51 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ typedef struct	s_assets {
     void    *door;
 }				t_assets;
 
+
+
+typedef struct	a_xpm {
+    void    **a;
+
+}				t_xpm;
 typedef struct	s_vars {
 	char    **map;
     void    *mlx;
@@ -44,6 +50,7 @@ typedef struct	s_vars {
     int     playerx;
     int     playery;
     int     c;
+    t_xpm   *xpm;
     t_assets    *asset;
 }				t_vars;
 

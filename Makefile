@@ -15,7 +15,7 @@ SOURCE :=	first.c \
 			render.c \
 			player.c \
 			fill.c \
-			
+			animat.c \
 
 
 ./a.outexport DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/minilibx/

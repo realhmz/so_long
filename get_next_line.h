@@ -14,11 +14,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
-#include <mlx.h>
+#include "./minilibx-linux/mlx.h"
 
-
-#include <CoreAudio/CoreAudio.h>
-#include <AudioToolbox/AudioToolbox.h>
 
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 100
@@ -27,10 +24,12 @@
 
 typedef struct	s_assets {
     void    *player;
+    void    *playerl;
     void    *coin;
     void    *wall;
     void    *floor;
     void    *door;
+    void    *dead;
 }				t_assets;
 
 
@@ -52,6 +51,7 @@ typedef struct	s_vars {
     int     c;
     t_xpm   *xpm;
     t_assets    *asset;
+    void     **edges;
 }				t_vars;
 
 #ifndef OPEN_MAX
@@ -71,7 +71,7 @@ int	check_map_name(char *str);
 void load_map(t_vars *vars, t_assets *assets);
 int	key_hook(int keycode, t_vars *vars);
 int count_y(char **s);
-void    put_player(t_vars *vars, t_assets *assets);
+void    put_player(t_vars *vars, t_assets *assets,int i);
 void    print_map(char  **map);
 int count_c(t_vars *v);
 int check_lenth(char **map);
@@ -79,3 +79,8 @@ int check_wall(char **map, char *full_map);
 int	check_fill(t_vars *va);
 char **ft_strdupdup(char **str);
 void	player_pos(t_vars *va);
+void mlxhook(t_vars *va,int i);
+int    wich_edge(t_vars *v,int x, int y);
+void    put_edge(t_vars *v,void **e,int x,int y);
+void    edge_assets(t_vars *v,void **e);
+

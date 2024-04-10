@@ -15,7 +15,8 @@ SOURCE :=	first.c \
 			render.c \
 			player.c \
 			fill.c \
-			animat.c \
+			map_edges.c\
+			algo.c\
 
 
 ./a.outexport DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/minilibx/
@@ -27,6 +28,10 @@ all:
 	make -C $(MINILIBX)
 	$(CC) -Wall -Wextra  $(SOURCE) $(GETNEXTLINE) $(LIBRARY) -o $(NAME)
 
+dlinux:
+		$(CC) $(SOURCE) -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz $(SANITIZE) -o $(NAME)
+linux:
+		$(CC) $(SOURCE) -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 debug:
 		make -C $(MINILIBX)
 		$(CC)  -Wall -Wextra $(SOURCE) $(GETNEXTLINE) $(LIBRARY) $(SANITIZE) -o $(NAME)

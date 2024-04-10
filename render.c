@@ -1,4 +1,3 @@
-#include <mlx.h>
 #include "get_next_line.h"
 
 // void    render(int x,int y,char *wall)
@@ -51,6 +50,9 @@ void load_map(t_vars *vars, t_assets *assets)
     assets->coin = mlx_xpm_file_to_image(vars->mlx,"coin.xpm",&w,&w);
     assets->player = mlx_xpm_file_to_image(vars->mlx,"player.xpm",&w,&w);
     assets->door = mlx_xpm_file_to_image(vars->mlx,"exit.xpm",&w,&w);
+    assets->dead = mlx_xpm_file_to_image(vars->mlx,"dead.xpm",&w,&w);
+    assets->playerl = mlx_xpm_file_to_image(vars->mlx,"playerl.xpm",&w,&w);
+    edge_assets(vars,vars->edges);
 
     while (vars->map && vars->map[vars->x] && vars->map[vars->x][vars->y])
     {
@@ -60,10 +62,14 @@ void load_map(t_vars *vars, t_assets *assets)
             if(vars->map[vars->x][vars->y] == '1')
                mlx_put_image_to_window(vars->mlx,vars->win,assets->wall,vars->b,vars->a);
             else if(vars->map[vars->x][vars->y] == '0')
-                mlx_put_image_to_window(vars->mlx,vars->win,assets->floor,vars->b,vars->a);
-            else if(vars->map[vars->x][vars->y] == 'C')
             {
                 mlx_put_image_to_window(vars->mlx,vars->win,assets->floor,vars->b,vars->a);
+                // mlx_put_image_to_window(vars->mlx,vars->win,vars->edges->e1,vars->b,vars->a);
+                put_edge(vars,vars->edges,vars->x,vars->y);
+            }
+             if(vars->map[vars->x][vars->y] == 'C')
+            {
+                // mlx_put_image_to_window(vars->mlx,vars->win,assets->floor,vars->b,vars->a);
                 mlx_put_image_to_window(vars->mlx,vars->win,assets->coin,vars->b,vars->a);
 
             }

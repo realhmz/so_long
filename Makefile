@@ -17,6 +17,8 @@ SOURCE :=	first.c \
 			fill.c \
 			map_edges.c\
 			algo.c\
+			animat.c\
+			
 
 
 ./a.outexport DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/minilibx/

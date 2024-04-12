@@ -31,7 +31,7 @@ void    put_edge(t_vars *v,void **e,int x,int y)
     if (i == -1)
         return;
     
-    printf("\n\ni :: %d\n\n",i);
+    // printf("\n\ni :: %d\n\n",i);
     mlx_put_image_to_window(v->mlx,v->win,e[i],y * 50, x *50);
     
 }

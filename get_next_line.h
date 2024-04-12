@@ -79,8 +79,8 @@ int check_wall(char **map, char *full_map);
 int	check_fill(t_vars *va);
 char **ft_strdupdup(char **str);
 void	player_pos(t_vars *va);
-void mlxhook(t_vars *va,int i);
 int    wich_edge(t_vars *v,int x, int y);
 void    put_edge(t_vars *v,void **e,int x,int y);
 void    edge_assets(t_vars *v,void **e);
-
+void animat(t_vars *v);
+int mlxhook(t_vars *v);

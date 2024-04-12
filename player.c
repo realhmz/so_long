@@ -100,7 +100,7 @@ void    go_up(t_vars *v, t_assets *a)
 			else
 				mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50,v->playerx * 50);
 			v->playerx += 1;
-			printf("\n\n%d\n\n\n",v->playerx);
+			// printf("\n\n%d\n\n\n",v->playerx);
 			put_player(v,v->asset,1);
 			load_map(v,v->asset);
 		}
@@ -150,7 +150,7 @@ int	key_hook(int keycode, t_vars *v)
 	// printf("keycode : %d\n",keycode);
 	// printf("\n\ncoins left == %d \n\n",v->c);
 	// 2 = right // 0 == left // 13 == up  // 1 == down//
-	printf("|||||%d||||\n\n",i);
+	// printf("|||||%d||||\n\n",i);
 	if (keycode == 2 || keycode == 100)
 	{
 		i = turn_right(v,v->asset,i);
@@ -174,7 +174,7 @@ int	key_hook(int keycode, t_vars *v)
 	
 		// print_map(vars->map);
 	//65 68
-	print_map(v->map);;
+	// print_map(v->map);
 	return (0);
 }
 

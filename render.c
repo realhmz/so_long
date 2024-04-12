@@ -60,7 +60,10 @@ void load_map(t_vars *vars, t_assets *assets)
         while (vars->map[vars->x][vars->y])
         {
             if(vars->map[vars->x][vars->y] == '1')
+            {
+                // animat(vars);
                mlx_put_image_to_window(vars->mlx,vars->win,assets->wall,vars->b,vars->a);
+            }
             else if(vars->map[vars->x][vars->y] == '0')
             {
                 mlx_put_image_to_window(vars->mlx,vars->win,assets->floor,vars->b,vars->a);

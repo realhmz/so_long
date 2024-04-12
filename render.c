@@ -38,6 +38,11 @@ int count_y(char **s)
     return (y);
 }
 
+void opendoor(t_vars *v)
+{
+    mlx_put_image_to_window(v->mlx,v->win,v->asset->open_door,v->ex * 50,v->ey * 50);
+    printf("opendoor : x : %d,y :%d \n\n\n",v->ey,v->ex);
+}
 void load_map(t_vars *vars, t_assets *assets)
 {
 
@@ -49,8 +54,8 @@ void load_map(t_vars *vars, t_assets *assets)
     assets->floor = mlx_xpm_file_to_image(vars->mlx,"floor.xpm",&w,&w);
     assets->coin = mlx_xpm_file_to_image(vars->mlx,"coin.xpm",&w,&w);
     assets->player = mlx_xpm_file_to_image(vars->mlx,"player.xpm",&w,&w);
-    assets->door = mlx_xpm_file_to_image(vars->mlx,"exit.xpm",&w,&w);
-    assets->dead = mlx_xpm_file_to_image(vars->mlx,"dead.xpm",&w,&w);
+    assets->door = mlx_xpm_file_to_image(vars->mlx,"door.xpm",&w,&w);
+    assets->open_door = mlx_xpm_file_to_image(vars->mlx,"opendoor.xpm",&w,&w);
     assets->playerl = mlx_xpm_file_to_image(vars->mlx,"playerl.xpm",&w,&w);
     edge_assets(vars,vars->edges);
 
@@ -77,7 +82,14 @@ void load_map(t_vars *vars, t_assets *assets)
 
             }
             else if (vars->map[vars->x][vars->y] == 'E')
-                mlx_put_image_to_window(vars->mlx,vars->win,assets->door,vars->b,vars->a);
+            {
+                if (vars->c == 0)
+                    opendoor(vars);
+                else
+                    mlx_put_image_to_window(vars->mlx,vars->win,assets->door,vars->b,vars->a);
+                vars->ey = vars->x;
+                vars->ex = vars->y;
+            }
             else if(vars->map[vars->x][vars->y] == 'P')
             {   
                 vars->playerx = vars->x;

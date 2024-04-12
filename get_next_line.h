@@ -29,7 +29,7 @@ typedef struct	s_assets {
     void    *wall;
     void    *floor;
     void    *door;
-    void    *dead;
+    void    *open_door;
 }				t_assets;
 
 
@@ -49,6 +49,8 @@ typedef struct	s_vars {
     int     playerx;
     int     playery;
     int     c;
+    int     ex;
+    int     ey;
     t_xpm   *xpm;
     t_assets    *asset;
     void     **edges;
@@ -85,3 +87,4 @@ void    edge_assets(t_vars *v,void **e);
 void animat(t_vars *v);
 int mlxhook(t_vars *v);
 int free_leaks(t_vars *v);
+void opendoor(t_vars *v);

@@ -10,7 +10,15 @@ void    turn_right(t_vars *v, t_assets *a)
 			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx][v->playery + 1] == 'C')
-			v->c -= 1;
+			{
+				v->c -= 1;
+				if (v->c == 0)
+				{
+					opendoor(v);
+				}
+				
+			}
+
 		if (v->map[v->playerx][v->playery + 1] == '0' || v->map[v->playerx][v->playery + 1] == 'C')
 		{
 			v->map[v->playerx][v->playery + 1]  = 'P';
@@ -31,7 +39,14 @@ void    turn_left(t_vars *v, t_assets *a)
 			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx][v->playery - 1] == 'C')
-			v->c -= 1;
+			{
+				v->c -= 1;
+				if (v->c == 0)
+				{
+					opendoor(v);
+				}
+				
+			}
 		if (v->map[v->playerx][v->playery - 1] == '0' || v->map[v->playerx][v->playery - 1] == 'C' )
 		{
 			v->map[v->playerx][v->playery - 1]  = 'P';
@@ -50,14 +65,15 @@ void    go_up(t_vars *v, t_assets *a)
 			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx + 1][v->playery] == 'C')
-			v->c -= 1;
+			{
+				v->c -= 1;
+				if (v->c == 0)
+					opendoor(v);
+			}
 		if (v->map[v->playerx + 1][v->playery] == '0' || v->map[v->playerx + 1][v->playery] == 'C')
 		{
 			v->map[v->playerx + 1][v->playery]  = 'P';
 			v->map[v->playerx][v->playery]  = '0';
-			if (v->map[v->playerx][v->playery] == 'E')
-				mlx_put_image_to_window(v->mlx,v->win,a->door,v->playerx *50,v->playery*50);
-			else
 				mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50,v->playerx * 50);
 			v->playerx += 1;
 			put_player(v,v->asset,1);
@@ -73,7 +89,11 @@ void    go_down(t_vars *v, t_assets *a)
 			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx - 1][v->playery] == 'C')
-			v->c -= 1;
+			{
+				v->c -= 1;
+				if (v->c == 0)
+					opendoor(v);	
+			}
 		if (v->map[v->playerx - 1][v->playery] == '0' || v->map[v->playerx - 1][v->playery] == 'C')
 		{
 			v->map[v->playerx - 1][v->playery]  = 'P';
@@ -96,9 +116,14 @@ void    put_player(t_vars *vars, t_assets *assets,int i)
 int	key_hook(int keycode, t_vars *v)
 {
 	// printf("keycode : %d\n",keycode);
-	// printf("\n\ncoins left == %d \n\n",v->c);
+	printf("\n\ncoins left == %d \n\n",v->c);
 	// 2 = right // 0 == left // 13 == up  // 1 == down//
 	// printf("|||||%d||||\n\n",i);
+	if (v->c == 0 )
+	{
+		load_map(v,v->asset);
+	}
+	
 	if (keycode == 2 || keycode == 100)
 	{
 		turn_right(v,v->asset);

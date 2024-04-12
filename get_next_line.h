@@ -84,3 +84,4 @@ void    put_edge(t_vars *v,void **e,int x,int y);
 void    edge_assets(t_vars *v,void **e);
 void animat(t_vars *v);
 int mlxhook(t_vars *v);
+int free_leaks(t_vars *v);

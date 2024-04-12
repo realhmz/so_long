@@ -1,97 +1,57 @@
 #include "get_next_line.h"
 
-int    turn_right(t_vars *v, t_assets *a,int i)
+void    turn_right(t_vars *v, t_assets *a)
 {
-		// print_map(vars->map);
-		// printf("after \n\n");
+
 		if(v->map[v->playerx][v->playery + 1] == 'E' && v->c == 0)
 		{
 			printf("Congrats you win!!\n");
-			exit(0);
+			exit(free_leaks(v));
 			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx][v->playery + 1] == 'C')
 			v->c -= 1;
-		if (i == 1)
-		{
-			v->map[v->playerx][v->playery] == 'E';
-			v->map[v->playerx][v->playery + 1]  = 'P';
-			if (v->map[v->playerx][v->playery] == 'E')
-				mlx_put_image_to_window(v->mlx,v->win,a->door,v->playerx *50,v->playery*50);
-			else
-				mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50,v->playerx * 50);
-			put_player(v,v->asset,1);
-			v->playery += 1;
-			load_map(v,v->asset);
-			i = 0;
-		}
-
-		else if (v->map[v->playerx][v->playery + 1] != '1')
+		if (v->map[v->playerx][v->playery + 1] == '0' || v->map[v->playerx][v->playery + 1] == 'C')
 		{
 			v->map[v->playerx][v->playery + 1]  = 'P';
 			v->map[v->playerx][v->playery]  = '0';
-			if (v->map[v->playerx][v->playery] == 'E')
-				mlx_put_image_to_window(v->mlx,v->win,a->door,v->playerx *50,v->playery*50);
-			else
-				mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50,v->playerx * 50);
+			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50,v->playerx * 50);
 			v->playery += 1;
 			put_player(v,v->asset,1);
 			load_map(v,v->asset);
 		}
-		return (i);
-		// /print_map(vars->map);
 }
 
-int    turn_left(t_vars *v, t_assets *a, int i)
+void    turn_left(t_vars *v, t_assets *a)
 {
 		if(v->map[v->playerx][v->playery - 1] == 'E' && v->c == 0)
 		{
 			printf("You win Congrats!!\n\n");
-			exit(0);
+			exit(free_leaks(v));
 			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx][v->playery - 1] == 'C')
 			v->c -= 1;
-		if (i == 1)
-		{
-			v->map[v->playerx][v->playery] == 'E';
-			v->map[v->playerx][v->playery - 1]  = 'P';
-			mlx_put_image_to_window(v->mlx,v->win,a->door,v->playerx *50,v->playery*50);
-			v->playery -= 1;
-			put_player(v,v->asset,0);
-			load_map(v,v->asset);
-			i = 0;
-		}
-		else if (v->map[v->playerx][v->playery - 1] == 'E')
-			i = 1;
-		else if (v->map[v->playerx][v->playery - 1] != '1')
+		if (v->map[v->playerx][v->playery - 1] == '0' || v->map[v->playerx][v->playery - 1] == 'C' )
 		{
 			v->map[v->playerx][v->playery - 1]  = 'P';
 			v->map[v->playerx][v->playery]  = '0';
-			if (v->map[v->playerx][v->playery] == 'E')
-				mlx_put_image_to_window(v->mlx,v->win,a->door,v->playerx *50,v->playery*50);
-			else
-				mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50,v->playerx * 50);
+			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50,v->playerx * 50);
 			v->playery -= 1;
 			put_player(v,v->asset,0);
 			load_map(v,v->asset);
 		}
-		return (i);
 }
 void    go_up(t_vars *v, t_assets *a)
 {
 		if(v->map[v->playerx + 1][v->playery] == 'E' && v->c == 0)
 		{
-			exit(0);
+			exit(free_leaks(v));
 			mlx_destroy_window(v->mlx,v->win);
-		}
-		if (v->map[v->playerx + 1][v->playery] == 'E')
-		{
-			mlx_put_image_to_window(v->mlx,v->win,a->door,(v->playerx + 1) * 50,v->playery * 50);
 		}
 		if (v->map[v->playerx + 1][v->playery] == 'C')
 			v->c -= 1;
-		if (v->map[v->playerx + 1][v->playery] != '1')
+		if (v->map[v->playerx + 1][v->playery] == '0' || v->map[v->playerx + 1][v->playery] == 'C')
 		{
 			v->map[v->playerx + 1][v->playery]  = 'P';
 			v->map[v->playerx][v->playery]  = '0';
@@ -100,7 +60,6 @@ void    go_up(t_vars *v, t_assets *a)
 			else
 				mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50,v->playerx * 50);
 			v->playerx += 1;
-			// printf("\n\n%d\n\n\n",v->playerx);
 			put_player(v,v->asset,1);
 			load_map(v,v->asset);
 		}
@@ -110,26 +69,16 @@ void    go_down(t_vars *v, t_assets *a)
 {
 		if(v->map[v->playerx - 1][v->playery] == 'E' && v->c == 0)
 		{
-			exit(0);
+			exit(free_leaks(v));
 			mlx_destroy_window(v->mlx,v->win);
 		}
-		if (v->map[v->playerx - 1][v->playery] == 'E')
-		{
-			mlx_put_image_to_window(v->mlx,v->win,a->door,(v->playerx - 1) * 50,v->playery * 50);
-		}
 		if (v->map[v->playerx - 1][v->playery] == 'C')
-		{
 			v->c -= 1;
-			mlx_put_image_to_window(v->mlx,v->win,a->dead,(v->playerx - 1)  * 50,v->playery * 50);
-		}
-		if (v->map[v->playerx - 1][v->playery] != '1')
+		if (v->map[v->playerx - 1][v->playery] == '0' || v->map[v->playerx - 1][v->playery] == 'C')
 		{
 			v->map[v->playerx - 1][v->playery]  = 'P';
 			v->map[v->playerx][v->playery]  = '0';
-			if (v->map[v->playerx][v->playery] == 'E')
-				mlx_put_image_to_window(v->mlx,v->win,a->door,v->playerx *50,v->playery*50);
-			else
-				mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50,v->playerx * 50);
+			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50,v->playerx * 50);
 			v->playerx -= 1;
 			put_player(v,v->asset,1);
 			load_map(v,v->asset);
@@ -146,14 +95,13 @@ void    put_player(t_vars *vars, t_assets *assets,int i)
 
 int	key_hook(int keycode, t_vars *v)
 {
-	static int i = 0;
 	// printf("keycode : %d\n",keycode);
 	// printf("\n\ncoins left == %d \n\n",v->c);
 	// 2 = right // 0 == left // 13 == up  // 1 == down//
 	// printf("|||||%d||||\n\n",i);
 	if (keycode == 2 || keycode == 100)
 	{
-		i = turn_right(v,v->asset,i);
+		turn_right(v,v->asset);
 		// if (v->map[v->playerx][v->playery - 1] == 'E')
 		// 	{
 		// 		mlx_put_image_to_window(v->mlx,v->win,v->asset->door,(v->playery- 1) * 50,(v->playerx) * 50);
@@ -161,7 +109,7 @@ int	key_hook(int keycode, t_vars *v)
 	}
 	if(keycode == 0 || keycode == 97)
 	{
-		i = turn_left(v,v->asset, i);
+		turn_left(v,v->asset);
 		if (v->map[v->playerx][v->playery] == 'E')
 			{
 				mlx_put_image_to_window(v->mlx,v->win,v->asset->door,(v->playery) * 50,(v->playerx ) * 50);

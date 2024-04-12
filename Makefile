@@ -18,6 +18,7 @@ SOURCE :=	first.c \
 			map_edges.c\
 			algo.c\
 			animat.c\
+			free.c\
 			
 
 

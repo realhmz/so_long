@@ -1,5 +1,18 @@
 #include "get_next_line.h"
 
+char	**remove_leak(char **buff)
+{
+	int	i;
+
+	i = 0;
+	while (buff[i])
+	{
+		free(buff[i]);
+		i++;
+	}
+	free(buff);
+	return (NULL);
+}
 
 void	check_path(int x, int y,char **map)
 {
@@ -60,12 +73,16 @@ int	check_fill(t_vars *va)
 		while (map[x][y])
 		{
 			if(map[x][y] == 'C')
+			{
+				remove_leak(map);
 				return (0);
+			}
 			y++;
 		}
 		y = 0;
 		x++;
 	}
+	remove_leak(map);
 	return (1);
 }
 

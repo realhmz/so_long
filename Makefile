@@ -4,21 +4,22 @@ CC := gcc
 
 CFLAGS := -Wall -Wextra -Werror -Iheaders/
 
-SOURCE :=	first.c \
-			check_map.c \
-			ft_split.c \
-			ft_strchr.c \
-			ft_strlcpy.c \
-			get_next_line.c \
-			get_next_line_utils.c \
-			so_long.c \
-			render.c \
-			player.c \
-			fill.c \
-			map_edges.c\
-			algo.c\
-			animat.c\
-			free.c\
+SOURCE :=	./source/first.c \
+			./source/check_map.c \
+			./source/ft_split.c \
+			./source/ft_strchr.c \
+			./source/ft_strlcpy.c \
+			./source/get_next_line.c \
+			./source/get_next_line_utils.c \
+			./source/so_long.c \
+			./source/render.c \
+			./source/player.c \
+			./source/fill.c \
+			./source/map_edges.c\
+			./source/algo.c\
+			./source/animat.c\
+			./source/free.c\
+			./source/sky.c
 			
 
 

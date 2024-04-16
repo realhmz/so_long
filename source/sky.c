@@ -5,7 +5,7 @@ void sky(t_vars *v, t_assets *a)
     int i = 0;
     int j = 0;
     a = v->asset;
-    a->sky[0] = mlx_xpm_file_to_image(v->mlx, "./textures/sky/rabi31.xpm", &i, &j);
+    a->sky[0] = mlx_xpm_file_to_image(v->mlx, "./textures/sky/sky.xpm", &i, &j);
     a->sky[1] = mlx_xpm_file_to_image(v->mlx, "./textures/sky/sky1.xpm", &i, &j);
 }
 

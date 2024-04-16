@@ -19,17 +19,17 @@ SOURCE :=	./source/first.c \
 			./source/algo.c\
 			./source/animat.c\
 			./source/free.c\
-			./source/sky.c
+			./source/sky.c\
+			./source/audio.c\
 			
 
 
 ./a.outexport DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/minilibx/
 ./a.out= get_next_line/*c
-LIBRARY := -Lminilibx -lmlx -framework OpenGL -framework AppKit
+LIBRARY :=  -lmlx -framework OpenGL -framework AppKit
 MINILIBX := minilibx/
 SANITIZE := -fsanitize=address -g
 all:
-	make -C $(MINILIBX)
 	$(CC) -Wall -Wextra  $(SOURCE) $(GETNEXTLINE) $(LIBRARY) -o $(NAME)
 
 dlinux:

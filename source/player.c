@@ -6,11 +6,13 @@ void    turn_right(t_vars *v, t_assets *a)
 		if(v->map[v->playerx][v->playery + 1] == 'E' && v->c == 0)
 		{
 			printf("Congrats you win!!\n");
+			stop_audio();
 			exit(free_leaks(v));
 			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx][v->playery + 1] == 'C')
 			{
+				play_kill(1);
 				v->c -= 1;
 				if (v->c == 0)
 					opendoor(v);
@@ -32,11 +34,13 @@ void    turn_left(t_vars *v, t_assets *a)
 		if(v->map[v->playerx][v->playery - 1] == 'E' && v->c == 0)
 		{
 			printf("You win Congrats!!\n\n");
+			stop_audio();
 			exit(free_leaks(v));
 			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx][v->playery - 1] == 'C')
 			{
+				play_kill(1);
 				v->c -= 1;
 				if (v->c == 0)
 				{
@@ -58,11 +62,13 @@ void    go_up(t_vars *v, t_assets *a)
 {
 		if(v->map[v->playerx + 1][v->playery] == 'E' && v->c == 0)
 		{
+			stop_audio();
 			exit(free_leaks(v));
 			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx + 1][v->playery] == 'C')
 			{
+				play_kill(1);
 				v->c -= 1;
 				if (v->c == 0)
 					opendoor(v);
@@ -82,11 +88,13 @@ void    go_down(t_vars *v, t_assets *a)
 {
 		if(v->map[v->playerx - 1][v->playery] == 'E' && v->c == 0)
 		{
+			stop_audio();
 			exit(free_leaks(v));
 			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx - 1][v->playery] == 'C')
 			{
+				play_kill(1);
 				v->c -= 1;
 				if (v->c == 0)
 					opendoor(v);	
@@ -105,6 +113,7 @@ void    go_down(t_vars *v, t_assets *a)
 void    put_player(t_vars *vars, t_assets *assets,int i)
 {
 	// player_animation(vars,assets);
+	
 	if (i == 1)
 		mlx_put_image_to_window(vars->mlx,vars->win,assets->player,vars->playery * 50,vars->playerx *50);
 	else
@@ -119,8 +128,11 @@ int	key_hook(int keycode, t_vars *v)
 	// printf("|||||%d||||\n\n",i);
 	if (v->c == 0 )
 		load_map(v,v->asset);
-	if (keycode == 65307)
-		exit(free_leaks(v));
+	if (keycode == 53)
+	{
+		stop_audio();
+		exit(free_leaks(v));		
+	}
 	if (keycode == 2 || keycode == 100)
 		turn_right(v,v->asset);
 	if(keycode == 0 || keycode == 97)
@@ -155,6 +167,7 @@ int main(int ac, char **av)
 		vars->asset = (t_assets *)malloc(sizeof (t_assets));
 		t_assets *assets;
 		assets = vars->asset;
+		play_song(1);
 		assets->sky = malloc(sizeof(void *) * 2);
 		// assets->player_frames = malloc(sizeof(void *) * 8);
 		vars->c = count_c(vars);

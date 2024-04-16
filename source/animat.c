@@ -1,6 +1,6 @@
 // #include "get_next_line.h"
 
-
+void player_assets(t_vars
 // int mlxhook(t_vars *v)
 // {
 //     static int i = 0;

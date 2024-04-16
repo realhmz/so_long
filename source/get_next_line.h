@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/03/22 21:52:51 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/15 23:35:40 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
-# include "../minilibx-linux/mlx.h"
-
+// # include "../minilibx-linux/mlx.h"
+#include <mlx.h>
 
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 100
@@ -27,7 +27,7 @@
 
 
 typedef struct	s_assets {
-    void    *player;
+    void    **player;
     void    *playerl;
     void    *coin;
     void    *wall;
@@ -103,6 +103,8 @@ void load_animation(t_vars *v,t_assets *a);
 void    put_player(t_vars *vars, t_assets *assets,int i);
 void render_sky(t_vars *v, t_assets *a);
 void sky(t_vars *v, t_assets *a);
-
+int play_song(int i);
+void stop_audio();
+int play_kill(int i);
 
 #endif //GET_NEXT_LINE_H

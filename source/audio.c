@@ -28,6 +28,18 @@ int play_kill(int i)
 	}
 	
 }
+void play_open_door()
+{
+	int id = fork();
+	if (id == 0) {
+		execl("/usr/bin/afplay", "afplay", "door.mp3", NULL);
+		perror("execl");
+		exit(1);
+	} else {
+		printf("Parent process\n");
+	}
+	
+}	
 void stop_audio()
 {
 	system("killall afplay");

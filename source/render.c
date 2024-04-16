@@ -37,8 +37,10 @@ int count_y(char **s)
 void opendoor(t_vars *v)
 {
     mlx_put_image_to_window(v->mlx,v->win,v->asset->open_door,v->ex * 50,v->ey * 50);
-    printf("opendoor : x : %d,y :%d \n\n\n",v->ey,v->ex);
+    play_open_door();
+
 }
+
 void load_map(t_vars *vars, t_assets *assets)
 {
 
@@ -71,10 +73,7 @@ void load_map(t_vars *vars, t_assets *assets)
                 mlx_put_image_to_window(vars->mlx,vars->win,assets->coin,vars->b,vars->a);
             else if (vars->map[vars->x][vars->y] == 'E')
             {
-                if (vars->c == 0)
-                    opendoor(vars);
-                else
-                    mlx_put_image_to_window(vars->mlx,vars->win,assets->door,vars->b,vars->a);
+                mlx_put_image_to_window(vars->mlx,vars->win,assets->door,vars->b,vars->a);
                 vars->ey = vars->x;
                 vars->ex = vars->y;
             }
@@ -82,7 +81,9 @@ void load_map(t_vars *vars, t_assets *assets)
             {   
                 vars->playerx = vars->x;
                 vars->playery = vars->y;
-                mlx_put_image_to_window(vars->mlx,vars->win,assets->floor,vars->b,vars->a);
+                // mlx_put_image_to_window(vars->mlx,vars->win,assets->floor,vars->b,vars->a);
+                put_edge(vars,vars->edges,vars->x,vars->y);
+
             }
             vars->y++;
             vars->b += 50;

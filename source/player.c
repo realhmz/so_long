@@ -13,9 +13,13 @@ void    turn_right(t_vars *v, t_assets *a)
 		if (v->map[v->playerx][v->playery + 1] == 'C')
 			{
 				play_kill(1);
-				v->c -= 1;
-				if (v->c == 0)
+				if (v->c == 1)
+				{
+					v->c -= 1;
 					opendoor(v);
+				}
+				else
+					v->c -= 1;
 			}
 
 		if (v->map[v->playerx][v->playery + 1] == '0' || v->map[v->playerx][v->playery + 1] == 'C')
@@ -24,8 +28,8 @@ void    turn_right(t_vars *v, t_assets *a)
 			v->map[v->playerx][v->playery]  = '0';
 			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50,v->playerx * 50);
 			v->playery += 1;
-			put_player(v,v->asset,1);
 			load_map(v,v->asset);
+			put_player(v,v->asset,1);
 		}
 }
 
@@ -41,12 +45,13 @@ void    turn_left(t_vars *v, t_assets *a)
 		if (v->map[v->playerx][v->playery - 1] == 'C')
 			{
 				play_kill(1);
-				v->c -= 1;
-				if (v->c == 0)
+				if (v->c == 1)
 				{
+					v->c -= 1;
 					opendoor(v);
 				}
-				
+				else
+					v->c -= 1;
 			}
 		if (v->map[v->playerx][v->playery - 1] == '0' || v->map[v->playerx][v->playery - 1] == 'C' )
 		{
@@ -54,8 +59,8 @@ void    turn_left(t_vars *v, t_assets *a)
 			v->map[v->playerx][v->playery]  = '0';
 			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50,v->playerx * 50);
 			v->playery -= 1;
-			put_player(v,v->asset,0);
 			load_map(v,v->asset);
+			put_player(v,v->asset,0);
 		}
 }
 void    go_up(t_vars *v, t_assets *a)
@@ -69,9 +74,13 @@ void    go_up(t_vars *v, t_assets *a)
 		if (v->map[v->playerx + 1][v->playery] == 'C')
 			{
 				play_kill(1);
-				v->c -= 1;
-				if (v->c == 0)
+				if (v->c == 1)
+				{
+					v->c -= 1;
 					opendoor(v);
+				}
+				else
+					v->c -= 1;
 			}
 		if (v->map[v->playerx + 1][v->playery] == '0' || v->map[v->playerx + 1][v->playery] == 'C')
 		{
@@ -79,8 +88,8 @@ void    go_up(t_vars *v, t_assets *a)
 			v->map[v->playerx][v->playery]  = '0';
 				mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50,v->playerx * 50);
 			v->playerx += 1;
-			put_player(v,v->asset,1);
 			load_map(v,v->asset);
+			put_player(v,v->asset,1);
 		}
 }
 
@@ -95,9 +104,13 @@ void    go_down(t_vars *v, t_assets *a)
 		if (v->map[v->playerx - 1][v->playery] == 'C')
 			{
 				play_kill(1);
-				v->c -= 1;
-				if (v->c == 0)
-					opendoor(v);	
+				if (v->c == 1)
+				{
+					v->c -= 1;
+					opendoor(v);
+				}
+				else
+					v->c -= 1;	
 			}
 		if (v->map[v->playerx - 1][v->playery] == '0' || v->map[v->playerx - 1][v->playery] == 'C')
 		{
@@ -105,29 +118,37 @@ void    go_down(t_vars *v, t_assets *a)
 			v->map[v->playerx][v->playery]  = '0';
 			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50,v->playerx * 50);
 			v->playerx -= 1;
-			put_player(v,v->asset,1);
 			load_map(v,v->asset);
+			put_player(v,v->asset,1);
 		}
 }
 
 void    put_player(t_vars *vars, t_assets *assets,int i)
 {
-	// player_animation(vars,assets);
-	
+	player_assets(vars);
+	static int j = 0;
+	static int x = 0;
 	if (i == 1)
-		mlx_put_image_to_window(vars->mlx,vars->win,assets->player,vars->playery * 50,vars->playerx *50);
+	{
+		mlx_put_image_to_window(vars->mlx,vars->win,assets->player[j],vars->playery * 50,vars->playerx *50);
+		j++;
+
+	}
 	else
-		mlx_put_image_to_window(vars->mlx,vars->win,assets->playerl,vars->playery * 50,vars->playerx *50);	
+	{
+		mlx_put_image_to_window(vars->mlx,vars->win,assets->playerl[x],vars->playery * 50,vars->playerx *50);
+		x++;
+	}
+	if (j == 6)
+		j = 0;
+	if (x == 6)
+		x = 0;
 }
 
 int	key_hook(int keycode, t_vars *v)
 {
 	// printf("keycode : %d\n",keycode);
 	// printf("\n\ncoins left == %d \n\n",v->c);
-	// 2 = right // 0 == left // 13 == up  // 1 == down//
-	// printf("|||||%d||||\n\n",i);
-	if (v->c == 0 )
-		load_map(v,v->asset);
 	if (keycode == 53)
 	{
 		stop_audio();
@@ -169,7 +190,8 @@ int main(int ac, char **av)
 		assets = vars->asset;
 		play_song(1);
 		assets->sky = malloc(sizeof(void *) * 2);
-		// assets->player_frames = malloc(sizeof(void *) * 8);
+		assets->player = malloc(sizeof(void *) * 6);
+		assets->playerl = malloc(sizeof(void *) * 6);
 		vars->c = count_c(vars);
 		execve("afplay", (char *[]){"afplay", "./sounds/start.wav", 0}, 0);
 		render_sky(vars,assets);

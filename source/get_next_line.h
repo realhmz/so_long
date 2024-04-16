@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/15 23:35:40 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:14:33 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 typedef struct	s_assets {
     void    **player;
-    void    *playerl;
+    void    **playerl;
     void    *coin;
     void    *wall;
     void    *floor;
@@ -106,5 +106,6 @@ void sky(t_vars *v, t_assets *a);
 int play_song(int i);
 void stop_audio();
 int play_kill(int i);
+void play_open_door();
 
 #endif //GET_NEXT_LINE_H

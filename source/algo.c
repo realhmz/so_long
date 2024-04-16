@@ -6,7 +6,7 @@ int    wich_edge(t_vars *v,int x, int y)
     int down = 0;
     int right = 0;
     int left = 0;
-    if (v->map[x] && v->map[x][y] == '0')
+    if (v->map[x] && v->map[x][y] == '0' || v->map[x][y] == 'P' || v->map[x][y] == 'C' || v->map[x][y] == 'E' || v->map[x][y] == 'C')
     {
         int i = 0;
         if (v->map[x][y + 1] && v->map[x][y + 1] == '1')

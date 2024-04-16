@@ -36,7 +36,7 @@ int count_y(char **s)
 
 void opendoor(t_vars *v)
 {
-    mlx_put_image_to_window(v->mlx,v->win,v->asset->open_door,v->ex * 50,v->ey * 50);
+    mlx_put_image_to_window(v->mlx,v->win,v->asset->open_door,v->ex * 50 + v->cnsty,v->ey * 50 + v->cnstx);
     play_open_door();
 
 }
@@ -50,7 +50,7 @@ void load_map(t_vars *vars, t_assets *assets)
     // print_map(vars->map);
     assets->wall = mlx_xpm_file_to_image(vars->mlx, "./assets/floor/floor.xpm",&w, &w);
     assets->floor = mlx_xpm_file_to_image(vars->mlx,"./assets/floor1.xpm",&w,&w);
-    assets->coin = mlx_xpm_file_to_image(vars->mlx,"./assets/coin.xpm",&w,&w);
+    assets->coin = mlx_xpm_file_to_image(vars->mlx,"./textures/player/1.xpm",&w,&w);
     assets->player = mlx_xpm_file_to_image(vars->mlx,"./assets/player.xpm",&w,&w);
     assets->door = mlx_xpm_file_to_image(vars->mlx,"./textures/door/closed_door.xpm",&w,&w);
     assets->open_door = mlx_xpm_file_to_image(vars->mlx,"./textures/door/opendoor.xpm",&w,&w);
@@ -66,16 +66,14 @@ void load_map(t_vars *vars, t_assets *assets)
             //    mlx_put_image_to_window(vars->mlx,vars->win,assets->wall,vars->b,vars->a);
             if(vars->map[vars->x][vars->y] == '0')
             {
-                mlx_put_image_to_window(vars->mlx,vars->win,assets->floor,vars->b,vars->a);
+                // mlx_put_image_to_window(vars->mlx,vars->win,assets->floor,vars->b,vars->a);
                 put_edge(vars,vars->edges,vars->x,vars->y);
             }
              if(vars->map[vars->x][vars->y] == 'C')
-                mlx_put_image_to_window(vars->mlx,vars->win,assets->coin,vars->b,vars->a);
+                put_edge(vars,vars->edges,vars->x,vars->y);
             else if (vars->map[vars->x][vars->y] == 'E')
             {
-                mlx_put_image_to_window(vars->mlx,vars->win,assets->floor,vars->b,vars->a);
-                // put_edge(vars,vars->edges,vars->x,vars->y);
-                mlx_put_image_to_window(vars->mlx,vars->win,assets->door,vars->b,vars->a);
+                put_edge(vars,vars->edges,vars->x,vars->y);
                 vars->ey = vars->x;
                 vars->ex = vars->y;
             }

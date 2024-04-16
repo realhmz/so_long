@@ -30,8 +30,22 @@ void    put_edge(t_vars *v,void **e,int x,int y)
     i = wich_edge(v,x,y);
     if (i == -1)
         return;
-    
     // printf("\n\ni :: %d\n\n",i);
-    mlx_put_image_to_window(v->mlx,v->win,e[i],y * 50, x *50);
+    if(v->map[x][y] == 'E')
+    {
+        mlx_put_image_to_window(v->mlx,v->win,e[i],y * 50 + v->cnsty, x *50 + v->cnstx);
+        if(v->c != 0)
+            mlx_put_image_to_window(v->mlx,v->win,v->asset->door,y * 50 + v->cnsty, x *50 + v->cnstx);
+        else
+            mlx_put_image_to_window(v->mlx,v->win,v->asset->open_door,y * 50 + v->cnsty ,x *50 + v->cnstx);
+    }
+    else if (v->map[x][y] == 'C')
+    {
+        mlx_put_image_to_window(v->mlx,v->win,e[i],y * 50 + v->cnsty, x *50 + v->cnstx);
+        mlx_put_image_to_window(v->mlx,v->win,v->asset->coin,y * 50 + v->cnsty, x *50 + v->cnstx);
+    }
+
+    else
+        mlx_put_image_to_window(v->mlx,v->win,e[i],y * 50  + v->cnsty, x *50 + v->cnstx);
     
 }

@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/16 14:58:17 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/16 18:37:02 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct	s_vars {
 	char    **map;
     void    *mlx;
     void    *win;
+    int     winh;
+    int     winw;
 	int     x;
     int     y;
     int     a;
@@ -61,6 +63,8 @@ typedef struct	s_vars {
     t_assets    *asset;
     int     moves;
     void     **edges;
+    int     cnsty;
+    int     cnstx;
 }				t_vars;
 
 #ifndef OPEN_MAX

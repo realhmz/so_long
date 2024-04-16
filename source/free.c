@@ -2,6 +2,7 @@
 
 int free_leaks(t_vars *v)
 {
+    // stop_audio();
     free(v->asset);
     v->asset = NULL;
     free(v->edges);

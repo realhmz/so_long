@@ -52,8 +52,8 @@ void load_map(t_vars *vars, t_assets *assets)
     assets->floor = mlx_xpm_file_to_image(vars->mlx,"./assets/floor1.xpm",&w,&w);
     assets->coin = mlx_xpm_file_to_image(vars->mlx,"./assets/coin.xpm",&w,&w);
     assets->player = mlx_xpm_file_to_image(vars->mlx,"./assets/player.xpm",&w,&w);
-    assets->door = mlx_xpm_file_to_image(vars->mlx,"./assets/door.xpm",&w,&w);
-    assets->open_door = mlx_xpm_file_to_image(vars->mlx,"./assets/opendoor.xpm",&w,&w);
+    assets->door = mlx_xpm_file_to_image(vars->mlx,"./textures/door/closed_door.xpm",&w,&w);
+    assets->open_door = mlx_xpm_file_to_image(vars->mlx,"./textures/door/opendoor.xpm",&w,&w);
     assets->playerl = mlx_xpm_file_to_image(vars->mlx,"./assets/playerl.xpm",&w,&w);
     edge_assets(vars,vars->edges);
 
@@ -73,6 +73,8 @@ void load_map(t_vars *vars, t_assets *assets)
                 mlx_put_image_to_window(vars->mlx,vars->win,assets->coin,vars->b,vars->a);
             else if (vars->map[vars->x][vars->y] == 'E')
             {
+                mlx_put_image_to_window(vars->mlx,vars->win,assets->floor,vars->b,vars->a);
+                // put_edge(vars,vars->edges,vars->x,vars->y);
                 mlx_put_image_to_window(vars->mlx,vars->win,assets->door,vars->b,vars->a);
                 vars->ey = vars->x;
                 vars->ex = vars->y;

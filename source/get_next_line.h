@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/16 14:14:33 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:58:17 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct	s_vars {
     int     ey;
     t_xpm   *xpm;
     t_assets    *asset;
+    int     moves;
     void     **edges;
 }				t_vars;
 
@@ -90,16 +91,12 @@ void	player_pos(t_vars *va);
 int    wich_edge(t_vars *v,int x, int y);
 void    put_edge(t_vars *v,void **e,int x,int y);
 void    edge_assets(t_vars *v,void **e);
-void animat(t_vars *v);
-int mlxhook(t_vars *v);
 int free_leaks(t_vars *v);
 void opendoor(t_vars *v);
 void turn_right(t_vars *v,t_assets *a);
 void turn_left(t_vars *v,t_assets *a);
 void go_up(t_vars *v,t_assets *a);
 void go_down(t_vars *v,t_assets *a);
-void player_animation(t_vars *v, t_assets *a);
-void load_animation(t_vars *v,t_assets *a);
 void    put_player(t_vars *vars, t_assets *assets,int i);
 void render_sky(t_vars *v, t_assets *a);
 void sky(t_vars *v, t_assets *a);
@@ -107,5 +104,8 @@ int play_song(int i);
 void stop_audio();
 int play_kill(int i);
 void play_open_door();
+void play_end();
+void print_moves(t_vars *v);
+char *ft_itoa(int n);
 
 #endif //GET_NEXT_LINE_H

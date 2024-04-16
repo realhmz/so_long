@@ -55,7 +55,7 @@ int check_wall(char **map, char *full_map)
 			i++;
 		if (i == '1')
 			i++;
-		if(check && check[i] == 1)
+		if(check[i] == 1)
 			return (0);
 		i++;
 	}

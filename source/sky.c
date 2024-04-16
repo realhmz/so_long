@@ -16,6 +16,5 @@ void render_sky(t_vars *v, t_assets *a)
     srand(time(NULL));
     i = rand();
     i = i % 2;
-    printf("i: %d\n", i);
 	mlx_put_image_to_window(v->mlx, v->win, a->sky[i], 0, 0);
 }

@@ -2,11 +2,11 @@
 
 void    turn_right(t_vars *v, t_assets *a)
 {
-
 		if(v->map[v->playerx][v->playery + 1] == 'E' && v->c == 0)
 		{
 			printf("Congrats you win!!\n");
 			stop_audio();
+			play_end();
 			exit(free_leaks(v));
 			mlx_destroy_window(v->mlx,v->win);
 		}
@@ -30,6 +30,8 @@ void    turn_right(t_vars *v, t_assets *a)
 			v->playery += 1;
 			load_map(v,v->asset);
 			put_player(v,v->asset,1);
+			v->moves++;
+			print_moves(v);
 		}
 }
 
@@ -39,6 +41,7 @@ void    turn_left(t_vars *v, t_assets *a)
 		{
 			printf("You win Congrats!!\n\n");
 			stop_audio();
+			play_end();
 			exit(free_leaks(v));
 			mlx_destroy_window(v->mlx,v->win);
 		}
@@ -61,6 +64,8 @@ void    turn_left(t_vars *v, t_assets *a)
 			v->playery -= 1;
 			load_map(v,v->asset);
 			put_player(v,v->asset,0);
+			v->moves++;
+			print_moves(v);
 		}
 }
 void    go_up(t_vars *v, t_assets *a)
@@ -68,6 +73,7 @@ void    go_up(t_vars *v, t_assets *a)
 		if(v->map[v->playerx + 1][v->playery] == 'E' && v->c == 0)
 		{
 			stop_audio();
+			play_end();
 			exit(free_leaks(v));
 			mlx_destroy_window(v->mlx,v->win);
 		}
@@ -90,6 +96,8 @@ void    go_up(t_vars *v, t_assets *a)
 			v->playerx += 1;
 			load_map(v,v->asset);
 			put_player(v,v->asset,1);
+			print_moves(v);
+			v->moves++;
 		}
 }
 
@@ -98,6 +106,7 @@ void    go_down(t_vars *v, t_assets *a)
 		if(v->map[v->playerx - 1][v->playery] == 'E' && v->c == 0)
 		{
 			stop_audio();
+			play_end();
 			exit(free_leaks(v));
 			mlx_destroy_window(v->mlx,v->win);
 		}
@@ -120,6 +129,8 @@ void    go_down(t_vars *v, t_assets *a)
 			v->playerx -= 1;
 			load_map(v,v->asset);
 			put_player(v,v->asset,1);
+			print_moves(v);
+			v->moves++;
 		}
 }
 
@@ -132,7 +143,6 @@ void    put_player(t_vars *vars, t_assets *assets,int i)
 	{
 		mlx_put_image_to_window(vars->mlx,vars->win,assets->player[j],vars->playery * 50,vars->playerx *50);
 		j++;
-
 	}
 	else
 	{
@@ -162,7 +172,8 @@ int	key_hook(int keycode, t_vars *v)
 		go_up(v,v->asset);
 	if (keycode == 13 || keycode == 119)
 		go_down(v,v->asset);
-
+	
+	
 	return (0);
 }
 
@@ -193,7 +204,7 @@ int main(int ac, char **av)
 		assets->player = malloc(sizeof(void *) * 6);
 		assets->playerl = malloc(sizeof(void *) * 6);
 		vars->c = count_c(vars);
-		execve("afplay", (char *[]){"afplay", "./sounds/start.wav", 0}, 0);
+		vars->moves = 0;
 		render_sky(vars,assets);
         load_map(vars, assets);
 		put_player(vars,vars->asset,1);

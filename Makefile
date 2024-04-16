@@ -21,6 +21,7 @@ SOURCE :=	./source/first.c \
 			./source/free.c\
 			./source/sky.c\
 			./source/audio.c\
+			./source/ft_itoa.c\
 			
 
 

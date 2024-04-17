@@ -37,7 +37,7 @@ int count_y(char **s)
 void opendoor(t_vars *v)
 {
     mlx_put_image_to_window(v->mlx,v->win,v->asset->open_door,v->ex * 50 + v->cnsty,v->ey * 50 + v->cnstx);
-    play_open_door();
+    play_open_door(v->sound);
 
 }
 void    enemy_assets(t_vars *v, t_assets *a)
@@ -100,6 +100,7 @@ void load_map(t_vars *vars, t_assets *assets)
                 vars->playery = vars->y;
                 // mlx_put_image_to_window(vars->mlx,vars->win,assets->floor,vars->b,vars->a);
                 put_edge(vars,vars->edges,vars->x,vars->y);
+                // put_player(vars,assets,1);
 
             }
             vars->y++;

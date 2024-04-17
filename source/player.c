@@ -6,13 +6,13 @@ void    turn_right(t_vars *v, t_assets *a)
 		{
 			printf("Congrats you win!!\n");
 			stop_audio();
-			play_end();
+			play_end(v->sound);
 			exit(free_leaks(v));
 			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx][v->playery + 1] == 'C')
 			{
-				play_kill();
+				play_kill(v->sound);
 				if (v->c == 1)
 				{
 					v->c -= 1;
@@ -27,12 +27,12 @@ void    turn_right(t_vars *v, t_assets *a)
 			v->map[v->playerx][v->playery + 1]  = 'P';
 			v->map[v->playerx][v->playery]  = '0';
 			render_sky(v,v->asset);
-			// play_walk();
+			// play_walk(v->sound);
 			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50 + v->cnsty,v->playerx * 50 + v->cnstx);
 			v->playery += 1;
 			load_map(v,v->asset);
 			put_player(v,v->asset,1);
-			put_enemy(v,v->asset,1);
+			put_enemy(v,v->asset,-1);
 
 			v->moves++;
 			print_moves(v);
@@ -45,13 +45,13 @@ void    turn_left(t_vars *v, t_assets *a)
 		{
 			printf("You win Congrats!!\n\n");
 			stop_audio();
-			play_end();
+			play_end(v->sound);
 			exit(free_leaks(v));
 			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx][v->playery - 1] == 'C')
 			{
-				play_kill();
+				play_kill(v->sound);
 				if (v->c == 1)
 				{
 					v->c -= 1;
@@ -65,12 +65,12 @@ void    turn_left(t_vars *v, t_assets *a)
 			v->map[v->playerx][v->playery - 1]  = 'P';
 			v->map[v->playerx][v->playery]  = '0';
 			render_sky(v,v->asset);
-			// play_walk();
+			// play_walk(v->sound);
 			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50 + v->cnsty,v->playerx * 50 + v->cnstx);
 			v->playery -= 1;
 			load_map(v,v->asset);
 			put_player(v,v->asset,0);
-			put_enemy(v,v->asset,0);
+			put_enemy(v,v->asset,-1);
 			v->moves++;
 			print_moves(v);
 		}
@@ -80,13 +80,13 @@ void    go_up(t_vars *v, t_assets *a)
 		if(v->map[v->playerx + 1][v->playery] == 'E' && v->c == 0)
 		{
 			stop_audio();
-			play_end();
+			play_end(v->sound);
 			exit(free_leaks(v));
 			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx + 1][v->playery] == 'C')
 			{
-				play_kill();
+				play_kill(v->sound);
 				if (v->c == 1)
 				{
 					v->c -= 1;
@@ -100,12 +100,12 @@ void    go_up(t_vars *v, t_assets *a)
 			v->map[v->playerx + 1][v->playery]  = 'P';
 			v->map[v->playerx][v->playery]  = '0';
 			render_sky(v,v->asset);
-			// play_walk();
+			// play_walk(v->sound);
 			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50 + v->cnsty,v->playerx * 50 + v->cnstx);
 			v->playerx += 1;
 			load_map(v,v->asset);
 			put_player(v,v->asset,1);
-			put_enemy(v,v->asset,1);
+			put_enemy(v,v->asset,-1);
 			print_moves(v);
 			v->moves++;
 		}
@@ -116,13 +116,13 @@ void    go_down(t_vars *v, t_assets *a)
 		if(v->map[v->playerx - 1][v->playery] == 'E' && v->c == 0)
 		{
 			stop_audio();
-			play_end();
+			play_end(v->sound);
 			exit(free_leaks(v));
 			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx - 1][v->playery] == 'C')
 			{
-				play_kill();
+				play_kill(v->sound);
 				if (v->c == 1)
 				{
 					v->c -= 1;
@@ -134,14 +134,14 @@ void    go_down(t_vars *v, t_assets *a)
 		if (v->map[v->playerx - 1][v->playery] == '0' || v->map[v->playerx - 1][v->playery] == 'C')
 		{
 			render_sky(v,v->asset);
-			// play_walk();
+			// play_walk(v->sound);
 			v->map[v->playerx - 1][v->playery]  = 'P';
 			v->map[v->playerx][v->playery]  = '0';
 			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50 + v->cnsty,v->playerx * 50 + v->cnstx);
 			v->playerx -= 1;
 			load_map(v,v->asset);
 			put_player(v,v->asset,1);
-			put_enemy(v,v->asset,1);
+			put_enemy(v,v->asset,-2);
 			print_moves(v);
 			v->moves++;
 		}
@@ -154,18 +154,34 @@ void    put_player(t_vars *vars, t_assets *assets,int i)
 	static int x = 0;
 	if (i == 1)
 	{
-		mlx_put_image_to_window(vars->mlx,vars->win,assets->player[j],vars->playery * 50 + vars->cnsty,vars->playerx *50 + vars->cnstx);
-		j++;
-	}
-	else
-	{
-		mlx_put_image_to_window(vars->mlx,vars->win,assets->playerl[x],vars->playery * 50 + vars->cnsty,vars->playerx *50 + vars->cnstx);
-		x++;
-	}
-	if (j == 6)
-		j = 0;
-	if (x == 6)
+		mlx_put_image_to_window(vars->mlx,vars->win,assets->player[vars->player_moved],vars->playery * 50 + vars->cnsty,vars->playerx *50 + vars->cnstx);
+		j = 1;
 		x = 0;
+	}
+	else if (i == 0)
+	{
+		mlx_put_image_to_window(vars->mlx,vars->win,assets->playerl[vars->player_moved_left],vars->playery * 50 + vars->cnsty,vars->playerx *50 + vars->cnstx);
+		x = 1;
+		j = 0;
+	}
+	if(i == -1 && j == 1)
+	{
+		if (vars->player_moved == 0)
+			mlx_put_image_to_window(vars->mlx,vars->win,assets->player[0],vars->playery * 50 + vars->cnsty,vars->playerx *50 + vars->cnstx);
+		else
+			mlx_put_image_to_window(vars->mlx,vars->win,assets->player[vars->player_moved - 1],vars->playery * 50 + vars->cnsty,vars->playerx *50 + vars->cnstx);
+	}
+	if(i == -1 && x == 1)
+	{
+		if (vars->player_moved_left == 0)
+			mlx_put_image_to_window(vars->mlx,vars->win,assets->playerl[0],vars->playery * 50 + vars->cnsty,vars->playerx *50 + vars->cnstx);
+		else
+			mlx_put_image_to_window(vars->mlx,vars->win,assets->playerl[vars->player_moved_left - 1],vars->playery * 50 + vars->cnsty,vars->playerx *50 + vars->cnstx);
+	}
+	if (vars->player_moved_left == 6)
+		vars->player_moved_left = 0;
+	if (vars->player_moved == 6)
+		vars->player_moved = 0;
 }
 
 int	key_hook(int keycode, t_vars *v)
@@ -175,25 +191,39 @@ int	key_hook(int keycode, t_vars *v)
 	if (keycode == 53)
 	{
 		stop_audio();
-		play_end();
+		play_end(v->sound);
 		exit(free_leaks(v));		
 	}
-	if (keycode == 2)
-		turn_right(v,v->asset);
+	if (keycode == 2 || keycode == 1 || keycode == 13)
+	{
+		if (keycode == 2)
+			turn_right(v,v->asset);
+		if (keycode == 1)
+			go_up(v,v->asset);
+		if (keycode == 13)
+			go_down(v,v->asset);
+		v->player_moved++;
+	}
 	if(keycode == 0)
+	{
 		turn_left(v,v->asset);
-	if (keycode == 1)
-		go_up(v,v->asset);
-	if (keycode == 13)
-		go_down(v,v->asset);
-	if (keycode == 126)
-		enemy_go_up(v);
-	if (keycode == 125)
-		enemy_go_down(v);
+		v->player_moved_left++;
+	}
+	if (keycode == 126 || keycode == 125  || keycode == 124)
+	{
+		if (keycode == 126)
+			enemy_go_up(v);
+		if (keycode == 125)
+			enemy_go_down(v);
+		if (keycode == 124)
+			enemy_go_right(v);
+		v->enemy_moved++;
+	}
 	if (keycode == 123)
+	{
 		enemy_go_left(v);
-	if (keycode == 124)
-		enemy_go_right(v);
+		v->enemy_moved_left++;
+	}
 	if (keycode == 49)
 		enemy_attack(v);
 	
@@ -226,14 +256,18 @@ int main(int ac, char **av)
 		vars->asset = (t_assets *)malloc(sizeof (t_assets));
 		t_assets *assets;
 		assets = vars->asset;
-		play_song();
 		assets->sky = malloc(sizeof(void *) * 3);
 		assets->player = malloc(sizeof(void *) * 6);
 		assets->playerl = malloc(sizeof(void *) * 6);
 		assets->enemyl = malloc(sizeof(void *) * 4);
 		assets->enemyr = malloc(sizeof(void *) * 4);
+		t_sound *s;
+		vars->sound = malloc(sizeof(t_sound));
+		s = vars->sound;
+		sound_assets(s);
 		vars->c = count_c(vars);
 		vars->moves = 0;
+		play_song(vars->sound);
 		render_sky(vars,assets);
         load_map(vars, assets);
 		put_player(vars,vars->asset,1);

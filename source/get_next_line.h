@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/17 13:48:31 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/17 19:44:22 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <string.h>
+#include <time.h>
 // # include "../minilibx-linux/mlx.h"
 #include <mlx.h>
 
@@ -46,7 +48,18 @@ typedef struct	a_xpm {
     void    **a;
 
 }				t_xpm;
+typedef struct	s_sound
+{
+    char            **start;
+    char            *walk;
+    char            **kill;
+    char            *open_door;
+    char            **enemy;
+    char            **end;
+
+}				t_sound;
 typedef struct	s_vars {
+    t_sound *sound;
 	char    **map;
     void    *mlx;
     void    *win;
@@ -69,6 +82,10 @@ typedef struct	s_vars {
     void     **edges;
     int     cnsty;
     int     cnstx;
+    int     player_moved;
+    int     player_moved_left;
+    int    enemy_moved;
+    int    enemy_moved_left;
 }				t_vars;
 
 #ifndef OPEN_MAX
@@ -109,14 +126,9 @@ void    put_player(t_vars *vars, t_assets *assets,int i);
 void render_sky(t_vars *v, t_assets *a);
 void sky(t_vars *v, t_assets *a);
 void stop_audio();
-void play_end();
 void print_moves(t_vars *v);
 char *ft_itoa(int n);
 void player_assets(t_vars *v);
-void play_song();
-void play_kill();
-void play_open_door();
-void play_walk();
 void enemy_assets(t_vars *v, t_assets *a);
 void enemy_go_down(t_vars *v);
 void    enemy_go_up(t_vars *v);
@@ -124,6 +136,16 @@ void    enemy_go_left(t_vars *v);
 void    enemy_go_right(t_vars *v);
 void    put_enemy(t_vars *v, t_assets *a, int i);
 void enemy_attack(t_vars *v);
+void play_enemy(t_sound *s);
+void play_kill(t_sound *s);
+void play_walk(t_sound *s);
+void play_open_door(t_sound *s);
+void play_song(t_sound *s);
+void play_end(t_sound *s);
+void sound_assets(t_sound *s);
+
+
+
 
 
 #endif //GET_NEXT_LINE_H

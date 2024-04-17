@@ -39,8 +39,7 @@ dlinux:
 linux:
 		$(CC) $(SOURCE) -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 debug:
-		make -C $(MINILIBX)
-		$(CC)  -Wall -Wextra $(SOURCE) $(GETNEXTLINE) $(LIBRARY) $(SANITIZE) -o $(NAME)
+		$(CC)  -Wall -Wextra $(SOURCE) $(LIBRARY) $(SANITIZE) -o $(NAME)
 clean:
 
 fclean: clean

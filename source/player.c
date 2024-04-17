@@ -12,7 +12,7 @@ void    turn_right(t_vars *v, t_assets *a)
 		}
 		if (v->map[v->playerx][v->playery + 1] == 'C')
 			{
-				play_kill(1);
+				play_kill();
 				if (v->c == 1)
 				{
 					v->c -= 1;
@@ -28,6 +28,7 @@ void    turn_right(t_vars *v, t_assets *a)
 			v->map[v->playerx][v->playery]  = '0';
 			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50 + v->cnsty,v->playerx * 50 + v->cnstx);
 			v->playery += 1;
+			render_sky(v,v->asset);
 			load_map(v,v->asset);
 			put_player(v,v->asset,1);
 			v->moves++;
@@ -47,7 +48,7 @@ void    turn_left(t_vars *v, t_assets *a)
 		}
 		if (v->map[v->playerx][v->playery - 1] == 'C')
 			{
-				play_kill(1);
+				play_kill();
 				if (v->c == 1)
 				{
 					v->c -= 1;
@@ -60,6 +61,7 @@ void    turn_left(t_vars *v, t_assets *a)
 		{
 			v->map[v->playerx][v->playery - 1]  = 'P';
 			v->map[v->playerx][v->playery]  = '0';
+			render_sky(v,v->asset);
 			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50 + v->cnsty,v->playerx * 50 + v->cnstx);
 			v->playery -= 1;
 			load_map(v,v->asset);
@@ -79,7 +81,7 @@ void    go_up(t_vars *v, t_assets *a)
 		}
 		if (v->map[v->playerx + 1][v->playery] == 'C')
 			{
-				play_kill(1);
+				play_kill();
 				if (v->c == 1)
 				{
 					v->c -= 1;
@@ -92,7 +94,8 @@ void    go_up(t_vars *v, t_assets *a)
 		{
 			v->map[v->playerx + 1][v->playery]  = 'P';
 			v->map[v->playerx][v->playery]  = '0';
-				mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50 + v->cnsty,v->playerx * 50 + v->cnstx);
+			render_sky(v,v->asset);
+			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50 + v->cnsty,v->playerx * 50 + v->cnstx);
 			v->playerx += 1;
 			load_map(v,v->asset);
 			put_player(v,v->asset,1);
@@ -112,7 +115,7 @@ void    go_down(t_vars *v, t_assets *a)
 		}
 		if (v->map[v->playerx - 1][v->playery] == 'C')
 			{
-				play_kill(1);
+				play_kill();
 				if (v->c == 1)
 				{
 					v->c -= 1;
@@ -123,6 +126,7 @@ void    go_down(t_vars *v, t_assets *a)
 			}
 		if (v->map[v->playerx - 1][v->playery] == '0' || v->map[v->playerx - 1][v->playery] == 'C')
 		{
+			render_sky(v,v->asset);
 			v->map[v->playerx - 1][v->playery]  = 'P';
 			v->map[v->playerx][v->playery]  = '0';
 			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50 + v->cnsty,v->playerx * 50 + v->cnstx);
@@ -157,7 +161,7 @@ void    put_player(t_vars *vars, t_assets *assets,int i)
 
 int	key_hook(int keycode, t_vars *v)
 {
-	printf("keycode : %d\n",keycode);
+	// printf("keycode : %d\n",keycode);
 	// printf("\n\ncoins left == %d \n\n",v->c);
 	if (keycode == 53)
 	{
@@ -204,7 +208,7 @@ int main(int ac, char **av)
 		vars->asset = (t_assets *)malloc(sizeof (t_assets));
 		t_assets *assets;
 		assets = vars->asset;
-		play_song(1);
+		play_song();
 		assets->sky = malloc(sizeof(void *) * 3);
 		assets->player = malloc(sizeof(void *) * 6);
 		assets->playerl = malloc(sizeof(void *) * 6);

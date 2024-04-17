@@ -3,7 +3,7 @@
 
 
 
-int play_song(int i)
+void play_song()
 {
 	int id = fork();
     if (id == 0) {
@@ -11,12 +11,10 @@ int play_song(int i)
         // perror("execl");
     // } else {
         // printf("Parent process\n");
-    }
-    return 1;
-	
+    }	
 }
 
-int play_kill(int i)
+void play_kill()
 {
 	int id = fork();
 	if (id == 0) {
@@ -25,8 +23,6 @@ int play_kill(int i)
 	// } else {
 		// printf("Parent process\n");
 	}
-	i++;
-	return 1;
 	
 }
 void play_open_door()

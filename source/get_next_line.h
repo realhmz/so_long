@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/16 18:37:02 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:06:21 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,14 @@ void go_down(t_vars *v,t_assets *a);
 void    put_player(t_vars *vars, t_assets *assets,int i);
 void render_sky(t_vars *v, t_assets *a);
 void sky(t_vars *v, t_assets *a);
-int play_song(int i);
 void stop_audio();
-int play_kill(int i);
-void play_open_door();
 void play_end();
 void print_moves(t_vars *v);
 char *ft_itoa(int n);
+void player_assets(t_vars *v);
+void play_song();
+void play_kill();
+void play_open_door();
+
 
 #endif //GET_NEXT_LINE_H

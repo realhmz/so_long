@@ -37,14 +37,14 @@ int check_lenth(char **map)
 }
 int check_wall(char **map, char *full_map)
 {
-    int i;
+	int i;
 	int	y;
 	i = 0;
 	y = 0;
 	char	check[256] = {0};
-    if (!map)
-        return (0);
-    while (full_map && full_map[i])
+	if (!map)
+		return (0);
+	while (full_map && full_map[i])
 		check[(int)full_map[i++]] = 1;
 	i = 0;
 	// if (!check['1'] || !check['E'] || !check['C'] || !check['P'] || !check['0'])
@@ -60,7 +60,7 @@ int check_wall(char **map, char *full_map)
 		i++;
 	}
 	
-    return (1);
+	return (1);
 }
 int	check_map_name(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/17 19:44:22 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/17 22:43:42 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 100
-#endif // BUFFER_SIZE
+#endif // BUFFER_SIZEπ
 
 
 typedef struct	s_assets {
@@ -60,12 +60,12 @@ typedef struct	s_sound
 }				t_sound;
 typedef struct	s_vars {
     t_sound *sound;
-	char    **map;
+    char    **map;
     void    *mlx;
     void    *win;
     int     winh;
     int     winw;
-	int     x;
+    int     x;
     int     y;
     int     a;
     int     b;
@@ -118,10 +118,10 @@ void    put_edge(t_vars *v,void **e,int x,int y);
 void    edge_assets(t_vars *v,void **e);
 int free_leaks(t_vars *v);
 void opendoor(t_vars *v);
-void turn_right(t_vars *v,t_assets *a);
-void turn_left(t_vars *v,t_assets *a);
-void go_up(t_vars *v,t_assets *a);
-void go_down(t_vars *v,t_assets *a);
+void turn_right(t_vars *v);
+void turn_left(t_vars *v);
+void go_up(t_vars *v);
+void go_down(t_vars *v);
 void    put_player(t_vars *vars, t_assets *assets,int i);
 void render_sky(t_vars *v, t_assets *a);
 void sky(t_vars *v, t_assets *a);

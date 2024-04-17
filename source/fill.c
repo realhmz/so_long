@@ -44,20 +44,20 @@ char **ft_strdupdup(char **str)
 }
 void	player_pos(t_vars *va)
 {
-	    while (va->map && va->map[va->x] && va->map[va->x][va->y])
-    {
-        while (va->map[va->x][va->y])
-        {
-            if(va->map[va->x][va->y] == 'P')
-            {   
-                va->playerx = va->x;
-                va->playery = va->y;
-            }
-            va->y++;
-        }
-        va->y = 0;
-        va->x++;
-    }
+		while (va->map && va->map[va->x] && va->map[va->x][va->y])
+	{
+		while (va->map[va->x][va->y])
+		{
+			if(va->map[va->x][va->y] == 'P')
+			{   
+				va->playerx = va->x;
+				va->playery = va->y;
+			}
+			va->y++;
+		}
+		va->y = 0;
+		va->x++;
+	}
 }
 int	check_fill(t_vars *va)
 {

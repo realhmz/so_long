@@ -13,6 +13,14 @@ void play_song()
         // printf("Parent process\n");
     }	
 }
+void play_walk()
+{
+	int id = fork();
+	if (id == 0) {
+		execl("/usr/bin/afplay", "afplay", "walk.mp3", NULL);
+	}
+	
+}
 
 void play_kill()
 {

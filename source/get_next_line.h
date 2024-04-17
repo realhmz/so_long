@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/17 12:06:21 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:48:31 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct	s_assets {
     void    *door;
     void    *open_door;
     void    **sky;
+    void    **enemyl;
+    void    **enemyr;
 
 }				t_assets;
 
@@ -56,6 +58,8 @@ typedef struct	s_vars {
     int     b;
     int     playerx;
     int     playery;
+    int     enemyx;
+    int     enemyy;
     int     c;
     int     ex;
     int     ey;
@@ -112,6 +116,14 @@ void player_assets(t_vars *v);
 void play_song();
 void play_kill();
 void play_open_door();
+void play_walk();
+void enemy_assets(t_vars *v, t_assets *a);
+void enemy_go_down(t_vars *v);
+void    enemy_go_up(t_vars *v);
+void    enemy_go_left(t_vars *v);
+void    enemy_go_right(t_vars *v);
+void    put_enemy(t_vars *v, t_assets *a, int i);
+void enemy_attack(t_vars *v);
 
 
 #endif //GET_NEXT_LINE_H

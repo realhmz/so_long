@@ -40,7 +40,18 @@ void opendoor(t_vars *v)
     play_open_door();
 
 }
-
+void    enemy_assets(t_vars *v, t_assets *a)
+{
+    int w = 50;
+    a->enemyl[0] = mlx_xpm_file_to_image(v->mlx,"./textures/enemy/l/1.xpm",&w,&w);
+    a->enemyl[1] = mlx_xpm_file_to_image(v->mlx,"./textures/enemy/l/2.xpm",&w,&w);
+    a->enemyl[2] = mlx_xpm_file_to_image(v->mlx,"./textures/enemy/l/3.xpm",&w,&w);
+    a->enemyl[3] = mlx_xpm_file_to_image(v->mlx,"./textures/enemy/l/4.xpm",&w,&w);
+    a->enemyr[0] = mlx_xpm_file_to_image(v->mlx,"./textures/enemy/r/1.xpm",&w,&w);
+    a->enemyr[1] = mlx_xpm_file_to_image(v->mlx,"./textures/enemy/r/2.xpm",&w,&w);
+    a->enemyr[2] = mlx_xpm_file_to_image(v->mlx,"./textures/enemy/r/3.xpm",&w,&w);
+    a->enemyr[3] = mlx_xpm_file_to_image(v->mlx,"./textures/enemy/r/4.xpm",&w,&w);
+}
 void load_map(t_vars *vars, t_assets *assets)
 {
 
@@ -56,6 +67,7 @@ void load_map(t_vars *vars, t_assets *assets)
     assets->open_door = mlx_xpm_file_to_image(vars->mlx,"./textures/door/opendoor.xpm",&w,&w);
     assets->playerl = mlx_xpm_file_to_image(vars->mlx,"./assets/playerl.xpm",&w,&w);
     edge_assets(vars,vars->edges);
+    enemy_assets(vars,assets);
 
     while (vars->map && vars->map[vars->x] && vars->map[vars->x][vars->y])
     {
@@ -64,6 +76,13 @@ void load_map(t_vars *vars, t_assets *assets)
         {
             // if(vars->map[vars->x][vars->y] == '1')
             //    mlx_put_image_to_window(vars->mlx,vars->win,assets->wall,vars->b,vars->a);
+            if(vars->map[vars->x][vars->y] == 'N')
+            {
+                vars->enemyx = vars->x;
+                vars->enemyy = vars->y;
+                put_edge(vars,vars->edges,vars->x,vars->y);
+                put_enemy(vars,assets,1);
+            }
             if(vars->map[vars->x][vars->y] == '0')
             {
                 // mlx_put_image_to_window(vars->mlx,vars->win,assets->floor,vars->b,vars->a);
@@ -74,8 +93,6 @@ void load_map(t_vars *vars, t_assets *assets)
             else if (vars->map[vars->x][vars->y] == 'E')
             {
                 put_edge(vars,vars->edges,vars->x,vars->y);
-                vars->ey = vars->x;
-                vars->ex = vars->y;
             }
             else if(vars->map[vars->x][vars->y] == 'P')
             {   

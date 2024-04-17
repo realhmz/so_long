@@ -22,6 +22,7 @@ SOURCE :=	./source/first.c \
 			./source/sky.c\
 			./source/audio.c\
 			./source/ft_itoa.c\
+			./source/enemy.c\
 			
 
 

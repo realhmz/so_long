@@ -26,11 +26,14 @@ void    turn_right(t_vars *v, t_assets *a)
 		{
 			v->map[v->playerx][v->playery + 1]  = 'P';
 			v->map[v->playerx][v->playery]  = '0';
+			render_sky(v,v->asset);
+			// play_walk();
 			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50 + v->cnsty,v->playerx * 50 + v->cnstx);
 			v->playery += 1;
-			render_sky(v,v->asset);
 			load_map(v,v->asset);
 			put_player(v,v->asset,1);
+			put_enemy(v,v->asset,1);
+
 			v->moves++;
 			print_moves(v);
 		}
@@ -62,10 +65,12 @@ void    turn_left(t_vars *v, t_assets *a)
 			v->map[v->playerx][v->playery - 1]  = 'P';
 			v->map[v->playerx][v->playery]  = '0';
 			render_sky(v,v->asset);
+			// play_walk();
 			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50 + v->cnsty,v->playerx * 50 + v->cnstx);
 			v->playery -= 1;
 			load_map(v,v->asset);
 			put_player(v,v->asset,0);
+			put_enemy(v,v->asset,0);
 			v->moves++;
 			print_moves(v);
 		}
@@ -95,10 +100,12 @@ void    go_up(t_vars *v, t_assets *a)
 			v->map[v->playerx + 1][v->playery]  = 'P';
 			v->map[v->playerx][v->playery]  = '0';
 			render_sky(v,v->asset);
+			// play_walk();
 			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50 + v->cnsty,v->playerx * 50 + v->cnstx);
 			v->playerx += 1;
 			load_map(v,v->asset);
 			put_player(v,v->asset,1);
+			put_enemy(v,v->asset,1);
 			print_moves(v);
 			v->moves++;
 		}
@@ -127,12 +134,14 @@ void    go_down(t_vars *v, t_assets *a)
 		if (v->map[v->playerx - 1][v->playery] == '0' || v->map[v->playerx - 1][v->playery] == 'C')
 		{
 			render_sky(v,v->asset);
+			// play_walk();
 			v->map[v->playerx - 1][v->playery]  = 'P';
 			v->map[v->playerx][v->playery]  = '0';
 			mlx_put_image_to_window(v->mlx,v->win,a->floor,v->playery * 50 + v->cnsty,v->playerx * 50 + v->cnstx);
 			v->playerx -= 1;
 			load_map(v,v->asset);
 			put_player(v,v->asset,1);
+			put_enemy(v,v->asset,1);
 			print_moves(v);
 			v->moves++;
 		}
@@ -169,15 +178,24 @@ int	key_hook(int keycode, t_vars *v)
 		play_end();
 		exit(free_leaks(v));		
 	}
-	if (keycode == 2 || keycode == 124)
+	if (keycode == 2)
 		turn_right(v,v->asset);
-	if(keycode == 0 || keycode == 123)
+	if(keycode == 0)
 		turn_left(v,v->asset);
-	if (keycode == 1 || keycode == 125)
+	if (keycode == 1)
 		go_up(v,v->asset);
-	if (keycode == 13 || keycode == 126)
+	if (keycode == 13)
 		go_down(v,v->asset);
-	
+	if (keycode == 126)
+		enemy_go_up(v);
+	if (keycode == 125)
+		enemy_go_down(v);
+	if (keycode == 123)
+		enemy_go_left(v);
+	if (keycode == 124)
+		enemy_go_right(v);
+	if (keycode == 49)
+		enemy_attack(v);
 	
 	return (0);
 }
@@ -212,6 +230,8 @@ int main(int ac, char **av)
 		assets->sky = malloc(sizeof(void *) * 3);
 		assets->player = malloc(sizeof(void *) * 6);
 		assets->playerl = malloc(sizeof(void *) * 6);
+		assets->enemyl = malloc(sizeof(void *) * 4);
+		assets->enemyr = malloc(sizeof(void *) * 4);
 		vars->c = count_c(vars);
 		vars->moves = 0;
 		render_sky(vars,assets);

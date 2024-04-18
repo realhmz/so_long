@@ -22,7 +22,6 @@ SOURCE :=	./source/check_map.c \
 			./source/audio.c\
 			./source/ft_itoa.c\
 			./source/enemy.c\
-			./source/malloc.c\
 			./source/moves.c\
 			./source/so_long.c\
 			

@@ -62,6 +62,7 @@ void	turn_left(t_game *game)
 		print_moves(game);
 	}
 }
+
 void	go_up(t_game *game)
 {
 	if (game->map[game->playerx + 1][game->playery] == 'E' && game->c == 0)
@@ -77,8 +78,8 @@ void	go_up(t_game *game)
 			opendoor(game);
 		game->c -= 1;
 	}
-	if (game->map[game->playerx + 1][game->playery] == '0' || game->map[game->playerx
-		+ 1][game->playery] == 'C')
+	if (game->map[game->playerx + 1][game->playery] == '0'
+		|| game->map[game->playerx + 1][game->playery] == 'C')
 	{
 		game->map[game->playerx + 1][game->playery] = 'P';
 		game->map[game->playerx][game->playery] = '0';
@@ -108,8 +109,8 @@ void	go_down(t_game *game)
 			opendoor(game);
 		game->c -= 1;
 	}
-	if (game->map[game->playerx - 1][game->playery] == '0' || game->map[game->playerx
-		- 1][game->playery] == 'C')
+	if (game->map[game->playerx - 1][game->playery] == '0'
+		|| game->map[game->playerx - 1][game->playery] == 'C')
 	{
 		render_sky(game, game->asset);
 		play_walk(game->sound);

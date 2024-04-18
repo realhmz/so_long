@@ -6,13 +6,13 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:50 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 21:19:49 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 22:02:36 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int free_leaks(t_game *game)
+int	free_leaks(t_game *game)
 {
 	// printf("wahasasaaan \n");
 	ft_free_map(game);
@@ -27,9 +27,10 @@ int free_leaks(t_game *game)
 	system("leaks so_long");
 	return (0);
 }
-void ft_free_enemy(t_game *game)
+
+void	ft_free_enemy(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 4)
@@ -41,9 +42,10 @@ void ft_free_enemy(t_game *game)
 	free(game->asset->enemyl);
 	free(game->asset->enemyr);
 }
-void ft_free_player(t_game *game)
+
+void	ft_free_player(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 6)
@@ -55,9 +57,10 @@ void ft_free_player(t_game *game)
 	free(game->asset->player);
 	free(game->asset->playerl);
 }
-void ft_free_edges(t_game *game)
+
+void	ft_free_edges(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 16)
@@ -67,9 +70,10 @@ void ft_free_edges(t_game *game)
 	}
 	free(game->edges);
 }
-void ft_free_map(t_game *game)
+
+void	ft_free_map(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (game->map[i])
@@ -79,9 +83,10 @@ void ft_free_map(t_game *game)
 	}
 	free(game->map);
 }
-void ft_free_assets(t_game *game)
+
+void	ft_free_assets(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 6)
@@ -120,7 +125,8 @@ void ft_free_assets(t_game *game)
 	free(game->asset->enemyr);
 	free(game->asset);
 }
-void ft_free_sound(t_game *game)
+
+void	ft_free_sound(t_game *game)
 {
 	free(game->sound->start);
 	free(game->sound->kill);

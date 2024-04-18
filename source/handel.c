@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:53:28 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 21:19:11 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 22:02:51 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*ft_readmap(char *map_name)
 	}
 	return (map);
 }
+
 char	**full_map(char *map)
 {
 	char	**full_map;
@@ -50,11 +51,12 @@ char	**full_map(char *map)
 
 int	count_c(t_game *game)
 {
-	char **map = game->map;
-	int x;
-	int y;
-	int i;
+	char	**map;
+	int		x;
+	int		y;
+	int		i;
 
+	map = game->map;
 	i = 0;
 	y = 0;
 	x = 0;

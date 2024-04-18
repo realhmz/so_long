@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:43 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 21:19:49 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 22:02:28 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	enemy_go_down(t_game *game)
 {
-	if (game->map[game->enemyx + 1][game->enemyy] == '0' || game->map[game->enemyx
-		+ 1][game->enemyy] == 'C')
+	if (game->map[game->enemyx + 1][game->enemyy] == '0'
+		|| game->map[game->enemyx + 1][game->enemyy] == 'C')
 	{
 		game->map[game->enemyx][game->enemyy] = '0';
 		game->enemyx++;
@@ -25,12 +25,12 @@ void	enemy_go_down(t_game *game)
 		put_enemy(game, game->asset, 1);
 		print_moves(game);
 	}
-	// play_walk();
 }
+
 void	enemy_go_up(t_game *game)
 {
-	if (game->map[game->enemyx - 1][game->enemyy] == '0' || game->map[game->enemyx
-		- 1][game->enemyy] == 'C')
+	if (game->map[game->enemyx - 1][game->enemyy] == '0'
+		|| game->map[game->enemyx - 1][game->enemyy] == 'C')
 	{
 		game->map[game->enemyx][game->enemyy] = '0';
 		game->enemyx--;
@@ -40,13 +40,12 @@ void	enemy_go_up(t_game *game)
 		put_enemy(game, game->asset, 0);
 		print_moves(game);
 	}
-	// play_walk();
 }
 
 void	enemy_go_left(t_game *game)
 {
-	if (game->map[game->enemyx][game->enemyy - 1] == '0' || game->map[game->enemyx][game->enemyy
-		- 1] == 'C')
+	if (game->map[game->enemyx][game->enemyy - 1] == '0'
+		|| game->map[game->enemyx][game->enemyy - 1] == 'C')
 	{
 		game->map[game->enemyx][game->enemyy] = '0';
 		game->enemyy--;
@@ -56,12 +55,12 @@ void	enemy_go_left(t_game *game)
 		put_enemy(game, game->asset, 0);
 		print_moves(game);
 	}
-	// play_walk(game->sound);
 }
+
 void	enemy_go_right(t_game *game)
 {
-	if (game->map[game->enemyx][game->enemyy + 1] == '0' || game->map[game->enemyx][game->enemyy
-		+ 1] == 'P')
+	if (game->map[game->enemyx][game->enemyy + 1] == '0'
+		|| game->map[game->enemyx][game->enemyy + 1] == 'P')
 	{
 		game->map[game->enemyx][game->enemyy] = '0';
 		game->enemyy++;
@@ -71,29 +70,34 @@ void	enemy_go_right(t_game *game)
 		put_enemy(game, game->asset, 1);
 		print_moves(game);
 	}
-	// play_walk(game->sound);
 }
+
 void	player_moved(t_game *game, int i, int j, int x)
 {
 	if (i == -1 && j == 1)
 	{
 		if (game->enemy_moved == 0)
-			mlx_put_image_to_window(game->mlx, game->win, game->asset->enemyr[0],
-				game->enemyy * 50 + game->cnsty, game->enemyx * 50 + game->cnstx);
+			mlx_put_image_to_window(game->mlx, game->win,
+				game->asset->enemyr[0], game->enemyy * 50 + game->cnsty,
+				game->enemyx * 50 + game->cnstx);
 		else
-			mlx_put_image_to_window(game->mlx, game->win, game->asset->enemyr[game->enemy_moved - 1],
-				game->enemyy * 50 + game->cnsty, game->enemyx * 50 + game->cnstx);
+			mlx_put_image_to_window(game->mlx, game->win,
+				game->asset->enemyr[game->enemy_moved - 1], game->enemyy * 50
+				+ game->cnsty, game->enemyx * 50 + game->cnstx);
 	}
 	if (i == -1 && x == 1)
 	{
 		if (game->enemy_moved_left == 0)
-			mlx_put_image_to_window(game->mlx, game->win, game->asset->enemyl[0],
-				game->enemyy * 50 + game->cnsty, game->enemyx * 50 + game->cnstx);
+			mlx_put_image_to_window(game->mlx, game->win,
+				game->asset->enemyl[0], game->enemyy * 50 + game->cnsty,
+				game->enemyx * 50 + game->cnstx);
 		else
-			mlx_put_image_to_window(game->mlx, game->win, game->asset->enemyl[game->enemy_moved_left - 1],
-				game->enemyy * 50 + game->cnsty, game->enemyx * 50 + game->cnstx);
+			mlx_put_image_to_window(game->mlx, game->win,
+				game->asset->enemyl[game->enemy_moved_left - 1], game->enemyy
+				* 50 + game->cnsty, game->enemyx * 50 + game->cnstx);
 	}
 }
+
 void	put_enemy(t_game *game, t_assets *a, int i)
 {
 	static int	j = 0;
@@ -101,15 +105,17 @@ void	put_enemy(t_game *game, t_assets *a, int i)
 
 	if (i == 1)
 	{
-		mlx_put_image_to_window(game->mlx, game->win, a->enemyr[game->enemy_moved],
-			game->enemyy * 50 + game->cnsty, game->enemyx * 50 + game->cnstx);
+		mlx_put_image_to_window(game->mlx, game->win,
+			a->enemyr[game->enemy_moved], game->enemyy * 50 + game->cnsty,
+			game->enemyx * 50 + game->cnstx);
 		j = 1;
 		x = 0;
 	}
 	if (i == 0)
 	{
-		mlx_put_image_to_window(game->mlx, game->win, a->enemyl[game->enemy_moved_left],
-			game->enemyy * 50 + game->cnsty, game->enemyx * 50 + game->cnstx);
+		mlx_put_image_to_window(game->mlx, game->win,
+			a->enemyl[game->enemy_moved_left], game->enemyy * 50 + game->cnsty,
+			game->enemyx * 50 + game->cnstx);
 		x = 1;
 		j = 0;
 	}

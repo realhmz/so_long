@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:54 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 21:19:11 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 22:02:41 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
+
 void	print_moves(t_game *game)
 {
-	char	*str;
-	char	*tmp;
+	char *str;
+	char *tmp;
 	tmp = ft_itoa(game->moves);
 	str = ft_strjoin("Moves: ", tmp);
 	mlx_string_put(game->mlx, game->win, 10, 10, 0xFFFFFF, str);

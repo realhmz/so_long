@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:38 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 20:42:59 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 22:02:24 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	play_song(t_sound *s)
 		execl("/usr/bin/afplay", "afplay", s->start[i], NULL);
 	}
 }
+
 void	play_walk(t_sound *s)
 {
 	int	id;
@@ -83,6 +84,7 @@ void	play_kill(t_sound *s)
 		execl("/usr/bin/afplay", "afplay", s->kill[i], NULL);
 	}
 }
+
 void	play_open_door(t_sound *s)
 {
 	int	id;
@@ -93,6 +95,7 @@ void	play_open_door(t_sound *s)
 		execl("/usr/bin/afplay", "afplay", s->open_door, NULL);
 	}
 }
+
 void	play_enemy(t_sound *s)
 {
 	int	id;
@@ -108,6 +111,7 @@ void	play_enemy(t_sound *s)
 		execl("/usr/bin/afplay", "afplay", s->enemy[i], NULL);
 	}
 }
+
 void	play_end(t_sound *s)
 {
 	int	id;

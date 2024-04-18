@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 21:20:43 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:54:41 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void			go_down(t_game *game);
 void			put_player(t_game *game, t_assets *assets, int i);
 void			render_sky(t_game *game, t_assets *a);
 void			sky(t_game *game, t_assets *a);
-void			stop_audio();
+void			stop_audio(void);
 void			print_moves(t_game *game);
 char			*ft_itoa(int n);
 void			player_assets(t_game *game);

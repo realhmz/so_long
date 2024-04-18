@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:53:26 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 21:19:11 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 22:03:03 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	sky(t_game *game, t_assets *a)
 	i = 0;
 	j = 0;
 	a = game->asset;
-	a->sky[0] = mlx_xpm_file_to_image(game->mlx, "./textures/sky/sky_full.xpm", &i,
-			&j);
-	a->sky[1] = mlx_xpm_file_to_image(game->mlx, "./textures/sky/sky_full.xpm", &i,
-			&j);
-	a->sky[2] = mlx_xpm_file_to_image(game->mlx, "./textures/sky/kolchi.xpm", &i,
-			&j);
+	a->sky[0] = mlx_xpm_file_to_image(game->mlx, "./textures/sky/sky_full.xpm",
+			&i, &j);
+	a->sky[1] = mlx_xpm_file_to_image(game->mlx, "./textures/sky/sky_full.xpm",
+			&i, &j);
+	a->sky[2] = mlx_xpm_file_to_image(game->mlx, "./textures/sky/kolchi.xpm",
+			&i, &j);
 }
 
 void	render_sky(t_game *game, t_assets *a)

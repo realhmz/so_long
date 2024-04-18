@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:53:18 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 21:19:33 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 22:02:53 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,29 +38,31 @@ void	edge_assets(t_game *game, void **e)
 void	put_edge(t_game *game, void **e, int x, int y)
 {
 	int	i;
+
 	i = wich_edge(game, x, y);
 	if (i == -1)
 		return ;
 	// printf("\n\ni :: %d\n\n",i);
 	if (game->map[x][y] == 'E')
 	{
-		mlx_put_image_to_window(game->mlx, game->win, e[i], y * 50 + game->cnsty, x * 50
-			+ game->cnstx);
+		mlx_put_image_to_window(game->mlx, game->win, e[i], y * 50
+			+ game->cnsty, x * 50 + game->cnstx);
 		if (game->c != 0)
-			mlx_put_image_to_window(game->mlx, game->win, game->asset->door, y * 50
-				+ game->cnsty, x * 50 + game->cnstx);
+			mlx_put_image_to_window(game->mlx, game->win, game->asset->door, y
+				* 50 + game->cnsty, x * 50 + game->cnstx);
 		else
-			mlx_put_image_to_window(game->mlx, game->win, game->asset->open_door, y * 50
-				+ game->cnsty, x * 50 + game->cnstx);
+			mlx_put_image_to_window(game->mlx, game->win,
+				game->asset->open_door, y * 50 + game->cnsty, x * 50
+				+ game->cnstx);
 	}
 	else if (game->map[x][y] == 'C')
 	{
-		mlx_put_image_to_window(game->mlx, game->win, e[i], y * 50 + game->cnsty, x * 50
-			+ game->cnstx);
+		mlx_put_image_to_window(game->mlx, game->win, e[i], y * 50
+			+ game->cnsty, x * 50 + game->cnstx);
 		mlx_put_image_to_window(game->mlx, game->win, game->asset->coin, y * 50
 			+ game->cnsty, x * 50 + game->cnstx);
 	}
 	else
-		mlx_put_image_to_window(game->mlx, game->win, e[i], y * 50 + game->cnsty, x * 50
-			+ game->cnstx);
+		mlx_put_image_to_window(game->mlx, game->win, e[i], y * 50
+			+ game->cnsty, x * 50 + game->cnstx);
 }

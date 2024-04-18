@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:53:23 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 17:41:27 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:19:11 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,71 +48,71 @@ int	count_y(char **s)
 	return (y);
 }
 
-void	opendoor(t_vars *v)
+void	opendoor(t_game *game)
 {
-	mlx_put_image_to_window(v->mlx, v->win, v->asset->open_door, v->ex * 50
-		+ v->cnsty, v->ey * 50 + v->cnstx);
-	// play_open_door(v->sound);
+	mlx_put_image_to_window(game->mlx, game->win, game->asset->open_door, game->ex * 50
+		+ game->cnsty, game->ey * 50 + game->cnstx);
+	// play_open_door(game->sound);
 }
-void	enemy_assets(t_vars *v, t_assets *a)
+void	enemy_assets(t_game *game, t_assets *a)
 {
 	int	w;
 
 	w = 50;
-	a->enemyl[0] = mlx_xpm_file_to_image(v->mlx, "./textures/enemy/l/1.xpm", &w,
+	a->enemyl[0] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/l/1.xpm", &w,
 			&w);
-	a->enemyl[1] = mlx_xpm_file_to_image(v->mlx, "./textures/enemy/l/2.xpm", &w,
+	a->enemyl[1] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/l/2.xpm", &w,
 			&w);
-	a->enemyl[2] = mlx_xpm_file_to_image(v->mlx, "./textures/enemy/l/3.xpm", &w,
+	a->enemyl[2] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/l/3.xpm", &w,
 			&w);
-	a->enemyl[3] = mlx_xpm_file_to_image(v->mlx, "./textures/enemy/l/4.xpm", &w,
+	a->enemyl[3] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/l/4.xpm", &w,
 			&w);
-	a->enemyr[0] = mlx_xpm_file_to_image(v->mlx, "./textures/enemy/r/1.xpm", &w,
+	a->enemyr[0] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/r/1.xpm", &w,
 			&w);
-	a->enemyr[1] = mlx_xpm_file_to_image(v->mlx, "./textures/enemy/r/2.xpm", &w,
+	a->enemyr[1] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/r/2.xpm", &w,
 			&w);
-	a->enemyr[2] = mlx_xpm_file_to_image(v->mlx, "./textures/enemy/r/3.xpm", &w,
+	a->enemyr[2] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/r/3.xpm", &w,
 			&w);
-	a->enemyr[3] = mlx_xpm_file_to_image(v->mlx, "./textures/enemy/r/4.xpm", &w,
+	a->enemyr[3] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/r/4.xpm", &w,
 			&w);
-	a->coin = mlx_xpm_file_to_image(v->mlx, "./textures/player/1.xpm",
+	a->coin = mlx_xpm_file_to_image(game->mlx, "./textures/player/1.xpm",
 			&w, &w);
-	a->door = mlx_xpm_file_to_image(v->mlx,
+	a->door = mlx_xpm_file_to_image(game->mlx,
 			"./textures/door/closed_door.xpm", &w, &w);
-	a->open_door = mlx_xpm_file_to_image(v->mlx,
+	a->open_door = mlx_xpm_file_to_image(game->mlx,
 			"./textures/door/opendoor.xpm", &w, &w);
 }
-void	load_map(t_vars *vars, t_assets *assets)
+void	load_map(t_game *game)
 {
 	int	w;
 
 	w = 50;
-	vars->x = 0;
-	vars->y = 0;
-	// print_map(vars->map);
+	game->x = 0;
+	game->y = 0;
+	// print_map(game->map);
 
 	
-	while (vars->map && vars->map[vars->x] && vars->map[vars->x][vars->y])
+	while (game->map && game->map[game->x] && game->map[game->x][game->y])
 	{
-		while (vars->map[vars->x][vars->y])
+		while (game->map[game->x][game->y])
 		{
-			if (vars->map[vars->x][vars->y] == 'N')
+			if (game->map[game->x][game->y] == 'N')
 			{
-				vars->enemyx = vars->x;
-				vars->enemyy = vars->y;
+				game->enemyx = game->x;
+				game->enemyy = game->y;
 			}
-			if (vars->map[vars->x][vars->y] == 'P')
+			if (game->map[game->x][game->y] == 'P')
 			{
-				vars->playerx = vars->x;
-				vars->playery = vars->y;
+				game->playerx = game->x;
+				game->playery = game->y;
 			}
-			put_edge(vars, vars->edges, vars->x, vars->y);
-			vars->y++;
-			vars->b += 50;
+			put_edge(game, game->edges, game->x, game->y);
+			game->y++;
+			game->b += 50;
 		}
-		vars->y = 0;
-		vars->b = 0;
-		vars->x++;
-		vars->a += 50;
+		game->y = 0;
+		game->b = 0;
+		game->x++;
+		game->a += 50;
 	}
 }

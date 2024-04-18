@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:45 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 14:52:46 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:21:00 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,24 +56,24 @@ char	**ft_strdupdup(char **str)
 	new[i] = NULL;
 	return (new);
 }
-void	player_pos(t_vars *va)
+void	player_pos(t_game *game)
 {
-	while (va->map && va->map[va->x] && va->map[va->x][va->y])
+	while (game->map && game->map[game->x] && game->map[game->x][game->y])
 	{
-		while (va->map[va->x][va->y])
+		while (game->map[game->x][game->y])
 		{
-			if (va->map[va->x][va->y] == 'P')
+			if (game->map[game->x][game->y] == 'P')
 			{
-				va->playerx = va->x;
-				va->playery = va->y;
+				game->playerx = game->x;
+				game->playery = game->y;
 			}
-			va->y++;
+			game->y++;
 		}
-		va->y = 0;
-		va->x++;
+		game->y = 0;
+		game->x++;
 	}
 }
-int	check_fill(t_vars *va)
+int	check_fill(t_game *game)
 {
 	char	**map;
 	int		x;
@@ -81,9 +81,9 @@ int	check_fill(t_vars *va)
 
 	x = 0;
 	y = 0;
-	map = ft_strdupdup(va->map);
-	player_pos(va);
-	check_path(va->playerx, va->playery, map);
+	map = ft_strdupdup(game->map);
+	player_pos(game);
+	check_path(game->playerx, game->playery, map);
 	while (map && map[x])
 	{
 		while (map[x][y])
@@ -98,20 +98,20 @@ int	check_fill(t_vars *va)
 		y = 0;
 		x++;
 	}
-	// remove_leak(map);
+	remove_leak(map);
 	return (1);
 }
 
 // int main(int ac,char **av)
 // {
-// 	t_vars *va;
-// 	va = malloc(sizeof(t_vars));
-// 	va->map = full_map(ft_readmap(av[1]));
-// 	char **new = ft_strdupdup(va->map);
+// 	t_game *game;
+// 	va = malloc(sizeof(t_game));
+// 	game->map = full_map(ft_readmap(av[1]));
+// 	char **new = ft_strdupdup(game->map);
 // 	int x,y ;
 // 	x = 0;
 // 	y = 0;
-// 	check_fill(va);
+// 	check_fill(game);
 
 // 	while (new && new[x])
 // 	{
@@ -121,5 +121,5 @@ int	check_fill(t_vars *va)
 // 		}
 // 		x++;
 // 	}
-// 	printf("check fill : %d",check_fill(va));
+// 	printf("check fill : %d",check_fill(game));
 // }

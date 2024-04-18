@@ -6,116 +6,116 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:50 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 14:52:51 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:19:49 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	free_leaks(t_vars *v)
+int	free_leaks(t_game *game)
 {
-	ft_free_map(v);
-	ft_free_assets(v);
-	ft_free_sound(v);
-	mlx_destroy_window(v->mlx, v->win);
-	free(v->mlx);
-	free(v);
+	ft_free_map(game);
+	ft_free_assets(game);
+	ft_free_sound(game);
+	mlx_destroy_window(game->mlx, game->win);
+	free(game->mlx);
+	free(game);
 	// system("leaks so_long");
 	return (0);
 }
-void	ft_free_enemy(t_vars *v)
+void	ft_free_enemy(t_game *game)
 {
 	int	i;
 
 	i = 0;
 	while (i < 4)
 	{
-		mlx_destroy_image(v->mlx, v->asset->enemyl[i]);
-		mlx_destroy_image(v->mlx, v->asset->enemyr[i]);
+		mlx_destroy_image(game->mlx, game->asset->enemyl[i]);
+		mlx_destroy_image(game->mlx, game->asset->enemyr[i]);
 		i++;
 	}
-	free(v->asset->enemyl);
-	free(v->asset->enemyr);
+	free(game->asset->enemyl);
+	free(game->asset->enemyr);
 }
-void	ft_free_player(t_vars *v)
+void	ft_free_player(t_game *game)
 {
 	int	i;
 
 	i = 0;
 	while (i < 6)
 	{
-		mlx_destroy_image(v->mlx, v->asset->player[i]);
-		mlx_destroy_image(v->mlx, v->asset->playerl[i]);
+		mlx_destroy_image(game->mlx, game->asset->player[i]);
+		mlx_destroy_image(game->mlx, game->asset->playerl[i]);
 		i++;
 	}
-	free(v->asset->player);
-	free(v->asset->playerl);
+	free(game->asset->player);
+	free(game->asset->playerl);
 }
-void	ft_free_edges(t_vars *v)
+void	ft_free_edges(t_game *game)
 {
 	int	i;
 
 	i = 0;
 	while (i < 16)
 	{
-		mlx_destroy_image(v->mlx, v->edges[i]);
+		mlx_destroy_image(game->mlx, game->edges[i]);
 		i++;
 	}
-	free(v->edges);
+	free(game->edges);
 }
-void	ft_free_map(t_vars *v)
+void	ft_free_map(t_game *game)
 {
 	int	i;
 
 	i = 0;
-	while (v->map[i])
+	while (game->map[i])
 	{
-		free(v->map[i]);
+		free(game->map[i]);
 		i++;
 	}
-	free(v->map);
+	free(game->map);
 }
-void	ft_free_assets(t_vars *v)
+void	ft_free_assets(t_game *game)
 {
 	int	i;
 
 	i = 0;
 	while (i < 6)
 	{
-		mlx_destroy_image(v->mlx, v->asset->player[i]);
-		mlx_destroy_image(v->mlx, v->asset->playerl[i]);
+		mlx_destroy_image(game->mlx, game->asset->player[i]);
+		mlx_destroy_image(game->mlx, game->asset->playerl[i]);
 		i++;
 	}
 	i = 0;
 	while (i < 4)
 	{
-		mlx_destroy_image(v->mlx, v->asset->enemyl[i]);
-		mlx_destroy_image(v->mlx, v->asset->enemyr[i]);
+		mlx_destroy_image(game->mlx, game->asset->enemyl[i]);
+		mlx_destroy_image(game->mlx, game->asset->enemyr[i]);
 		i++;
 	}
 	i = 0;
 	while (i < 16)
 	{
-		mlx_destroy_image(v->mlx, v->edges[i]);
+		mlx_destroy_image(game->mlx, game->edges[i]);
 		i++;
 	}
-	free(v->edges);
-	free(v->asset->coin);
-	free(v->asset->door);
-	free(v->asset->open_door);
-	free(v->asset->player);
-	free(v->asset->playerl);
-	free(v->asset->enemyl);
-	free(v->asset->enemyr);
-	free(v->asset);
+	free(game->edges);
+	free(game->asset->coin);
+	free(game->asset->door);
+	free(game->asset->open_door);
+	free(game->asset->player);
+	free(game->asset->playerl);
+	free(game->asset->enemyl);
+	free(game->asset->enemyr);
+	free(game->asset);
 }
-void	ft_free_sound(t_vars *v)
+void	ft_free_sound(t_game *game)
 {
-	free(v->sound->start);
-	free(v->sound->kill);
-	free(v->sound->enemy);
-	free(v->sound->end);
-	free(v->sound);
+	free(game->sound->start);
+	free(game->sound->kill);
+	free(game->sound->enemy);
+	free(game->sound->end);
+	free(game->sound);
 }
 
 //

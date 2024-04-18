@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 17:33:41 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:20:43 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,8 @@
 # include <mlx.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 500
 # endif // BUFFER_SIZEπ
-
-// typedef struct s_to_free
-// {
-// 	void		*edges;
-// 	void		*asset;
-// 	void		*sky;
-// 	void		*player;
-// 	void		*playerl;
-// 	void		*enemyl;
-// 	void		*enemyr;
-// 	void		*sound;
-// 	void		*start;
-// 	void		*kill;
-// 	void		*enemy;
-// 	void		*end;
-// 	void		*walk;
-// }				t_to_free;
 
 typedef struct s_assets
 {
@@ -69,13 +52,7 @@ typedef struct s_sound
 
 }				t_sound;
 
-typedef	struct s_free
-{
-	void		*ptr;
-	struct s_free	*next;
-}			t_free;
-
-typedef struct s_vars
+typedef struct s_game
 {
 	t_sound		*sound;
 	char		**map;
@@ -103,8 +80,7 @@ typedef struct s_vars
 	int			player_moved_left;
 	int			enemy_moved;
 	int			enemy_moved_left;
-	t_free		*to_free;
-}				t_vars;
+}				t_game;
 
 # ifndef OPEN_MAX
 #  define OPEN_MAX 1024
@@ -120,58 +96,55 @@ char			*ft_readmap(char *map_name);
 char			**full_map(char *map);
 char			*ft_strchr(char *s, int c);
 int				check_map_name(char *str);
-void			load_map(t_vars *vars, t_assets *assets);
-int				key_hook(int keycode, t_vars *vars);
+void			load_map(t_game *game);
+int				key_hook(int keycode, t_game *game);
 int				count_y(char **s);
-void			put_player(t_vars *vars, t_assets *assets, int i);
+void			put_player(t_game *game, t_assets *assets, int i);
 void			print_map(char **map);
-int				count_c(t_vars *v);
+int				count_c(t_game *game);
 int				check_lenth(char **map);
 int				check_wall(char **map, char *full_map);
-int				check_fill(t_vars *va);
+int				check_fill(t_game *game);
 char			**ft_strdupdup(char **str);
-void			player_pos(t_vars *va);
-int				wich_edge(t_vars *v, int x, int y);
-void			put_edge(t_vars *v, void **e, int x, int y);
-void			edge_assets(t_vars *v, void **e);
-int				free_leaks(t_vars *v);
-void			opendoor(t_vars *v);
-void			turn_right(t_vars *v);
-void			turn_left(t_vars *v);
-void			go_up(t_vars *v);
-void			go_down(t_vars *v);
-void			put_player(t_vars *vars, t_assets *assets, int i);
-void			render_sky(t_vars *v, t_assets *a);
-void			sky(t_vars *v, t_assets *a);
-// void			stop_audio(void);
-void			print_moves(t_vars *v);
+void			player_pos(t_game *game);
+int				wich_edge(t_game *game, int x, int y);
+void			put_edge(t_game *game, void **e, int x, int y);
+void			edge_assets(t_game *game, void **e);
+int				free_leaks(t_game *game);
+void			opendoor(t_game *game);
+void			turn_right(t_game *game);
+void			turn_left(t_game *game);
+void			go_up(t_game *game);
+void			go_down(t_game *game);
+void			put_player(t_game *game, t_assets *assets, int i);
+void			render_sky(t_game *game, t_assets *a);
+void			sky(t_game *game, t_assets *a);
+void			stop_audio();
+void			print_moves(t_game *game);
 char			*ft_itoa(int n);
-void			player_assets(t_vars *v);
-void			enemy_assets(t_vars *v, t_assets *a);
-void			enemy_go_down(t_vars *v);
-void			enemy_go_up(t_vars *v);
-void			enemy_go_left(t_vars *v);
-void			enemy_go_right(t_vars *v);
-void			put_enemy(t_vars *v, t_assets *a, int i);
-void			enemy_attack(t_vars *v);
-// void			play_enemy(t_sound *s);
-// void			play_kill(t_sound *s);
-// void			play_walk(t_sound *s);
-// void			play_open_door(t_sound *s);
-// void			play_song(t_sound *s);
-// void			play_end(t_sound *s);
-// void			sound_assets(t_sound *s);
-void			ft_free_edges(t_vars *v);
-void			ft_free_map(t_vars *v);
-void			ft_free_sound(t_vars *v);
-void			ft_free_enemy(t_vars *v);
-void			ft_free_sound(t_vars *v);
-void			ft_free_player(t_vars *v);
-void			ft_free_assets(t_vars *v);
-void  *ft_malloc(int size, t_free *lst);
-t_free	*lst_new(void *ptr);
-void	lst_add_front(t_free **lst, t_free *new);
+void			player_assets(t_game *game);
+void			enemy_assets(t_game *game, t_assets *a);
+void			enemy_go_down(t_game *game);
+void			enemy_go_up(t_game *game);
+void			enemy_go_left(t_game *game);
+void			enemy_go_right(t_game *game);
+void			put_enemy(t_game *game, t_assets *a, int i);
+void			enemy_attack(t_game *game);
+void			play_enemy(t_sound *s);
+void			play_kill(t_sound *s);
+void			play_walk(t_sound *s);
+void			play_open_door(t_sound *s);
+void			play_song(t_sound *s);
+void			play_end(t_sound *s);
+void			sound_assets(t_sound *s);
+void			ft_free_edges(t_game *game);
+void			ft_free_map(t_game *game);
+void			ft_free_sound(t_game *game);
+void			ft_free_enemy(t_game *game);
+void			ft_free_sound(t_game *game);
+void			ft_free_player(t_game *game);
+void			ft_free_assets(t_game *game);
 // void	ft_free(t_free **lst);
-// void    remove_leaks(t_vars *v);
+// void    remove_leaks(t_game *game);
 
 #endif // GET_NEXT_LINE_H

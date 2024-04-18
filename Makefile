@@ -10,7 +10,7 @@ SOURCE :=	./source/check_map.c \
 			./source/ft_strlcpy.c \
 			./source/get_next_line.c \
 			./source/get_next_line_utils.c \
-			./source/so_long.c \
+			./source/handel.c \
 			./source/render.c \
 			./source/player.c \
 			./source/fill.c \
@@ -23,16 +23,18 @@ SOURCE :=	./source/check_map.c \
 			./source/ft_itoa.c\
 			./source/enemy.c\
 			./source/malloc.c\
+			./source/moves.c\
+			./source/so_long.c\
 			
 
 
 ./a.outexport DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/minilibx/
 ./a.out= get_next_line/*c
 LIBRARY :=  -lmlx -framework OpenGL -framework AppKit
-MINILIBX := minilibx/
+MINILIBX := ./mlx_macos/
 SANITIZE := -fsanitize=address -g
 all:
-	$(CC) -Wall -Wextra  $(SOURCE) $(GETNEXTLINE) $(LIBRARY) -o $(NAME)
+	$(CC) -Wall -Wextra  $(SOURCE) $(LIBRARY) -o $(NAME)
 
 dlinux:
 		$(CC) $(SOURCE) -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz $(SANITIZE) -o $(NAME)

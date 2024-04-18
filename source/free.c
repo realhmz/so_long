@@ -1,13 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/18 14:52:50 by het-taja          #+#    #+#             */
+/*   Updated: 2024/04/18 17:37:18 by het-taja         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 int	free_leaks(t_vars *v)
 {
-	ft_free_map(v);
-	ft_free_assets(v);
-	ft_free_sound(v);
-	mlx_destroy_window(v->mlx, v->win);
-	free(v->mlx);
-	free(v);
+	// ft_free_map(v);
+	// ft_free_assets(v);
+	// ft_free_sound(v);
+	// mlx_destroy_window(v->mlx, v->win);
+	// ft_free(v->to_free);
+	// free(v->mlx);
+	// free(v);
 	system("leaks so_long");
 	return (0);
 }
@@ -107,3 +120,40 @@ void	ft_free_sound(t_vars *v)
 }
 
 //
+
+t_free	*lst_new(void *ptr)
+{
+	t_free	*new;
+
+	new = (t_free *)malloc(sizeof(t_free));
+	if (!new)
+		return (NULL);
+	new->ptr = ptr;
+	new->next = NULL;
+	return (new);
+}
+
+void	lst_add_front(t_free **lst, t_free *new)
+{
+	if (!new)
+		return ;
+	new->next = *lst;
+	*lst = new;
+}
+
+void	ft_free(t_free *lst)
+{
+	t_free	*tmp;
+	int i = 0;
+
+	// while (*lst)
+	// {
+		i++;
+		// printf("free %d\n", i);
+		// printf("ptr %p\n", (*lst)->ptr);
+		// tmp = (*lst)->next;
+		// free((*lst)->ptr);
+		// free(*lst);
+		// *lst = tmp;
+	// }
+}

@@ -6,13 +6,13 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 22:41:17 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/17 22:40:51 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 14:52:58 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static	int	wrds_count(const char *str, char sep)
+static int	wrds_count(const char *str, char sep)
 {
 	int	i;
 	int	count;
@@ -33,7 +33,7 @@ static	int	wrds_count(const char *str, char sep)
 	return (count);
 }
 
-static	char	*wrd_malloc(const char *str, char sep)
+static char	*wrd_malloc(const char *str, char sep)
 {
 	int		i;
 	char	*word;
@@ -48,7 +48,7 @@ static	char	*wrd_malloc(const char *str, char sep)
 	return (word);
 }
 
-static	char	**remove_leaks(char **buff)
+static char	**remove_leaks(char **buff)
 {
 	int	i;
 

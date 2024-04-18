@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   audio.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/18 14:52:38 by het-taja          #+#    #+#             */
+/*   Updated: 2024/04/18 14:52:39 by het-taja         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
- 
+
 void	sound_assets(t_sound *s)
 {
 	s->start = malloc(sizeof(char *) * 6);
@@ -17,9 +29,9 @@ void	sound_assets(t_sound *s)
 	s->kill[3] = NULL;
 	s->open_door = "./sound/door.mp3";
 	s->enemy = malloc(sizeof(char *) * 4);
-	s->enemy[0] = "./sound/enemy/enemy/1.mp3";
-	s->enemy[1] = "./sound/enemy/enemy/2.mp3";
-	s->enemy[2] = "./sound/enemy/enemy/3.mp3";
+	s->enemy[0] = "./sound/enemy/1.mp3";
+	s->enemy[1] = "./sound/enemy/2.mp3";
+	s->enemy[2] = "./sound/enemy/3.mp3";
 	s->enemy[3] = NULL;
 	s->end = malloc(sizeof(char *) * 3);
 	s->end[0] = "./sound/end/2.mp3";
@@ -27,82 +39,93 @@ void	sound_assets(t_sound *s)
 	s->end[2] = NULL;
 	s->walk = malloc(sizeof(char) * 16);
 	s->walk = "./sound/walk.mp3";
-	
 }
 
-void play_song(t_sound *s)
+void	play_song(t_sound *s)
 {
-	int id = fork();
-	int i = 0;
-	sound_assets(s);
-    srand(time(NULL));
-    i = rand();
-    i = i % 5;
-    if (id == 0) {
-        execl("/usr/bin/afplay", "afplay", s->start[i], NULL);
-    }	
-}
-void play_walk(t_sound *s)
-{
-	int id = fork();
-	sound_assets(s);
-	srand(time(NULL));
-	if (id == 0) {
-		execl("/usr/bin/afplay", "afplay",s->walk, NULL);
-	}
-	
-}
+	int	id;
+	int	i;
 
-void play_kill(t_sound *s)
-{
-	int id = fork();
-	int i = 0;
-	sound_assets(s);
-	srand(time(NULL));
-	i = rand();
-	i = i % 3;
-	if (id == 0) {
-		execl("/usr/bin/afplay", "afplay", s->kill[i], NULL);
-	}
-	
-}
-void play_open_door(t_sound *s)
-{
-	int id = fork();
-	sound_assets(s);
-	if (id == 0) {
-		execl("/usr/bin/afplay", "afplay", s->open_door, NULL);
-	}
-	
-}
-void play_enemy(t_sound *s)
-{
-	int id = fork();
-	int i = 0;
-	sound_assets(s);
+	id = fork();
+	i = 0;
 	srand(time(NULL));
 	i = rand();
 	i = i % 5;
-	if (id == 0) {
-		execl("/usr/bin/afplay", "afplay", s->enemy[i], NULL);
+	if (id == 0)
+	{
+		execl("/usr/bin/afplay", "afplay", s->start[i], NULL);
 	}
-	
 }
-void play_end(t_sound *s)
+void	play_walk(t_sound *s)
 {
-	int id = fork();
-	int i = 0;
-	sound_assets(s);
+	int	id;
+
+	id = fork();
+	srand(time(NULL));
+	if (id == 0)
+	{
+		execl("/usr/bin/afplay", "afplay", s->walk, NULL);
+	}
+}
+
+void	play_kill(t_sound *s)
+{
+	int	id;
+	int	i;
+
+	id = fork();
+	i = 0;
 	srand(time(NULL));
 	i = rand();
 	i = i % 3;
-	if (id == 0) {
+	if (id == 0)
+	{
+		execl("/usr/bin/afplay", "afplay", s->kill[i], NULL);
+	}
+}
+void	play_open_door(t_sound *s)
+{
+	int	id;
+
+	id = fork();
+	if (id == 0)
+	{
+		execl("/usr/bin/afplay", "afplay", s->open_door, NULL);
+	}
+}
+void	play_enemy(t_sound *s)
+{
+	int	id;
+	int	i;
+
+	id = fork();
+	i = 0;
+	srand(time(NULL));
+	i = rand();
+	i = i % 3;
+	if (id == 0)
+	{
+		execl("/usr/bin/afplay", "afplay", s->enemy[i], NULL);
+	}
+}
+void	play_end(t_sound *s)
+{
+	int	id;
+	int	i;
+
+	id = fork();
+	i = 0;
+	srand(time(NULL));
+	i = rand();
+	i = i % 2;
+	printf("%d\n\n", i);
+	if (id == 0)
+	{
 		execl("/usr/bin/afplay", "afplay", s->end[i], NULL);
 	}
-	
 }
 
-void stop_audio()
+void	stop_audio(void)
 {
 	system("killall afplay");
 }

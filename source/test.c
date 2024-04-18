@@ -1,40 +1,60 @@
-#include <SDL/SDL.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 
-int main() {
-    SDL_Init(SDL_INIT_AUDIO);
-    SDL_AudioSpec wavSpec;
-    Uint8 *wavBuffer;
-    Uint32 wavLength;
+typedef	struct s_free
+{
+	char		*ptr;
+	struct s_free	*next;
+}			t_free;
 
-    if (SDL_LoadWAV("../start.wav", &wavSpec, &wavBuffer, &wavLength) == NULL) {
-        printf("Error loading WAV file: %s\n", SDL_GetError());
-        return 1;
+void *lst_new(void *content)
+{
+    t_free *new;
+
+    new = malloc(sizeof(t_free));
+    if (!new)
+        return (0);
+    new->ptr = content;
+    new->next = 0;
+    return (new);
+}
+void lst_add_front(t_free **alst, t_free *new)
+{
+    if (!alst)
+        alst = &new;
+    if (alst && new)
+    {
+        new->next = *alst;
+        *alst = new;
     }
+}
+void ft_free(t_free *lst)
+{
+    t_free *tmp;
 
-    SDL_AudioDeviceID deviceId = SDL_OpenAudioDevice(NULL, 0, &wavSpec, NULL, 0);
-    if (deviceId == 0) {
-        printf("Failed to open audio device: %s\n", SDL_GetError());
-        SDL_FreeWAV(wavBuffer);
-        return 1;
+    while (lst)
+    {
+        tmp = lst->next;
+        free(lst->ptr);
+        free(lst);
+        lst = tmp;
     }
-
-    int success = SDL_QueueAudio(deviceId, wavBuffer, wavLength);
-    if (success != 0) {
-        printf("Failed to queue audio: %s\n", SDL_GetError());
-        SDL_CloseAudioDevice(deviceId);
-        SDL_FreeWAV(wavBuffer);
-        return 1;
+}
+ft_printf(t_free **lst)
+{
+    while (*lst)
+    {
+        printf("%s\n", *lst->ptr);
+        lst = *lst->next;
     }
+}
 
-    SDL_PauseAudioDevice(deviceId, 0);  // Start playing audio
-
-    // Wait for audio to finish playing
-    SDL_Delay((wavLength / (wavSpec.freq * wavSpec.channels)) * 1000);
-
-    // Clean up
-    SDL_CloseAudioDevice(deviceId);
-    SDL_FreeWAV(wavBuffer);
-    SDL_Quit();
-
+int main()
+{
+    t_free **lst;
+    lst = NULL;
+    lst_add_front(lst, lst_new("World"));
+    ft_free(lst);
     return 0;
 }

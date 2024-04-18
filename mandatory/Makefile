@@ -4,8 +4,7 @@ CC := gcc
 
 CFLAGS := -Wall -Wextra -Werror -Iheaders/
 
-SOURCE :=	./source/first.c \
-			./source/check_map.c \
+SOURCE :=	./source/check_map.c \
 			./source/ft_split.c \
 			./source/ft_strchr.c \
 			./source/ft_strlcpy.c \

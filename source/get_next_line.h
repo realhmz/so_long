@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 14:44:31 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:33:41 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@
 #  define BUFFER_SIZE 100
 # endif // BUFFER_SIZEπ
 
-typedef struct s_to_free
-{
-	void		*edges;
-	void		*asset;
-	void		*sky;
-	void		*player;
-	void		*playerl;
-	void		*enemyl;
-	void		*enemyr;
-	void		*sound;
-	void		*start;
-	void		*kill;
-	void		*enemy;
-	void		*end;
-	void		*walk;
-}				t_to_free;
+// typedef struct s_to_free
+// {
+// 	void		*edges;
+// 	void		*asset;
+// 	void		*sky;
+// 	void		*player;
+// 	void		*playerl;
+// 	void		*enemyl;
+// 	void		*enemyr;
+// 	void		*sound;
+// 	void		*start;
+// 	void		*kill;
+// 	void		*enemy;
+// 	void		*end;
+// 	void		*walk;
+// }				t_to_free;
 
 typedef struct s_assets
 {
@@ -68,6 +68,13 @@ typedef struct s_sound
 	char		**end;
 
 }				t_sound;
+
+typedef	struct s_free
+{
+	void		*ptr;
+	struct s_free	*next;
+}			t_free;
+
 typedef struct s_vars
 {
 	t_sound		*sound;
@@ -96,7 +103,7 @@ typedef struct s_vars
 	int			player_moved_left;
 	int			enemy_moved;
 	int			enemy_moved_left;
-	t_to_free	*to_free;
+	t_free		*to_free;
 }				t_vars;
 
 # ifndef OPEN_MAX
@@ -161,7 +168,10 @@ void			ft_free_enemy(t_vars *v);
 void			ft_free_sound(t_vars *v);
 void			ft_free_player(t_vars *v);
 void			ft_free_assets(t_vars *v);
-
+void  *ft_malloc(int size, t_free *lst);
+t_free	*lst_new(void *ptr);
+void	lst_add_front(t_free **lst, t_free *new);
+// void	ft_free(t_free **lst);
 // void    remove_leaks(t_vars *v);
 
 #endif // GET_NEXT_LINE_H

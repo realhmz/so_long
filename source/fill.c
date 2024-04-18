@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/18 14:52:45 by het-taja          #+#    #+#             */
+/*   Updated: 2024/04/18 14:52:46 by het-taja         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	**remove_leak(char **buff)
@@ -14,27 +26,29 @@ char	**remove_leak(char **buff)
 	return (NULL);
 }
 
-void	check_path(int x, int y,char **map)
+void	check_path(int x, int y, char **map)
 {
-	if(map && map[x] && map[x][y])
+	if (map && map[x] && map[x][y])
 	{
-		if(map[x][y] == '0' || map[x][y] == 'C' || map[x][y] == 'P')
+		if (map[x][y] == '0' || map[x][y] == 'C' || map[x][y] == 'P')
 		{
 			map[x][y] = '1';
-			check_path(x + 1,y,map);
-			check_path(x - 1,y,map);
-			check_path(x,y + 1,map);
-			check_path(x,y - 1,map);
+			check_path(x + 1, y, map);
+			check_path(x - 1, y, map);
+			check_path(x, y + 1, map);
+			check_path(x, y - 1, map);
 		}
 	}
 }
 
-char **ft_strdupdup(char **str)
+char	**ft_strdupdup(char **str)
 {
-	int i = 0;
-	char **new;
-	new = (char  **)malloc(sizeof (char *) * (count_y(str) + 1));
-	while(str && str[i])
+	int		i;
+	char	**new;
+
+	i = 0;
+	new = (char **)malloc(sizeof(char *) * (count_y(str) + 1));
+	while (str && str[i])
 	{
 		new[i] = ft_strdup(str[i]);
 		i++;
@@ -44,12 +58,12 @@ char **ft_strdupdup(char **str)
 }
 void	player_pos(t_vars *va)
 {
-		while (va->map && va->map[va->x] && va->map[va->x][va->y])
+	while (va->map && va->map[va->x] && va->map[va->x][va->y])
 	{
 		while (va->map[va->x][va->y])
 		{
-			if(va->map[va->x][va->y] == 'P')
-			{   
+			if (va->map[va->x][va->y] == 'P')
+			{
 				va->playerx = va->x;
 				va->playery = va->y;
 			}
@@ -61,19 +75,20 @@ void	player_pos(t_vars *va)
 }
 int	check_fill(t_vars *va)
 {
-	char **map;
-	int x;
-	int y;
+	char	**map;
+	int		x;
+	int		y;
+
 	x = 0;
 	y = 0;
 	map = ft_strdupdup(va->map);
 	player_pos(va);
-	check_path(va->playerx,va->playery,map);
-	while(map && map[x])
+	check_path(va->playerx, va->playery, map);
+	while (map && map[x])
 	{
 		while (map[x][y])
 		{
-			if(map[x][y] == 'C')
+			if (map[x][y] == 'C')
 			{
 				remove_leak(map);
 				return (0);
@@ -97,7 +112,7 @@ int	check_fill(t_vars *va)
 // 	x = 0;
 // 	y = 0;
 // 	check_fill(va);
-	
+
 // 	while (new && new[x])
 // 	{
 // 		if (new[x][y])

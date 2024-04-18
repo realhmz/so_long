@@ -28,9 +28,12 @@ char *ft_readmap(char *map_name)
 }
 char **full_map(char *map)
 {
+	char **full_map;
 	if (!map)
 		return (NULL);
-	return (ft_split(map, '\n'));
+	full_map = ft_split(map, '\n');
+	free(map);
+	return (full_map);
 }
 
 int count_c(t_vars *v)

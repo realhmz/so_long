@@ -8,7 +8,6 @@ void    turn_right(t_vars *v)
 			stop_audio();
 			play_end(v->sound);
 			exit(free_leaks(v));
-			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx][v->playery + 1] == 'C')
 			{
@@ -42,7 +41,6 @@ void    turn_left(t_vars *v)
 			stop_audio();
 			play_end(v->sound);
 			exit(free_leaks(v));
-			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx][v->playery - 1] == 'C')
 			{
@@ -71,7 +69,6 @@ void    go_up(t_vars *v)
 			stop_audio();
 			play_end(v->sound);
 			exit(free_leaks(v));
-			mlx_destroy_window(v->mlx,v->win);
 		}
 		if (v->map[v->playerx + 1][v->playery] == 'C')
 			{
@@ -101,8 +98,9 @@ void    go_down(t_vars *v)
 		{
 			stop_audio();
 			play_end(v->sound);
+
 			exit(free_leaks(v));
-			mlx_destroy_window(v->mlx,v->win);
+
 		}
 		if (v->map[v->playerx - 1][v->playery] == 'C')
 			{
@@ -220,7 +218,6 @@ int main(int ac, char **av)
 	// {
 		int w;
 		w = 50;
-		vars->xpm = malloc(sizeof(t_xpm));
 		vars->x = ft_strlen(vars->map[1]) * 50;
 		vars->y = count_y(vars->map) * 50;
 		vars->a = 0;
@@ -251,7 +248,7 @@ int main(int ac, char **av)
 		t_sound *s;
 		vars->sound = malloc(sizeof(t_sound));
 		s = vars->sound;
-		sound_assets(s);
+		sound_assets(s);		
 		vars->c = count_c(vars);
 		vars->moves = 0;
 		play_song(vars->sound);
@@ -277,3 +274,4 @@ int main(int ac, char **av)
 // add sound effects;
 // add animation to player; (optional)
 // max map size 40 x 22;
+// make a struct to fill with allocated variables and free all the struct at the end

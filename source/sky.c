@@ -34,10 +34,9 @@ void	render_sky(t_vars *v, t_assets *a)
 	int	i;
 
 	i = 0;
-	sky(v, a);
 	srand(time(NULL));
 	i = rand();
 	i = i % 2;
 	mlx_put_image_to_window(v->mlx, v->win, a->sky[i], 0, 0);
-	mlx_put_image_to_window(v->mlx, v->win, a->sky[2], 0, 0);
+	// mlx_put_image_to_window(v->mlx, v->win, a->sky[2], 0, 0);
 }

@@ -35,9 +35,11 @@ char	*ft_itoa(int n)
 }
 void	print_moves(t_vars *v)
 {
-	char *str;
-	str = ft_itoa(v->moves);
-	str = ft_strjoin("Moves: ", str);
+	char	*str;
+	char	*tmp;
+	tmp = ft_itoa(v->moves);
+	str = ft_strjoin("Moves: ", tmp);
 	mlx_string_put(v->mlx, v->win, 10, 10, 0xFFFFFF, str);
 	free(str);
+	free(tmp);
 }

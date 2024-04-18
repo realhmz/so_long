@@ -12,21 +12,25 @@
 
 #include "get_next_line.h"
 
-int	free_leaks(t_vars *v)
+int free_leaks(t_vars *v)
 {
-	// ft_free_map(v);
-	// ft_free_assets(v);
+	printf("wahasasaaan \n");
+	ft_free_map(v);
+	ft_free_assets(v);
 	// ft_free_sound(v);
-	// mlx_destroy_window(v->mlx, v->win);
+	mlx_clear_window(v->mlx, v->win);
+	mlx_destroy_window(v->mlx, v->win);
+	mlx_destroy_display(v->mlx);
+	free(v->sound);
 	// ft_free(v->to_free);
-	// free(v->mlx);
-	// free(v);
-	system("leaks so_long");
+	free(v->mlx);
+	free(v);
+	// system("leaks so_long");
 	return (0);
 }
-void	ft_free_enemy(t_vars *v)
+void ft_free_enemy(t_vars *v)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (i < 4)
@@ -38,9 +42,9 @@ void	ft_free_enemy(t_vars *v)
 	free(v->asset->enemyl);
 	free(v->asset->enemyr);
 }
-void	ft_free_player(t_vars *v)
+void ft_free_player(t_vars *v)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (i < 6)
@@ -52,9 +56,9 @@ void	ft_free_player(t_vars *v)
 	free(v->asset->player);
 	free(v->asset->playerl);
 }
-void	ft_free_edges(t_vars *v)
+void ft_free_edges(t_vars *v)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (i < 16)
@@ -64,9 +68,9 @@ void	ft_free_edges(t_vars *v)
 	}
 	free(v->edges);
 }
-void	ft_free_map(t_vars *v)
+void ft_free_map(t_vars *v)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (v->map[i])
@@ -76,9 +80,9 @@ void	ft_free_map(t_vars *v)
 	}
 	free(v->map);
 }
-void	ft_free_assets(t_vars *v)
+void ft_free_assets(t_vars *v)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (i < 6)
@@ -100,17 +104,24 @@ void	ft_free_assets(t_vars *v)
 		mlx_destroy_image(v->mlx, v->edges[i]);
 		i++;
 	}
+	i = 0;
+	while (i < 3)
+	{
+		mlx_destroy_image(v->mlx, v->asset->sky[i]);
+		i++;
+	}
 	free(v->edges);
-	free(v->asset->coin);
-	free(v->asset->door);
-	free(v->asset->open_door);
+	free(v->asset->sky);
+	mlx_destroy_image(v->mlx, v->asset->coin);
+	mlx_destroy_image(v->mlx, v->asset->door);
+	mlx_destroy_image(v->mlx, v->asset->open_door);
 	free(v->asset->player);
 	free(v->asset->playerl);
 	free(v->asset->enemyl);
 	free(v->asset->enemyr);
 	free(v->asset);
 }
-void	ft_free_sound(t_vars *v)
+void ft_free_sound(t_vars *v)
 {
 	free(v->sound->start);
 	free(v->sound->kill);
@@ -121,9 +132,9 @@ void	ft_free_sound(t_vars *v)
 
 //
 
-t_free	*lst_new(void *ptr)
+t_free *lst_new(void *ptr)
 {
-	t_free	*new;
+	t_free *new;
 
 	new = (t_free *)malloc(sizeof(t_free));
 	if (!new)
@@ -133,27 +144,27 @@ t_free	*lst_new(void *ptr)
 	return (new);
 }
 
-void	lst_add_front(t_free **lst, t_free *new)
+void lst_add_front(t_free **lst, t_free *new)
 {
 	if (!new)
-		return ;
+		return;
 	new->next = *lst;
 	*lst = new;
 }
 
-void	ft_free(t_free *lst)
+void ft_free(t_free *lst)
 {
-	t_free	*tmp;
+	t_free *tmp;
 	int i = 0;
 
 	// while (*lst)
 	// {
-		i++;
-		// printf("free %d\n", i);
-		// printf("ptr %p\n", (*lst)->ptr);
-		// tmp = (*lst)->next;
-		// free((*lst)->ptr);
-		// free(*lst);
-		// *lst = tmp;
+	i++;
+	// printf("free %d\n", i);
+	// printf("ptr %p\n", (*lst)->ptr);
+	// tmp = (*lst)->next;
+	// free((*lst)->ptr);
+	// free(*lst);
+	// *lst = tmp;
 	// }
 }

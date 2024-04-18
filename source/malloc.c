@@ -7,7 +7,7 @@ void  *ft_malloc(int size, t_free *lst)
     ptr = malloc(size);
     if (!ptr)
         exit(0);
-    lst_add_front(&lst, lst_new(ptr));
+    // lst_add_front(&lst, lst_new(ptr));
     return (ptr);
     
 }

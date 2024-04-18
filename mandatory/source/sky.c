@@ -34,7 +34,6 @@ void	render_sky(t_vars *v, t_assets *a)
 	int	i;
 
 	i = 0;
-	sky(v, a);
 	srand(time(NULL));
 	i = rand();
 	i = i % 2;

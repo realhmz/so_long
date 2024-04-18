@@ -38,7 +38,6 @@ void	edge_assets(t_vars *v, void **e)
 void	put_edge(t_vars *v, void **e, int x, int y)
 {
 	int	i;
-	mlx_destroy_image(v->mlx, e[0]);
 	i = wich_edge(v, x, y);
 	if (i == -1)
 		return ;
@@ -65,4 +64,3 @@ void	put_edge(t_vars *v, void **e, int x, int y)
 		mlx_put_image_to_window(v->mlx, v->win, e[i], y * 50 + v->cnsty, x * 50
 			+ v->cnstx);
 }
-ft_destr

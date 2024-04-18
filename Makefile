@@ -37,7 +37,9 @@ all:
 dlinux:
 		$(CC) $(SOURCE) -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz $(SANITIZE) -o $(NAME)
 linux:
-		$(CC) $(SOURCE) -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+		$(CC) $(SOURCE) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	
+	
 debug:
 		$(CC)  -Wall -Wextra $(SOURCE) $(LIBRARY) $(SANITIZE) -o $(NAME)
 clean:
@@ -47,3 +49,6 @@ fclean: clean
 		rm -rf $(NAME)
 
 re: fclean all
+
+	
+		# $(CC) $(SOURCE) -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)

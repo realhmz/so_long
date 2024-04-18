@@ -52,7 +52,7 @@ void	opendoor(t_vars *v)
 {
 	mlx_put_image_to_window(v->mlx, v->win, v->asset->open_door, v->ex * 50
 		+ v->cnsty, v->ey * 50 + v->cnstx);
-	play_open_door(v->sound);
+	// play_open_door(v->sound);
 }
 void	enemy_assets(t_vars *v, t_assets *a)
 {
@@ -75,6 +75,12 @@ void	enemy_assets(t_vars *v, t_assets *a)
 			&w);
 	a->enemyr[3] = mlx_xpm_file_to_image(v->mlx, "./textures/enemy/r/4.xpm", &w,
 			&w);
+	a->coin = mlx_xpm_file_to_image(v->mlx, "./textures/player/1.xpm",
+			&w, &w);
+	a->door = mlx_xpm_file_to_image(v->mlx,
+			"./textures/door/closed_door.xpm", &w, &w);
+	a->open_door = mlx_xpm_file_to_image(v->mlx,
+			"./textures/door/opendoor.xpm", &w, &w);
 }
 void	load_map(t_vars *vars, t_assets *assets)
 {
@@ -84,14 +90,8 @@ void	load_map(t_vars *vars, t_assets *assets)
 	vars->x = 0;
 	vars->y = 0;
 	// print_map(vars->map);
-	assets->coin = mlx_xpm_file_to_image(vars->mlx, "./textures/player/1.xpm",
-			&w, &w);
-	assets->door = mlx_xpm_file_to_image(vars->mlx,
-			"./textures/door/closed_door.xpm", &w, &w);
-	assets->open_door = mlx_xpm_file_to_image(vars->mlx,
-			"./textures/door/opendoor.xpm", &w, &w);
+
 	
-	enemy_assets(vars, assets);
 	while (vars->map && vars->map[vars->x] && vars->map[vars->x][vars->y])
 	{
 		while (vars->map[vars->x][vars->y])

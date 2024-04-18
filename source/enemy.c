@@ -78,7 +78,6 @@ void	put_enemy(t_vars *v, t_assets *a, int i)
 	static int	j = 0;
 	static int	x = 0;
 
-	enemy_assets(v, a);
 	if (i == 1)
 	{
 		mlx_put_image_to_window(v->mlx, v->win, a->enemyr[v->enemy_moved],
@@ -124,8 +123,8 @@ void	enemy_attack(t_vars *v)
 		v->enemyy * 50 + v->cnsty, v->enemyy * 50 + v->cnstx);
 	if (v->playerx == v->enemyx && v->playery == v->enemyy)
 	{
-		stop_audio();
-		play_enemy(v->sound);
+		// stop_audio();
+		// play_enemy(v->sound);
 		mlx_clear_window(v->mlx, v->win);
 		exit(free_leaks(v));
 		mlx_destroy_window(v->mlx, v->win);

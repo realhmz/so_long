@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:50 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/25 18:22:18 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:54:58 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	free_leaks(t_game *game)
 {
-	// printf("wahasasaaan \n");
+	if (game->map[game->playerx][game->playery + 1] == 'E' && game->c == 0)
+		printf("Winner Winner Chicken Dinner !!\n");
+	stop_audio();
+	play_end(game->sound);
 	ft_free_map(game);
 	ft_free_assets(game);
 	stop_audio();

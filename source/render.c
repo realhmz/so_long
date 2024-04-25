@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:53:23 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/25 17:36:11 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:43:49 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	opendoor(t_game *game)
 {
 	mlx_put_image_to_window(game->mlx, game->win, game->asset->open_door,
 		game->ex * 50 + game->cnsty, game->ey * 50 + game->cnstx);
-	// play_open_door(game->sound);
+	play_open_door();
 }
 
 void	enemy_assets(t_game *game, t_assets *a)

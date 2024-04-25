@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 21:54:41 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:21:48 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,15 @@ typedef struct s_assets
 	void		**sky;
 	void		**enemyl;
 	void		**enemyr;
+	void		*button;
+	void		*button1;
 
 }				t_assets;
 
 typedef struct s_sound
 {
-	char		**start;
+	char		*menu;
+	char		*start;
 	char		*walk;
 	char		**kill;
 	char		*open_door;
@@ -80,6 +83,8 @@ typedef struct s_game
 	int			player_moved_left;
 	int			enemy_moved;
 	int			enemy_moved_left;
+	int			game_stat;
+	int			last_view;
 }				t_game;
 
 # ifndef OPEN_MAX
@@ -132,9 +137,9 @@ void			put_enemy(t_game *game, t_assets *a, int i);
 void			enemy_attack(t_game *game);
 void			play_enemy(t_sound *s);
 void			play_kill(t_sound *s);
-void			play_walk(t_sound *s);
-void			play_open_door(t_sound *s);
-void			play_song(t_sound *s);
+void			play_walk(void);
+void			play_open_door(void);
+void			play_song(void);
 void			play_end(t_sound *s);
 void			sound_assets(t_sound *s);
 void			ft_free_edges(t_game *game);
@@ -143,7 +148,12 @@ void			ft_free_sound(t_game *game);
 void			ft_free_enemy(t_game *game);
 void			ft_free_sound(t_game *game);
 void			ft_free_player(t_game *game);
+int				mouse_hook(int hook, int x,int y,t_game *game);
 void			ft_free_assets(t_game *game);
+void			load_menu(t_game *game);
+int				backimg(t_game *game);
+void			lanch_game(t_game *game);
+void			play_menu(void);
 // void	ft_free(t_free **lst);
 // void    remove_leaks(t_game *game);
 

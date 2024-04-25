@@ -24,6 +24,8 @@ SOURCE :=	./source/check_map.c \
 			./source/enemy.c\
 			./source/moves.c\
 			./source/so_long.c\
+			./source/menu.c\
+			
 			
 
 

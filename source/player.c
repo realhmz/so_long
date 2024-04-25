@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:53:21 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 21:54:13 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:59:04 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	put_player(t_game *game, t_assets *assets, int i)
 		mlx_put_image_to_window(game->mlx, game->win,
 			assets->player[game->player_moved], game->playery * 50
 			+ game->cnsty, game->playerx * 50 + game->cnstx);
+		game->last_view = 1;
 		j = 1;
 		x = 0;
 	}
@@ -34,6 +35,7 @@ void	put_player(t_game *game, t_assets *assets, int i)
 		mlx_put_image_to_window(game->mlx, game->win,
 			assets->playerl[game->player_moved_left], game->playery * 50
 			+ game->cnsty, game->playerx * 50 + game->cnstx);
+		game->last_view = 0;
 		x = 1;
 		j = 0;
 	}
@@ -47,6 +49,7 @@ void	put_player(t_game *game, t_assets *assets, int i)
 			mlx_put_image_to_window(game->mlx, game->win,
 				assets->player[game->player_moved - 1], game->playery * 50
 				+ game->cnsty, game->playerx * 50 + game->cnstx);
+		game->last_view = -1;
 	}
 	if (i == -1 && x == 1)
 	{
@@ -58,6 +61,7 @@ void	put_player(t_game *game, t_assets *assets, int i)
 			mlx_put_image_to_window(game->mlx, game->win,
 				assets->playerl[game->player_moved_left - 1], game->playery * 50
 				+ game->cnsty, game->playerx * 50 + game->cnstx);
+		game->last_view = -1;
 	}
 }
 

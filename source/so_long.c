@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:30 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 22:01:20 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:23:31 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,48 +38,36 @@ void	game_init(t_game *game)
 	game->moves = 0;
 	game->map = NULL;
 	game->edges = NULL;
+	game->game_stat = 0;
 }
 
 void	load_assets(t_game *game, t_assets *assets)
 {
-	sound_assets(game->sound);
-	play_song(game->sound);
+	game->last_view = 1;
+	play_song();
 	player_assets(game);
 	edge_assets(game, game->edges);
 	sky(game, game->asset);
 	render_sky(game, assets);
 	enemy_assets(game, assets);
 	load_map(game);
-	put_enemy(game, assets, 1);
-	put_player(game, game->asset, 1);
+	// put_enemy(game, assets, 1);
+	put_player(game, game->asset, game->last_view);
 }
 
 void	lanch_game(t_game *game)
 {
-	t_assets	*asset;
-
-	asset = NULL;
 	game->x = ft_strlen(game->map[1]) * 50;
 	game->y = count_y(game->map) * 50;
-	game->winw = 1920;
-	game->winh = 1080;
 	game->cnsty = (game->winw / 2) - (game->x / 2);
 	game->cnstx = (game->winh / 2) - (game->y / 2);
-	game->mlx = mlx_init();
 	game->edges = malloc(sizeof(void *) * 16);
-	game->win = mlx_new_window(game->mlx, game->winw, game->winh, "SO_LONG");
-	game->asset = (t_assets *)malloc(sizeof(t_assets));
-	asset = game->asset;
-	asset->sky = malloc(sizeof(void *) * 3);
-	asset->player = malloc(sizeof(void *) * 6);
-	asset->playerl = malloc(sizeof(void *) * 6);
-	asset->enemyl = malloc(sizeof(void *) * 4);
-	asset->enemyr = malloc(sizeof(void *) * 4);
-	game->sound = malloc(sizeof(t_sound));
-	game->sound = game->sound;
 	game->c = count_c(game);
 	load_assets(game, game->asset);
-	mlx_hook(game->win, 2, (1L << 0), key_hook, game);
+	if (game->game_stat == 1)
+		mlx_hook(game->win, 2, (1L << 0), key_hook, game);
+	else if (game->game_stat == 0)
+		mlx_mouse_hook(game->win,mouse_hook,game);
 }
 
 int	main(int ac, char **av)
@@ -89,15 +77,20 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (0);
 	game = malloc(sizeof(t_game));
+	game_init(game);
+	load_menu(game);
+	if (game->game_stat == 0)
+		mlx_mouse_hook(game->win,mouse_hook,game);
 	game->map = full_map(ft_readmap(av[1]));
-	if (check_lenth(game->map) && check_wall(game->map, ft_readmap(av[1]))
-		&& check_map_name(av[1]) && check_fill(game))
-	{
-		lanch_game(game);
+	// if (check_lenth(game->map) && check_wall(game->map, ft_readmap(av[1]))
+	// 	&& check_map_name(av[1]) && check_fill(game))
+	// {
+		if (game->game_stat == 1)
+			lanch_game(game);
 		mlx_loop(game->mlx);
-	}
-	else
-		printf("Map ERROR");
+	// }
+	// else
+		// printf("Map ERROR");
 	return (0);
 }
 

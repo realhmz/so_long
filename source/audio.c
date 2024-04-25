@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:38 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 22:02:24 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:30:50 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,11 @@
 
 void	sound_assets(t_sound *s)
 {
-	s->start = malloc(sizeof(char *) * 6);
-	s->start[0] = "./sound/start/1.mp3";
-	s->start[1] = "./sound/start/2.mp3";
-	s->start[2] = "./sound/start/3.mp3";
-	s->start[3] = "./sound/start/4.mp3";
-	s->start[4] = "./sound/start/5.mp3";
-	s->start[5] = NULL;
-	s->walk = "./sound/walk.mp3";
 	s->kill = malloc(sizeof(char *) * 4);
 	s->kill[0] = "./sound/kill/1.mp3";
 	s->kill[1] = "./sound/kill/2.mp3";
 	s->kill[2] = "./sound/kill/3.mp3";
 	s->kill[3] = NULL;
-	s->open_door = "./sound/door.mp3";
 	s->enemy = malloc(sizeof(char *) * 4);
 	s->enemy[0] = "./sound/enemy/1.mp3";
 	s->enemy[1] = "./sound/enemy/2.mp3";
@@ -37,11 +28,9 @@ void	sound_assets(t_sound *s)
 	s->end[0] = "./sound/end/2.mp3";
 	s->end[1] = "./sound/end/3.mp3";
 	s->end[2] = NULL;
-	s->walk = malloc(sizeof(char) * 16);
-	s->walk = "./sound/walk.mp3";
 }
 
-void	play_song(t_sound *s)
+void	play_song(void)
 {
 	int	id;
 	int	i;
@@ -53,19 +42,24 @@ void	play_song(t_sound *s)
 	i = i % 5;
 	if (id == 0)
 	{
-		execl("/usr/bin/afplay", "afplay", s->start[i], NULL);
+		execl("/usr/bin/afplay", "afplay", "./sound/start.wav", NULL);
 	}
 }
 
-void	play_walk(t_sound *s)
+void	play_walk(void)
 {
+	static int i  = 0;
 	int	id;
 
 	id = fork();
 	srand(time(NULL));
 	if (id == 0)
 	{
-		execl("/usr/bin/afplay", "afplay", s->walk, NULL);
+		if (i % 2 == 0)
+			execl("/usr/bin/afplay", "afplay", "./sound/walk/1.mp3", NULL);
+		else
+			execl("/usr/bin/afplay", "afplay", "./sound/walk/2.mp3", NULL);
+		i++;
 	}
 }
 
@@ -85,14 +79,25 @@ void	play_kill(t_sound *s)
 	}
 }
 
-void	play_open_door(t_sound *s)
+void	play_open_door(void)
 {
 	int	id;
 
 	id = fork();
 	if (id == 0)
 	{
-		execl("/usr/bin/afplay", "afplay", s->open_door, NULL);
+		execl("/usr/bin/afplay", "afplay", "./sound/door.mp3", NULL);
+	}
+}
+
+void	play_menu(void)
+{
+	int	id;
+
+	id = fork();
+	if (id == 0)
+	{
+		execl("/usr/bin/afplay", "afplay","./sound/menu.mp3", NULL);
 	}
 }
 

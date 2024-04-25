@@ -22,11 +22,11 @@ void	turn_right(t_game *game)
 		game->map[game->playerx][game->playery + 1] = 'P';
 		game->map[game->playerx][game->playery] = '0';
 		render_sky(game, game->asset);
-		// play_walk(game->sound);
+		play_walk();
 		game->playery += 1;
 		load_map(game);
 		put_player(game, game->asset, 1);
-		put_enemy(game, game->asset, -1);
+		// put_enemy(game, game->asset, -1);
 		game->moves++;
 		print_moves(game);
 	}
@@ -54,11 +54,12 @@ void	turn_left(t_game *game)
 		game->map[game->playerx][game->playery - 1] = 'P';
 		game->map[game->playerx][game->playery] = '0';
 		game->playery -= 1;
+		play_walk();
 		game->moves++;
 		render_sky(game, game->asset);
 		load_map(game);
 		put_player(game, game->asset, 0);
-		put_enemy(game, game->asset, -1);
+		// put_enemy(game, game->asset, -1);
 		print_moves(game);
 	}
 }
@@ -84,11 +85,11 @@ void	go_up(t_game *game)
 		game->map[game->playerx + 1][game->playery] = 'P';
 		game->map[game->playerx][game->playery] = '0';
 		render_sky(game, game->asset);
-		play_walk(game->sound);
+		play_walk();
 		game->playerx += 1;
 		load_map(game);
 		put_player(game, game->asset, 1);
-		put_enemy(game, game->asset, -1);
+		// put_enemy(game, game->asset, -1);
 		print_moves(game);
 		game->moves++;
 	}
@@ -113,13 +114,13 @@ void	go_down(t_game *game)
 		|| game->map[game->playerx - 1][game->playery] == 'C')
 	{
 		render_sky(game, game->asset);
-		play_walk(game->sound);
+		play_walk();
 		game->map[game->playerx - 1][game->playery] = 'P';
 		game->map[game->playerx][game->playery] = '0';
 		game->playerx -= 1;
 		load_map(game);
 		put_player(game, game->asset, 1);
-		put_enemy(game, game->asset, -1);
+		// put_enemy(game, game->asset, -1);
 		print_moves(game);
 		game->moves++;
 	}

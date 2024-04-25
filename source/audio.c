@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:38 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/25 17:30:50 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:19:06 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,15 @@ void	sound_assets(t_sound *s)
 	s->enemy[1] = "./sound/enemy/2.mp3";
 	s->enemy[2] = "./sound/enemy/3.mp3";
 	s->enemy[3] = NULL;
-	s->end = malloc(sizeof(char *) * 3);
-	s->end[0] = "./sound/end/2.mp3";
-	s->end[1] = "./sound/end/3.mp3";
-	s->end[2] = NULL;
 }
 
 void	play_song(void)
 {
 	int	id;
-	int	i;
 
 	id = fork();
-	i = 0;
-	srand(time(NULL));
-	i = rand();
-	i = i % 5;
 	if (id == 0)
-	{
 		execl("/usr/bin/afplay", "afplay", "./sound/start.wav", NULL);
-	}
 }
 
 void	play_walk(void)
@@ -61,6 +50,15 @@ void	play_walk(void)
 			execl("/usr/bin/afplay", "afplay", "./sound/walk/2.mp3", NULL);
 		i++;
 	}
+}
+
+void	play_sus(void)
+{
+	int	id;
+
+	id = fork();
+	if (id == 0)
+		execl("/usr/bin/afplay", "afplay", "./sound/sus.mp3", NULL);
 }
 
 void	play_kill(t_sound *s)
@@ -120,18 +118,10 @@ void	play_enemy(t_sound *s)
 void	play_end(t_sound *s)
 {
 	int	id;
-	int	i;
 
 	id = fork();
-	i = 0;
-	srand(time(NULL));
-	i = rand();
-	i = i % 2;
-	printf("%d\n\n", i);
 	if (id == 0)
-	{
-		execl("/usr/bin/afplay", "afplay", s->end[i], NULL);
-	}
+		execl("/usr/bin/afplay", "afplay", "./sound/end.mp3", NULL);
 }
 
 void	stop_audio(void)

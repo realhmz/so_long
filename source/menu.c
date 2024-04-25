@@ -33,11 +33,13 @@ void    load_menu(t_game *game)
 int mouse_hook(int hook, int x,int y,t_game *game)
 {
         printf("%d ,"" %d\n\n",x,y);
-    if (x >= 800 && x <= 1150  && y >= 750 && y <= 950)
+    if (x >= 800 && x <= 1150  && y >= 750 && y <= 950 && hook == 1)
     {
-        game->game_stat = 1;
         mlx_clear_window(game->mlx,game->win);
+        game->game_stat = 1;
+        stop_audio();
+        play_sus();
         lanch_game(game);
     }
-    return 0;
+    return 1;
 }

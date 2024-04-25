@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/25 17:21:48 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:13:10 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_sound
 	char		**kill;
 	char		*open_door;
 	char		**enemy;
-	char		**end;
+	char		*end;
 
 }				t_sound;
 
@@ -154,6 +154,7 @@ void			load_menu(t_game *game);
 int				backimg(t_game *game);
 void			lanch_game(t_game *game);
 void			play_menu(void);
+void			play_sus(void);
 // void	ft_free(t_free **lst);
 // void    remove_leaks(t_game *game);
 

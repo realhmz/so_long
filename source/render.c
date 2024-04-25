@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:53:23 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 22:03:00 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:36:11 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	enemy_assets(t_game *game, t_assets *a)
 			&w, &w);
 	a->enemyr[3] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/r/4.xpm",
 			&w, &w);
-	a->coin = mlx_xpm_file_to_image(game->mlx, "./textures/player/1.xpm", &w,
+	a->coin = mlx_xpm_file_to_image(game->mlx, "./textures/coin.xpm", &w,
 			&w);
 	a->door = mlx_xpm_file_to_image(game->mlx,
 			"./textures/door/closed_door.xpm", &w, &w);

@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:50 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/25 17:31:02 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:20:19 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	free_leaks(t_game *game)
 	// mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free(game);
-	system("leaks so_long");
+	// system("leaks so_long");
 	return (0);
 }
 

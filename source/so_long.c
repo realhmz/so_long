@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:30 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/25 17:23:31 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:17:27 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	game_init(t_game *game)
 void	load_assets(t_game *game, t_assets *assets)
 {
 	game->last_view = 1;
-	play_song();
+	// play_song();
 	player_assets(game);
 	edge_assets(game, game->edges);
 	sky(game, game->asset);

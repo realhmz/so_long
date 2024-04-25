@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:30 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/25 18:17:27 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:23:03 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,15 @@ int	main(int ac, char **av)
 	if (game->game_stat == 0)
 		mlx_mouse_hook(game->win,mouse_hook,game);
 	game->map = full_map(ft_readmap(av[1]));
-	// if (check_lenth(game->map) && check_wall(game->map, ft_readmap(av[1]))
-	// 	&& check_map_name(av[1]) && check_fill(game))
-	// {
+	if (check_lenth(game->map) && check_wall(game->map, ft_readmap(av[1]))
+		&& check_map_name(av[1]) && check_fill(game))
+	{
 		if (game->game_stat == 1)
 			lanch_game(game);
 		mlx_loop(game->mlx);
-	// }
-	// else
-		// printf("Map ERROR");
+	}
+	else
+		printf("Map ERROR");
 	return (0);
 }
 

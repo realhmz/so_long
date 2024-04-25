@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:50 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/25 18:20:19 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:22:18 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,5 @@ void	ft_free_sound(t_game *game)
 {
 	free(game->sound->kill);
 	free(game->sound->enemy);
-	free(game->sound->end);
 	free(game->sound);
 }

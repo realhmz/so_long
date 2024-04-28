@@ -25,6 +25,8 @@ SOURCE :=	./source/check_map.c \
 			./source/moves.c\
 			./source/so_long.c\
 			./source/menu.c\
+			./source/idle.c\
+			./source/bar.c\
 			
 			
 

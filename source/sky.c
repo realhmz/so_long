@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:53:26 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/25 16:59:18 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/27 20:49:34 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int	backimg(t_game *game)
 		j = 0;
 	mlx_put_image_to_window(game->mlx,game->win,game->asset->sky[j],0,0);
 	load_map(game);
-	put_player(game,game->asset,game->last_view);
+	idle(game);
 	print_moves(game);
-	if (i == 200)
+	if (i == 150)
 		i = 0;
 	return 0;
 }

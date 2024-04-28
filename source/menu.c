@@ -22,7 +22,7 @@ void    load_menu(t_game *game)
 	asset->enemyl = malloc(sizeof(void *) * 4);
 	asset->enemyr = malloc(sizeof(void *) * 4);
     game->win = mlx_new_window(game->mlx, game->winw, game->winh, "SO_LONG");
-    game->asset->button = mlx_xpm_file_to_image(game->mlx, "./textures/sky/button.xpm",
+    game->asset->button = mlx_xpm_file_to_image(game->mlx, "./textures/sky/menu.xpm",
 			&i, &i);
     game->asset->button1 = mlx_xpm_file_to_image(game->mlx, "./textures/sky/button1.xpm",
 			&i, &i);
@@ -32,10 +32,21 @@ void    load_menu(t_game *game)
 
 int mouse_hook(int hook, int x,int y,t_game *game)
 {
-        printf("%d ,"" %d\n\n",x,y);
-    if (x >= 800 && x <= 1150  && y >= 750 && y <= 950 && hook == 1)
+    if (x >= 325 && x <= 584  && y >= 805 && y <= 895 && hook == 1 && game->game_stat == 0)
     {
         mlx_clear_window(game->mlx,game->win);
+        player_assets(game);
+        idle_assets(game);
+        game->game_stat = 1;
+        stop_audio();
+        play_sus();
+        lanch_game(game);
+    }
+    if (x >= 1316 && x <= 1570  && y >= 805 && y <= 895 && hook == 1 && game->game_stat == 0)
+    {
+        mlx_clear_window(game->mlx,game->win);
+        player_assets_women(game);
+        idle_assets_women(game);
         game->game_stat = 1;
         stop_audio();
         play_sus();

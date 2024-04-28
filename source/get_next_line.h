@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/25 18:13:10 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/28 16:07:57 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_assets
 {
 	void		**player;
 	void		**playerl;
+	void		**idle;
 	void		*coin;
 	void		*wall;
 	void		*floor;
@@ -40,6 +41,7 @@ typedef struct s_assets
 	void		**enemyr;
 	void		*button;
 	void		*button1;
+	void		*bar;
 
 }				t_assets;
 
@@ -84,7 +86,10 @@ typedef struct s_game
 	int			enemy_moved;
 	int			enemy_moved_left;
 	int			game_stat;
+	int			player_stat;
 	int			last_view;
+	int			total_coin;
+	int			coin_taken;
 }				t_game;
 
 # ifndef OPEN_MAX
@@ -104,7 +109,6 @@ int				check_map_name(char *str);
 void			load_map(t_game *game);
 int				key_hook(int keycode, t_game *game);
 int				count_y(char **s);
-void			put_player(t_game *game, t_assets *assets, int i);
 void			print_map(char **map);
 int				count_c(t_game *game);
 int				check_lenth(char **map);
@@ -155,6 +159,13 @@ int				backimg(t_game *game);
 void			lanch_game(t_game *game);
 void			play_menu(void);
 void			play_sus(void);
+void    idle_assets(t_game *game);
+int playerstat(int keycode, t_game *game);
+int    idle(t_game *game);
+void    bar_asset(t_game *game);
+void    render_bar(t_game *game);
+void	player_assets_women(t_game *game);
+void    idle_assets_women(t_game *game);
 // void	ft_free(t_free **lst);
 // void    remove_leaks(t_game *game);
 

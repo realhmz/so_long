@@ -6,9 +6,10 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:41 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 21:58:21 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:24:40 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "get_next_line.h"
 
@@ -44,7 +45,6 @@ int	check_lenth(char **map)
 	}
 	return (1);
 }
-
 int	check_wall(char **map, char *full_map)
 {
 	int		i;
@@ -62,8 +62,7 @@ int	check_wall(char **map, char *full_map)
 		return (0);
 	while (i <= 256)
 	{
-		if (i == '0' || i == 'E' || i == 'P' || i == 'C' || i == '\n'
-			|| i == 'N')
+		if (i == '0' || i == 'E' || i == 'P' || i == 'C' || i == '\n' || i == 'N')
 			i++;
 		if (i == '1')
 			i++;
@@ -73,7 +72,6 @@ int	check_wall(char **map, char *full_map)
 	}
 	return (1);
 }
-
 int	check_map_name(char *str)
 {
 	int	i;
@@ -87,3 +85,11 @@ int	check_map_name(char *str)
 		return (0);
 	return (1);
 }
+
+// int main(int ac, char **av)
+// {
+//     char *map = ft_readmap(av[1]);
+//     char **fmap = full_map(map);
+// 	if (ac == 2)
+// 		printf("jnb :%d\n dakhl : %d ",check_lenth(fmap), check_wall(fmap,map));
+// }

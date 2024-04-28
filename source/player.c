@@ -6,88 +6,56 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:53:21 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/25 18:15:40 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/27 21:46:40 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	put_player(t_game *game, t_assets *assets, int i)
-{
-	static int	j = 0;
-	static int	x = 0;
+// void	put_player(t_game *game, t_assets *assets, int i)
+// {
+// 	static int	j = 0;
 
-	if (game->player_moved_left >= 6)
-		game->player_moved_left = 0;
-	if (game->player_moved >= 6)
-		game->player_moved = 0;
-	if (i == 1)
-	{
-		mlx_put_image_to_window(game->mlx, game->win,
-			assets->player[game->player_moved], game->playery * 50
-			+ game->cnsty, game->playerx * 50 + game->cnstx);
-		game->last_view = 1;
-		j = 1;
-		x = 0;
-	}
-	else if (i == 0)
-	{
-		mlx_put_image_to_window(game->mlx, game->win,
-			assets->playerl[game->player_moved_left], game->playery * 50
-			+ game->cnsty, game->playerx * 50 + game->cnstx);
-		game->last_view = 0;
-		x = 1;
-		j = 0;
-	}
-	if (i == -1 && j == 1)
-	{
-		if (game->player_moved == 0)
-			mlx_put_image_to_window(game->mlx, game->win, assets->player[0],
-				game->playery * 50 + game->cnsty, game->playerx * 50
-				+ game->cnstx);
-		else
-			mlx_put_image_to_window(game->mlx, game->win,
-				assets->player[game->player_moved - 1], game->playery * 50
-				+ game->cnsty, game->playerx * 50 + game->cnstx);
-		game->last_view = -1;
-	}
-	if (i == -1 && x == 1)
-	{
-		if (game->player_moved_left == 0)
-			mlx_put_image_to_window(game->mlx, game->win, assets->playerl[0],
-				game->playery * 50 + game->cnsty, game->playerx * 50
-				+ game->cnstx);
-		else
-			mlx_put_image_to_window(game->mlx, game->win,
-				assets->playerl[game->player_moved_left - 1], game->playery * 50
-				+ game->cnsty, game->playerx * 50 + game->cnstx);
-		game->last_view = -1;
-	}
-}
+// 	if (i % 20 == 0)
+// 		j++;
+// 	i++;
+// 	if (j == 5)
+// 		j = 0;
+// 	mlx_put_image_to_window(game->mlx,game->win,game->asset->player[i],0,0);
+// 	idle(game);
+// 	print_moves(game);
+// 	if (i == 150)
+// 		i = 0;
+// 	// return 0;
+// }
 
 int	key_hook(int keycode, t_game *game)
 {
-	// printf("keycode : %d\n",keycode);
 	if (keycode == 53)
 	{
 		stop_audio();
 		play_end(game->sound);
 		exit(free_leaks(game));
 	}
-	if (keycode == 2 || keycode == 13 || keycode == 1)
+	else if (keycode == 2 || keycode == 1)
 	{
 		if (keycode == 2)
 			turn_right(game);
 		if (keycode == 1)
 			go_up(game);
+		
+		game->player_stat = 1;
+	}
+	else if (keycode == 0 || keycode == 13)
+	{
 		if (keycode == 13)
 			go_down(game);
-		game->player_moved++;
+		if (keycode == 0)
+			turn_left(game);
+		game->player_stat = 2;
 	}
-	if (keycode == 0)
-	{
-		turn_left(game);
-		game->player_moved_left++;
-	}
+	else
+		game->player_stat = 0;
+	usleep(10);
 	return (0);
 }

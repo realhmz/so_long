@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:30 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/25 18:23:03 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/28 16:08:26 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	game_init(t_game *game)
 	game->x = 0;
 	game->y = 0;
 	game->a = 0;
+	game->player_stat = 0;
 	game->b = 0;
 	game->playerx = 0;
 	game->playery = 0;
@@ -39,20 +40,22 @@ void	game_init(t_game *game)
 	game->map = NULL;
 	game->edges = NULL;
 	game->game_stat = 0;
+	game->coin_taken = 0;
 }
 
 void	load_assets(t_game *game, t_assets *assets)
 {
 	game->last_view = 1;
 	// play_song();
-	player_assets(game);
 	edge_assets(game, game->edges);
 	sky(game, game->asset);
 	render_sky(game, assets);
 	enemy_assets(game, assets);
 	load_map(game);
+	bar_asset(game);
+	render_bar(game);
 	// put_enemy(game, assets, 1);
-	put_player(game, game->asset, game->last_view);
+	// put_player(game, game->asset, game->last_view);
 }
 
 void	lanch_game(t_game *game)
@@ -63,9 +66,15 @@ void	lanch_game(t_game *game)
 	game->cnstx = (game->winh / 2) - (game->y / 2);
 	game->edges = malloc(sizeof(void *) * 16);
 	game->c = count_c(game);
+	game->total_coin = count_c(game);
 	load_assets(game, game->asset);
 	if (game->game_stat == 1)
+	{
 		mlx_hook(game->win, 2, (1L << 0), key_hook, game);
+		mlx_hook(game->win, 3, (1L << 1), playerstat, game);
+		// mlx_key_hook(game->mlx,playerstat,game);
+		// mlx_hook(game->win, 2, (1L << 1), playerstat, game);
+	}
 	else if (game->game_stat == 0)
 		mlx_mouse_hook(game->win,mouse_hook,game);
 }

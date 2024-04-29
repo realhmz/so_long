@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:50 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/29 16:00:04 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/29 22:10:46 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ int	free_leaks(t_game *game)
 	play_end();
 	ft_free_map(game);
 	ft_free_assets(game);
-	stop_audio();
+	// stop_audio();
 	ft_free_sound(game);
 	mlx_clear_window(game->mlx, game->win);
 	mlx_destroy_window(game->mlx, game->win);
+	// system("leaks so_long");
 	// mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free(game);
-	system("leaks so_long");
 	return (0);
 }
 

@@ -23,7 +23,7 @@
 //     int size = 250;
 //     double angle = 25 * M_PI / 180;
 //     double offsetX = 250;
-//     double offsetY = 250; 
+//     double offsetY = 250;
 
 //     dot = malloc(sizeof(t_dot));
 //     dot->x = 0;
@@ -41,12 +41,12 @@
 //             if( dot->x == 0 || dot->y == 0)
 //                 dot->z = 250;
 //             isometric(dot, angle);
-//             mlx_pixel_put(mlx, win, dot->x + offsetX, dot->y + offsetY, 0X0000FF);
+//             mlx_pixel_put(mlx, win, dot->x + offsetX, dot->y + offsetY,
 //         }
 //     }
 //     mlx_loop(mlx);
 
 //     free(dot);
 
-//     return 0;
+//     return (0);
 // }

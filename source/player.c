@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:53:21 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/27 21:46:40 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/28 17:17:58 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 // 	print_moves(game);
 // 	if (i == 150)
 // 		i = 0;
-// 	// return 0;
+// 	// return (0);
 // }
 
 int	key_hook(int keycode, t_game *game)
@@ -34,7 +34,7 @@ int	key_hook(int keycode, t_game *game)
 	if (keycode == 53)
 	{
 		stop_audio();
-		play_end(game->sound);
+		play_end();
 		exit(free_leaks(game));
 	}
 	else if (keycode == 2 || keycode == 1)
@@ -43,7 +43,6 @@ int	key_hook(int keycode, t_game *game)
 			turn_right(game);
 		if (keycode == 1)
 			go_up(game);
-		
 		game->player_stat = 1;
 	}
 	else if (keycode == 0 || keycode == 13)

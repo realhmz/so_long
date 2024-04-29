@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:30 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/28 16:08:26 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/28 17:17:29 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	load_assets(t_game *game, t_assets *assets)
 	// play_song();
 	edge_assets(game, game->edges);
 	sky(game, game->asset);
-	render_sky(game, assets);
+	render_sky(game);
 	enemy_assets(game, assets);
 	load_map(game);
 	bar_asset(game);
@@ -76,7 +76,7 @@ void	lanch_game(t_game *game)
 		// mlx_hook(game->win, 2, (1L << 1), playerstat, game);
 	}
 	else if (game->game_stat == 0)
-		mlx_mouse_hook(game->win,mouse_hook,game);
+		mlx_mouse_hook(game->win, mouse_hook, game);
 }
 
 int	main(int ac, char **av)
@@ -89,7 +89,7 @@ int	main(int ac, char **av)
 	game_init(game);
 	load_menu(game);
 	if (game->game_stat == 0)
-		mlx_mouse_hook(game->win,mouse_hook,game);
+		mlx_mouse_hook(game->win, mouse_hook, game);
 	game->map = full_map(ft_readmap(av[1]));
 	if (check_lenth(game->map) && check_wall(game->map, ft_readmap(av[1]))
 		&& check_map_name(av[1]) && check_fill(game))

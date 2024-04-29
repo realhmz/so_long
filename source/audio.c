@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:38 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/25 18:19:06 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/28 17:18:34 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	play_song(void)
 
 void	play_walk(void)
 {
-	static int i  = 0;
-	int	id;
+	static int	i = 0;
+	int			id;
 
 	id = fork();
 	srand(time(NULL));
@@ -95,7 +95,7 @@ void	play_menu(void)
 	id = fork();
 	if (id == 0)
 	{
-		execl("/usr/bin/afplay", "afplay","./sound/menu.mp3", NULL);
+		execl("/usr/bin/afplay", "afplay", "./sound/menu.mp3", NULL);
 	}
 }
 
@@ -115,7 +115,7 @@ void	play_enemy(t_sound *s)
 	}
 }
 
-void	play_end(t_sound *s)
+void	play_end()
 {
 	int	id;
 

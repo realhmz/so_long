@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/28 16:07:57 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/28 17:18:46 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void			turn_left(t_game *game);
 void			go_up(t_game *game);
 void			go_down(t_game *game);
 void			put_player(t_game *game, t_assets *assets, int i);
-void			render_sky(t_game *game, t_assets *a);
+void			render_sky(t_game *game);
 void			sky(t_game *game, t_assets *a);
 void			stop_audio(void);
 void			print_moves(t_game *game);
@@ -144,7 +144,7 @@ void			play_kill(t_sound *s);
 void			play_walk(void);
 void			play_open_door(void);
 void			play_song(void);
-void			play_end(t_sound *s);
+void			play_end();
 void			sound_assets(t_sound *s);
 void			ft_free_edges(t_game *game);
 void			ft_free_map(t_game *game);
@@ -152,20 +152,20 @@ void			ft_free_sound(t_game *game);
 void			ft_free_enemy(t_game *game);
 void			ft_free_sound(t_game *game);
 void			ft_free_player(t_game *game);
-int				mouse_hook(int hook, int x,int y,t_game *game);
+int				mouse_hook(int hook, int x, int y, t_game *game);
 void			ft_free_assets(t_game *game);
 void			load_menu(t_game *game);
 int				backimg(t_game *game);
 void			lanch_game(t_game *game);
 void			play_menu(void);
 void			play_sus(void);
-void    idle_assets(t_game *game);
-int playerstat(int keycode, t_game *game);
-int    idle(t_game *game);
-void    bar_asset(t_game *game);
-void    render_bar(t_game *game);
-void	player_assets_women(t_game *game);
-void    idle_assets_women(t_game *game);
+void			idle_assets(t_game *game);
+int				playerstat(int keycode, t_game *game);
+int				idle(t_game *game);
+void			bar_asset(t_game *game);
+void			render_bar(t_game *game);
+void			player_assets_women(t_game *game);
+void			idle_assets_women(t_game *game);
 // void	ft_free(t_free **lst);
 // void    remove_leaks(t_game *game);
 

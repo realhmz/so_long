@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/28 17:18:46 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:46:38 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_game
 	int			last_view;
 	int			total_coin;
 	int			coin_taken;
+	int			player_gender;
 }				t_game;
 
 # ifndef OPEN_MAX
@@ -140,7 +141,7 @@ void			enemy_go_right(t_game *game);
 void			put_enemy(t_game *game, t_assets *a, int i);
 void			enemy_attack(t_game *game);
 void			play_enemy(t_sound *s);
-void			play_kill(t_sound *s);
+void			play_kill(t_game *game);
 void			play_walk(void);
 void			play_open_door(void);
 void			play_song(void);

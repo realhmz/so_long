@@ -41,10 +41,12 @@ int	mouse_hook(int hook, int x, int y, t_game *game)
 		stop_audio();
 		play_sus();
 		lanch_game(game);
+		game->player_gender = 1;
 	}
 	if (x >= 1316 && x <= 1570 && y >= 805 && y <= 895 && hook == 1
 		&& game->game_stat == 0)
 	{
+		game->player_gender = 0;
 		mlx_clear_window(game->mlx, game->win);
 		player_assets_women(game);
 		idle_assets_women(game);

@@ -6,7 +6,7 @@ void	turn_right(t_game *game)
 		exit(free_leaks(game));
 	if (game->map[game->playerx][game->playery + 1] == 'C')
 	{
-		play_kill(game->sound);
+		play_kill(game);
 		if (game->c == 1)
 			opendoor(game);
 		game->c -= 1;
@@ -30,7 +30,7 @@ void	turn_left(t_game *game)
 		exit(free_leaks(game));
 	if (game->map[game->playerx][game->playery - 1] == 'C')
 	{
-		play_kill(game->sound);
+		play_kill(game);
 		if (game->c == 1)
 			opendoor(game);
 		game->c -= 1;
@@ -55,7 +55,7 @@ void	go_up(t_game *game)
 		exit(free_leaks(game));
 	if (game->map[game->playerx + 1][game->playery] == 'C')
 	{
-		play_kill(game->sound);
+		play_kill(game);
 		if (game->c == 1)
 			opendoor(game);
 		game->c -= 1;
@@ -83,7 +83,7 @@ void	go_down(t_game *game)
 	{
 		if (game->map[game->playerx - 1][game->playery] == 'C')
 		{
-			play_kill(game->sound);
+			play_kill(game);
 			if (game->c == 1)
 				opendoor(game);
 			game->c -= 1;

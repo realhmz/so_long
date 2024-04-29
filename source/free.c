@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:50 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/28 17:18:17 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/29 16:00:04 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	free_leaks(t_game *game)
 	// mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free(game);
-	// system("leaks so_long");
+	system("leaks so_long");
 	return (0);
 }
 
@@ -53,8 +53,11 @@ void	ft_free_player(t_game *game)
 	i = 0;
 	while (i < 6)
 	{
-		mlx_destroy_image(game->mlx, game->asset->player[i]);
-		mlx_destroy_image(game->mlx, game->asset->playerl[i]);
+		if (game->player_gender == 1)
+		{
+			mlx_destroy_image(game->mlx, game->asset->player[i]);
+			mlx_destroy_image(game->mlx, game->asset->playerl[i]);
+		}
 		i++;
 	}
 	free(game->asset->player);
@@ -99,10 +102,9 @@ void	ft_free_assets(t_game *game)
 		i++;
 	}
 	i = 0;
-	while (i < 4)
+	while (i < 6)
 	{
-		mlx_destroy_image(game->mlx, game->asset->enemyl[i]);
-		mlx_destroy_image(game->mlx, game->asset->enemyr[i]);
+		mlx_destroy_image(game->mlx, game->asset->idle[i]);
 		i++;
 	}
 	i = 0;
@@ -112,16 +114,19 @@ void	ft_free_assets(t_game *game)
 		i++;
 	}
 	i = 0;
-	while (i < 3)
+	while (i < 5)
 	{
 		mlx_destroy_image(game->mlx, game->asset->sky[i]);
 		i++;
 	}
 	free(game->edges);
 	free(game->asset->sky);
+	mlx_destroy_image(game->mlx, game->asset->button1);
+	mlx_destroy_image(game->mlx, game->asset->button);
 	mlx_destroy_image(game->mlx, game->asset->coin);
 	mlx_destroy_image(game->mlx, game->asset->door);
 	mlx_destroy_image(game->mlx, game->asset->open_door);
+	mlx_destroy_image(game->mlx, game->asset->bar);
 	free(game->asset->player);
 	free(game->asset->playerl);
 	free(game->asset->enemyl);

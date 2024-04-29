@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:53:23 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/28 17:14:23 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:41:04 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,29 +56,29 @@ void	opendoor(t_game *game)
 	play_open_door();
 }
 
-void	enemy_assets(t_game *game, t_assets *a)
-{
-	int	w;
+// void	enemy_assets(t_game *game, t_assets *a)
+// {
+// 	int	w;
 
-	w = 50;
-	a->enemyl[0] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/l/1.xpm",
-			&w, &w);
-	a->enemyl[1] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/l/2.xpm",
-			&w, &w);
-	a->enemyl[2] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/l/3.xpm",
-			&w, &w);
-	a->enemyl[3] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/l/4.xpm",
-			&w, &w);
-	a->enemyr[0] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/r/1.xpm",
-			&w, &w);
-	a->enemyr[1] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/r/2.xpm",
-			&w, &w);
-	a->enemyr[2] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/r/3.xpm",
-			&w, &w);
-	a->enemyr[3] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/r/4.xpm",
-			&w, &w);
-	a->coin = mlx_xpm_file_to_image(game->mlx, "./textures/coin.xpm", &w, &w);
-}
+// 	w = 50;
+// 	a->enemyl[0] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/l/1.xpm",
+// 			&w, &w);
+// 	a->enemyl[1] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/l/2.xpm",
+// 			&w, &w);
+// 	a->enemyl[2] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/l/3.xpm",
+// 			&w, &w);
+// 	a->enemyl[3] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/l/4.xpm",
+// 			&w, &w);
+// 	a->enemyr[0] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/r/1.xpm",
+// 			&w, &w);
+// 	a->enemyr[1] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/r/2.xpm",
+// 			&w, &w);
+// 	a->enemyr[2] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/r/3.xpm",
+// 			&w, &w);
+// 	a->enemyr[3] = mlx_xpm_file_to_image(game->mlx, "./textures/enemy/r/4.xpm",
+// 			&w, &w);
+	
+// }
 
 void	load_map(t_game *game)
 {

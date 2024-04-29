@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:30 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/28 17:17:29 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:49:17 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	load_assets(t_game *game, t_assets *assets)
 	edge_assets(game, game->edges);
 	sky(game, game->asset);
 	render_sky(game);
-	enemy_assets(game, assets);
+	// enemy_assets(game, assets);
 	load_map(game);
 	bar_asset(game);
 	render_bar(game);
@@ -82,7 +82,9 @@ void	lanch_game(t_game *game)
 int	main(int ac, char **av)
 {
 	t_game	*game;
+	char	*tmp;
 
+	tmp = ft_readmap(av[1]);
 	if (ac != 2)
 		return (0);
 	game = malloc(sizeof(t_game));
@@ -90,8 +92,8 @@ int	main(int ac, char **av)
 	load_menu(game);
 	if (game->game_stat == 0)
 		mlx_mouse_hook(game->win, mouse_hook, game);
-	game->map = full_map(ft_readmap(av[1]));
-	if (check_lenth(game->map) && check_wall(game->map, ft_readmap(av[1]))
+	game->map = full_map(tmp);
+	if (check_lenth(game->map) && check_wall(game->map, tmp)
 		&& check_map_name(av[1]) && check_fill(game))
 	{
 		if (game->game_stat == 1)
@@ -100,6 +102,7 @@ int	main(int ac, char **av)
 	}
 	else
 		printf("Map ERROR");
+	free(tmp);
 	return (0);
 }
 

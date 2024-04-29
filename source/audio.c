@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:38 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/28 17:18:34 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:47:15 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	play_sus(void)
 		execl("/usr/bin/afplay", "afplay", "./sound/sus.mp3", NULL);
 }
 
-void	play_kill(t_sound *s)
+void	play_kill(t_game *game)
 {
 	int	id;
 	int	i;
@@ -73,7 +73,10 @@ void	play_kill(t_sound *s)
 	i = i % 3;
 	if (id == 0)
 	{
-		execl("/usr/bin/afplay", "afplay", s->kill[i], NULL);
+		if (game->player_gender == 0)
+			execl("/usr/bin/afplay", "afplay", "./sound/walk/women.mp3", NULL);
+		else
+			execl("/usr/bin/afplay", "afplay", game->sound->kill[i], NULL);
 	}
 }
 

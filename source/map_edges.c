@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:53:18 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/27 19:24:04 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:41:39 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	edge_assets(t_game *game, void **e)
 			"./textures/door/closed_door.xpm", &w, &w);
 	game->asset->open_door = mlx_xpm_file_to_image(game->mlx,
 			"./textures/door/opendoor.xpm", &w, &w);
+	game->asset->coin = mlx_xpm_file_to_image(game->mlx, "./textures/coin.xpm", &w, &w);
 }
 
 void	put_edge(t_game *game, void **e, int x, int y)

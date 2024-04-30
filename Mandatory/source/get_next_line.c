@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:49:06 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 14:53:14 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:59:44 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int	find_new_line(char *str)
 	}
 	return (-1);
 }
+
 static char	*ft_rest(char *rest)
 {
 	char	*temp;
@@ -43,6 +44,7 @@ static char	*ft_rest(char *rest)
 	free(rest);
 	return (NULL);
 }
+
 static char	*ft_line(char *rest)
 {
 	char	*line;
@@ -70,6 +72,7 @@ static char	*ft_line(char *rest)
 	line[i + 1] = '\0';
 	return (line);
 }
+
 static char	*ft_read(int fd, char *buff, char *rest)
 {
 	char	*temp;
@@ -96,6 +99,7 @@ static char	*ft_read(int fd, char *buff, char *rest)
 	}
 	return (rest);
 }
+
 char	*get_next_line(int fd)
 {
 	static char	*rest[OPEN_MAX];
@@ -112,9 +116,3 @@ char	*get_next_line(int fd)
 	rest[fd] = ft_rest(rest[fd]);
 	return (line);
 }
-// int main(int ac , char **av)
-// {
-// 	int fd = open(av[1], O_RDONLY);
-// 	char *str = get_next_line(fd);
-// 	printf("%s",str);
-// }

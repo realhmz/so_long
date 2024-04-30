@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:45 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 21:21:00 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:58:59 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char	**ft_strdupdup(char **str)
 	new[i] = NULL;
 	return (new);
 }
+
 void	player_pos(t_game *game)
 {
 	while (game->map && game->map[game->x] && game->map[game->x][game->y])
@@ -73,6 +74,7 @@ void	player_pos(t_game *game)
 		game->x++;
 	}
 }
+
 int	check_fill(t_game *game)
 {
 	char	**map;
@@ -98,28 +100,6 @@ int	check_fill(t_game *game)
 		y = 0;
 		x++;
 	}
-	// remove_leak(map);
+	remove_leak(map);
 	return (1);
 }
-
-// int main(int ac,char **av)
-// {
-// 	t_game *game;
-// 	va = malloc(sizeof(t_game));
-// 	game->map = full_map(ft_readmap(av[1]));
-// 	char **new = ft_strdupdup(game->map);
-// 	int x,y ;
-// 	x = 0;
-// 	y = 0;
-// 	check_fill(game);
-
-// 	while (new && new[x])
-// 	{
-// 		if (new[x][y])
-// 		{
-// 			printf("%s\n",new[x]);
-// 		}
-// 		x++;
-// 	}
-// 	printf("check fill : %d",check_fill(game));
-// }

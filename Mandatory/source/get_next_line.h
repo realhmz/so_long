@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:46:34 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/26 13:31:13 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:06:53 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_assets
 
 typedef struct s_game
 {
-		char		**map;
+	char		**map;
 	void		*mlx;
 	void		*win;
 	int			winh;

@@ -13,7 +13,7 @@ void	turn_right(t_game *game)
 		game->map[game->playerx][game->playery] = '0';
 		game->playery += 1;
 		load_map(game);
- 		put_player(game, game->asset, 1);
+		put_player(game, game->asset, 1);
 		game->moves++;
 		print_moves(game);
 	}
@@ -25,7 +25,6 @@ void	turn_left(t_game *game)
 		exit(free_leaks(game));
 	if (game->map[game->playerx][game->playery - 1] == 'C')
 		game->c -= 1;
-
 	if (game->map[game->playerx][game->playery - 1] == '0'
 		|| game->map[game->playerx][game->playery - 1] == 'C')
 	{

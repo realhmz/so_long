@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:41 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 21:58:21 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:48:08 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	check_map_name(char *str)
 	i = ft_strlen(str);
 	i--;
 	if (str[i] != 'r' || str[i - 1] != 'e' || str[i - 2] != 'b' || str[i
-		- 3] != '.' || !fd || fd == -1)
+		- 3] != '.' || !fd || fd == -1 || !str[i - 4])
 		return (0);
 	return (1);
 }

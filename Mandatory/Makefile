@@ -25,7 +25,7 @@ SOURCE :=	./source/check_map.c \
 
 ./a.outexport DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/minilibx/
 ./a.out= get_next_line/*c
-LIBRARY :=  -lmlx -framework OpenGL -framework AppKit
+LIBRARY :=    -lmlx -framework OpenGL -framework AppKit -Imlx
 MINILIBX := ./mlx_macos/
 SANITIZE := -fsanitize=address -g
 all:

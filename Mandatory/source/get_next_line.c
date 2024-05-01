@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:49:06 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 21:59:44 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:42:49 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ static int	find_new_line(char *str)
 	{
 		if (str[i] == '\n')
 			return (i);
+		if (i >= 39)
+		{
+			write(1, "Map is too big\n", 15);
+			exit (1);
+		}
 		i++;
 	}
 	return (-1);
@@ -104,6 +109,7 @@ char	*get_next_line(int fd)
 {
 	static char	*rest[OPEN_MAX];
 	char		*line;
+	static		int i = 0;
 	char		*buff;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
@@ -114,5 +120,11 @@ char	*get_next_line(int fd)
 	rest[fd] = ft_read(fd, buff, rest[fd]);
 	line = ft_line(rest[fd]);
 	rest[fd] = ft_rest(rest[fd]);
+	if (i >= 23)
+	{
+		write (1, "Map is too large\n", 17);
+		exit(1);
+	}
+	i++;
 	return (line);
 }

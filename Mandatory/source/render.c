@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:53:23 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/26 13:43:04 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:06:01 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,49 +31,52 @@ int	count_y(char **s)
 
 void	put_floor(t_game *game)
 {
-	mlx_put_image_to_window(game->mlx,game->win,game->asset->floor,game->y * 50 + game->cnsty,game->x * 50 + game->cnstx);
+	mlx_put_image_to_window(game->mlx, game->win, game->asset->floor, game->y
+		* 50 + game->cnsty, game->x * 50 + game->cnstx);
 }
 void	put_wall(t_game *game)
 {
-	mlx_put_image_to_window(game->mlx,game->win,game->asset->wall,game->y * 50 + game->cnsty,game->x * 50 + game->cnstx);
+	mlx_put_image_to_window(game->mlx, game->win, game->asset->wall, game->y
+		* 50 + game->cnsty, game->x * 50 + game->cnstx);
 }
 void	put_coin(t_game *game)
 {
-	mlx_put_image_to_window(game->mlx,game->win,game->asset->coin,game->y * 50 + game->cnsty,game->x * 50 + game->cnstx);
+	mlx_put_image_to_window(game->mlx, game->win, game->asset->coin, game->y
+		* 50 + game->cnsty, game->x * 50 + game->cnstx);
 }
 void	put_door(t_game *game)
 {
 	if (game->c != 0)
 		mlx_put_image_to_window(game->mlx, game->win, game->asset->door, game->y
-			* 50  + game->cnsty, game->x * 50+ game->cnstx);
+			* 50 + game->cnsty, game->x * 50 + game->cnstx);
 	else
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->asset->open_door, game->y * 50  + game->cnsty, game->x * 50+ game->cnstx);
+		mlx_put_image_to_window(game->mlx, game->win, game->asset->open_door,
+			game->y * 50 + game->cnsty, game->x * 50 + game->cnstx);
 }
 
 void	render(t_game *game)
 {
 	while (game->map[game->x][game->y])
+	{
+		put_floor(game);
+		if (game->map[game->x][game->y] == 'P')
 		{
-			put_floor(game);
-			if (game->map[game->x][game->y] == 'P')
-			{
-				game->playerx = game->x;
-				game->playery = game->y;
-			}
-			if (game->map[game->x][game->y] == '1')
-				put_wall(game);
-			if (game->map[game->x][game->y] == 'C')
-				put_coin(game);
-			if (game->map[game->x][game->y] == 'E')
-				put_door(game);
-			game->y++;
-			game->b += 50;
+			game->playerx = game->x;
+			game->playery = game->y;
 		}
+		if (game->map[game->x][game->y] == '1')
+			put_wall(game);
+		if (game->map[game->x][game->y] == 'C')
+			put_coin(game);
+		if (game->map[game->x][game->y] == 'E')
+			put_door(game);
+		game->y++;
+		game->b += 50;
+	}
 }
 void	load_map(t_game *game)
 {
-	int	w;
+	int w;
 
 	w = 50;
 	game->x = 0;

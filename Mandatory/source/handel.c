@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:53:28 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 22:02:51 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:45:49 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ char	*ft_readmap(char *map_name)
 	char	*line;
 
 	fd = open(map_name, O_RDONLY);
+	if (fd == -1)
+		{
+			write(1, "ERROR While Opening Map file\n", 29);
+			exit (1);
+		}
 	line = get_next_line(fd);
 	temp = NULL;
 	map = NULL;

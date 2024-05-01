@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:30 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/26 13:50:09 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:35:27 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,22 @@ void	game_init(t_game *game)
 	game->moves = 0;
 	game->map = NULL;
 	game->mlx = mlx_init();
-
 }
 void	start_game(t_game *game)
 {
-    t_assets	*asset;
-    int         i;
+	t_assets	*asset;
+	int			i;
 
-    i = 0;
+	i = 0;
 	asset = NULL;
-    game->winw = 1920;
-	game->winh = 1080;
+	game->winw = game->x;
+	game->winh = game->y;
 	game->cnsty = (game->winw / 2) - (game->x / 2);
 	game->cnstx = (game->winh / 2) - (game->y / 2);
-    game->mlx = mlx_init();
-    game->asset = (t_assets *)malloc(sizeof(t_assets));
-    asset = game->asset;
-    game->win = mlx_new_window(game->mlx, game->winw, game->winh, "SO_LONG");
+	game->mlx = mlx_init();
+	game->asset = (t_assets *)malloc(sizeof(t_assets));
+	asset = game->asset;
+	game->win = mlx_new_window(game->mlx, game->x, game->y, "SO_LONG");
 }
 void	load_assets(t_game *game)
 {
@@ -70,13 +69,14 @@ void	lanch_game(t_game *game)
 int	main(int ac, char **av)
 {
 	t_game	*game;
-
+	char *tmp;
 	if (ac != 2)
 		return (0);
 	game = malloc(sizeof(t_game));
 	game_init(game);
-	game->map = full_map(ft_readmap(av[1]));
-	if (check_lenth(game->map) && check_wall(game->map, ft_readmap(av[1]))
+	tmp = ft_readmap(av[1]);
+	game->map = full_map(tmp);
+	if (check_lenth(game->map) && check_wall(game->map, tmp)
 		&& check_map_name(av[1]) && check_fill(game))
 	{
 		lanch_game(game);
@@ -84,6 +84,7 @@ int	main(int ac, char **av)
 	}
 	else
 		printf("Map ERROR");
+	free(tmp);
 	return (0);
 }
 

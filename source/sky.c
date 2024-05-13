@@ -6,11 +6,11 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:53:26 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/28 17:16:40 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:32:03 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "so_long.h"
 #include <time.h>
 
 void	sky(t_game *game, t_assets *a)

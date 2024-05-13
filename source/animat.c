@@ -6,11 +6,11 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:35 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/28 15:29:24 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:32:03 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "so_long.h"
 
 void	player_assets(t_game *game)
 {

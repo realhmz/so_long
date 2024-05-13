@@ -6,11 +6,11 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:15:07 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 22:02:45 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:32:03 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "so_long.h"
 
 int	ft_strlen(char *str)
 {

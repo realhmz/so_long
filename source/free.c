@@ -6,11 +6,11 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:50 by het-taja          #+#    #+#             */
-/*   Updated: 2024/05/01 17:51:56 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/05/13 10:10:31 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "so_long.h"
 
 int	free_leaks(t_game *game)
 {
@@ -20,12 +20,12 @@ int	free_leaks(t_game *game)
 	play_end();
 	ft_free_map(game);
 	ft_free_assets(game);
+	system("leaks so_long");
 	// stop_audio();
 	ft_free_sound(game);
 	mlx_clear_window(game->mlx, game->win);
 	mlx_destroy_window(game->mlx, game->win);
-	system("leaks so_long");
-	// mlx_destroy_display(game->mlx);
+	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free(game);
 	return (0);
@@ -99,11 +99,6 @@ void	ft_free_assets(t_game *game)
 	{
 		mlx_destroy_image(game->mlx, game->asset->player[i]);
 		mlx_destroy_image(game->mlx, game->asset->playerl[i]);
-		i++;
-	}
-	i = 0;
-	while (i < 6)
-	{
 		mlx_destroy_image(game->mlx, game->asset->idle[i]);
 		i++;
 	}

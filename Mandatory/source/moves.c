@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "so_long.h"
 
 void	turn_right(t_game *game)
 {

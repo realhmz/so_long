@@ -6,11 +6,11 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:23:02 by het-taja          #+#    #+#             */
-/*   Updated: 2024/04/18 14:53:07 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:32:03 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "so_long.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {

@@ -1,9 +1,7 @@
-NAME := so_long
-
 CC := gcc
 
-CFLAGS := -Wall -Wextra -Werror -Iheaders/
-
+CFLAGS := -Wall -Wextra 
+NAME = so_long
 SOURCE :=	./source/check_map.c \
 			./source/ft_split.c \
 			./source/ft_strchr.c \
@@ -28,32 +26,16 @@ SOURCE :=	./source/check_map.c \
 			./source/idle.c\
 			./source/bar.c\
 			
-			
+OBJ = $(SOURCE:.c=.o)
+MLX :=  -lmlx -framework OpenGL -framework AppKit
 
+all : $(NAME)
 
-./a.outexport DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/minilibx/
-./a.out= get_next_line/*c
-LIBRARY :=  -lmlx -framework OpenGL -framework AppKit
-MINILIBX := ./mlx_macos/
-SANITIZE := -fsanitize=address -g
-all:
-	$(CC) -Wall -Wextra  $(SOURCE) $(LIBRARY) -o $(NAME)
+$(NAME) : $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(MLX) -o $(NAME)
 
-dlinux:
-		$(CC) $(SOURCE) -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz $(SANITIZE) -o $(NAME)
-linux:
-		$(CC) $(SOURCE) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
-	
-	
-debug:
-		$(CC)  -Wall -Wextra $(SOURCE) $(LIBRARY) $(SANITIZE) -o $(NAME)
-clean:
+clean :
+	rm -rf $(OBJ)
 
-fclean: clean
-		make clean -C $(MINILIBX)
-		rm -rf $(NAME)
-
-re: fclean all
-
-	
-		# $(CC) $(SOURCE) -Lmlx_linux -lmlx_Linux -L./minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+fclean : clean
+	rm -rf $(NAME)

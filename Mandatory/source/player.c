@@ -6,11 +6,11 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:53:21 by het-taja          #+#    #+#             */
-/*   Updated: 2024/05/01 17:10:10 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:32:03 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "so_long.h"
 
 void	put_player(t_game *game, t_assets *assets, int i)
 {

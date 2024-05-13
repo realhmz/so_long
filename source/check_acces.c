@@ -1,9 +1,9 @@
-#include "get_next_line.h"
-#include <unistd.h>
+// #include "so_long.h"
+// #include <unistd.h>
 
 
-void    check_textures()
-{
+// void    check_textures()
+// {
    
 
-}
+// }

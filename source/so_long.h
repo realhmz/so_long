@@ -169,5 +169,14 @@ void			player_assets_women(t_game *game);
 void			idle_assets_women(t_game *game);
 // void	ft_free(t_free **lst);
 // void    remove_leaks(t_game *game);
+int	ft_count_char(char **str, char c);
+int parce_map(char **str);
+int read_map(t_game *game, char *map);
+// void	player_pos(t_game *game);
+int	map_walls(t_game *game);
+void	exit_pos(t_game *game);
+int error(t_game *game);
+int	parcing(t_game *game, char *map);
+int	count_newline(char *str, char **map);
 
 #endif // GET_NEXT_LINE_H

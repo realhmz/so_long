@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 21:22:30 by het-taja          #+#    #+#             */
-/*   Updated: 2024/05/17 23:24:25 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/05/20 14:39:51 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	lanch_game(t_game *game)
 	game->cnsty = (game->winw / 2) - (game->x / 2);
 	game->cnstx = (game->winh / 2) - (game->y / 2);
 	game->edges = malloc(sizeof(void *) * 16);
-	game->c = count_c(game);
-	game->total_coin = count_c(game);
+	// game->c = count_c(game);
+	// game->total_coin = count_c(game);
 	load_assets(game, game->asset);
 	if (game->game_stat == 1)
 	{
@@ -79,30 +79,32 @@ void	lanch_game(t_game *game)
 		mlx_mouse_hook(game->win, mouse_hook, game);
 }
 
+int error_r(t_game *game)
+{
+	// clear_map(game->map);
+	free(game);
+	write(1, "Error\n", 6);
+	system("leaks so_long");
+	return(1);
+}
+
 int	main(int ac, char **av)
 {
 	t_game	*game;
 	char	*tmp;
 
-	tmp = ft_readmap(av[1]);
 	if (ac != 2)
 		return (0);
 	game = malloc(sizeof(t_game));
 	game_init(game);
+	if (parcing(game, av[1]) == -1)
+		exit(error_r(game));
 	load_menu(game);
 	if (game->game_stat == 0)
 		mlx_mouse_hook(game->win, mouse_hook, game);
-	game->map = full_map(tmp);
-	if (check_lenth(game->map) && check_wall(game->map, tmp)
-		&& check_map_name(av[1]) && check_fill(game))
-	{
-		if (game->game_stat == 1)
-			lanch_game(game);
-		mlx_loop(game->mlx);
-	}
-	else
-		printf("Map ERROR");
-	free(tmp);
+	if (game->game_stat == 1)
+		lanch_game(game);
+	mlx_loop(game->mlx);
 	return (0);
 }
 

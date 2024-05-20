@@ -25,6 +25,7 @@ SOURCE :=	./source/check_map.c \
 			./source/menu.c\
 			./source/idle.c\
 			./source/bar.c\
+			./source/parcing.c
 			
 OBJ = $(SOURCE:.c=.o)
 MLX :=  -lmlx -framework OpenGL -framework AppKit

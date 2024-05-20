@@ -6,11 +6,13 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:52:50 by het-taja          #+#    #+#             */
-/*   Updated: 2024/05/13 10:10:31 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/05/20 14:23:10 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+
 
 int	free_leaks(t_game *game)
 {
@@ -20,14 +22,15 @@ int	free_leaks(t_game *game)
 	play_end();
 	ft_free_map(game);
 	ft_free_assets(game);
-	system("leaks so_long");
-	// stop_audio();
+	stop_audio();
 	ft_free_sound(game);
 	mlx_clear_window(game->mlx, game->win);
 	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
+	// mlx_destroy_display(game->mlx);
+	game->mlx = NULL;
 	free(game->mlx);
 	free(game);
+	system("leaks so_long");
 	return (0);
 }
 
@@ -44,24 +47,6 @@ void	ft_free_enemy(t_game *game)
 	}
 	free(game->asset->enemyl);
 	free(game->asset->enemyr);
-}
-
-void	ft_free_player(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (i < 6)
-	{
-		if (game->player_gender == 1)
-		{
-			mlx_destroy_image(game->mlx, game->asset->player[i]);
-			mlx_destroy_image(game->mlx, game->asset->playerl[i]);
-		}
-		i++;
-	}
-	free(game->asset->player);
-	free(game->asset->playerl);
 }
 
 void	ft_free_edges(t_game *game)
@@ -126,7 +111,10 @@ void	ft_free_assets(t_game *game)
 	free(game->asset->playerl);
 	free(game->asset->enemyl);
 	free(game->asset->enemyr);
+	free(game->asset->idle);
 	free(game->asset);
+	// game->asset->bar
+	
 }
 
 void	ft_free_sound(t_game *game)

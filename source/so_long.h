@@ -19,8 +19,8 @@
 # include <string.h>
 # include <time.h>
 # include <unistd.h>
-// # include "../minilibx-linux/mlx.h"
-# include <mlx.h>
+# include "../mlx-macos/mlx.h"
+// # include <mlx.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 500
